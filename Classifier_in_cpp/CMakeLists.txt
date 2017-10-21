@@ -2,8 +2,13 @@ cmake_minimum_required(VERSION 3.8)
 project(Classifier_in_cpp)
 
 set(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -pedantic")
+
 set(SOURCE_FILES
         main.cpp
+        myconstants.h
+        BinaryClassifier.cpp
+        BinaryClassifier.h
         )
 
 set(EXECUTABLE Classifier_in_cpp)

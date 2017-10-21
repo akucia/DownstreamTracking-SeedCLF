@@ -1,39 +1,50 @@
-#include "tensorflow/core/public/session.h"
-#include "tensorflow/core/platform/env.h"
-#include "loader.h"
-#include "tensorflow/cc/saved_model/tag_constants.h"
+#include "myconstants.h"
+#include "BinaryClassifier.h"
 
-using namespace tensorflow;
+#include <iostream>
+#include <chrono>
+
 using std::cout;
-using std::vector;
-using std::pair;
+using std::endl;
+
+class Timer
+{
+public:
+    Timer() : beg_(clock_::now()) {}
+    void reset() { beg_ = clock_::now(); }
+    double elapsed() const {
+        return std::chrono::duration_cast<second_>
+                (clock_::now() - beg_).count(); }
+
+private:
+    typedef std::chrono::high_resolution_clock clock_;
+    typedef std::chrono::duration<double, std::ratio<1> > second_;
+    std::chrono::time_point<clock_> beg_;
+};
+
 
 int main(int argc, char* argv[]) {
-    // Initialize a tensorflow session
-    Session* session;
-    Status status = NewSession(SessionOptions(), &session);
-    if (!status.ok()) {
-        cout << status.ToString() << "\n";
-        return 1;
+
+    std::string model_path = argv[2];
+
+    std::vector<float> input_values {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+
+    std::vector<float> input_values_2 {2.0, 2.0, 2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+
+    Timer tmr;
+    double t = tmr.elapsed();
+    tmr.reset();
+    BinaryClassifier classifier(model_path, kMyPredictProbabilitySignatureDef);
+
+
+    t = tmr.elapsed();
+    std::cout << t << std::endl;
+
+    tmr.reset();
+    for (int i=0; i<100000; i++) {
+        classifier.predict(input_values);
     }
-    char* model_path = argv[2];
-    cout << "READING MODEL: " << model_path << std::endl;
-    GraphDef graph_def;
+    t = tmr.elapsed();
+    std::cout << t << std::endl;
 
-    const string export_dir = "saved_model";
-
-    if (!MaybeSavedModelDirectory("saved_model")){
-        cout << "Provided directory does not contain TF Model" << "\n";
-        return 1;
-    }
-
-
-    SavedModelBundle bundle;
-    status = LoadSavedModel(SessionOptions(), RunOptions(), export_dir,  {kSavedModelTagServe}, &bundle);
-
-    if (!status.ok()) {
-        cout << status.ToString() << "\n";
-        return 1;
-    }
-    cout << "DONE reading model.\n";
 }

@@ -271,3 +271,56 @@ class DNNSoftmaxClf(BaseEstimator, ClassifierMixin):
     def close_session(self):
         self.session.close()
         self.has_model = False
+
+
+import keras
+
+from keras.wrappers.scikit_learn import KerasClassifier
+
+class KerasDNN(KerasClassifier):
+
+    def __init__(self, input_shape, output_shape,
+                 layers=3,
+                 neurons=100,
+                 activation='relu',
+                 loss_metric='ce',
+                 optimizer='adam',
+                 batch_norm=True,
+                 dropout=0.0,
+                 metrics=['accuracy']
+                 ):
+        self.input_shape = input_shape
+        self.output_shape = output_shape
+        self.layers = layers
+        self.neurons = neurons
+        self.activation = activation
+        self.loss_metric = loss_metric
+        self.optimizer = optimizer
+        self.batch_norm = batch_norm
+        self.dropout = dropout
+        self.metrics = metrics
+
+    def __call__(self):
+        inp = keras.layers.Input(self.input_shape)
+
+        layer = inp
+        for i in range(self.layers):
+            layer = keras.layers.Dense(self.neurons, activation=self.activation)(layer)
+            if self.batch_norm:
+                layer = keras.layers.BatchNormalization()(layer)
+            if self.dropout > 0:
+                layer = keras.layers.core.Dropout(self.dropout)(layer)
+
+        layer = keras.layers.Dense(self.output_shape[-1], activation='softmax')(layer)
+
+        model = keras.models.Model(inputs=[inp], outputs=[layer])
+        model.compile(optimizer=self.optimizer, loss=self.loss_metric, metrics=self.metrics)
+        self.model = model
+        return model
+
+    def predict_proba(self, x, **kwargs):
+        return super.predict(x)
+
+    def predict(self, x, **kwargs):
+        predictions = self.predict_proba(x, **kwargs)
+        return np.argmax(predictions, axis=1)
