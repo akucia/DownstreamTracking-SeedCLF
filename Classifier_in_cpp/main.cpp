@@ -1,5 +1,5 @@
-#include "myconstants.h"
-#include "BinaryClassifier.h"
+#include "src/myconstants.h"
+#include "src/BinaryClassifier.h"
 
 #include <iostream>
 #include <chrono>
@@ -26,25 +26,23 @@ private:
 int main(int argc, char* argv[]) {
 
     std::string model_path = argv[2];
-
-    std::vector<float> input_values {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
-
-    std::vector<float> input_values_2 {2.0, 2.0, 2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+    std::vector<float> input_values {1.0, 9.0, 4.0, 1.0, 1.0, 1.0, 1.0, 50.0, 1.0, 1.0, 1.0, 3.0, 1.0, 1.0, 1.0};
 
     Timer tmr;
-    double t = tmr.elapsed();
+    double t;
+
     tmr.reset();
     BinaryClassifier classifier(model_path, kMyPredictProbabilitySignatureDef);
 
-
     t = tmr.elapsed();
-    std::cout << t << std::endl;
+    cout << t << endl;
 
     tmr.reset();
-    for (int i=0; i<100000; i++) {
-        classifier.predict(input_values);
+    for (int i=0; i<10; i++) {
+        cout << classifier.predict(input_values)[0] << " " << classifier.predict(input_values)[1]  << " " << endl;
     }
+    cout << endl;
     t = tmr.elapsed();
-    std::cout << t << std::endl;
+    cout << t << endl;
 
 }

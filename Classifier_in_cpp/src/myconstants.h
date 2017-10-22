@@ -1,9 +1,14 @@
 //
-// Created by kuciu on 21.10.17.
+// Created by akucia on 21.10.17.
 //
 
 #ifndef CLASSIFIER_IN_CPP_CONSTANTS_H
 #define CLASSIFIER_IN_CPP_CONSTANTS_H
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// tensorflow model directory
+    static constexpr char kSavedModelDir[] = "saved_models";
 
 namespace tensorflow {
 
@@ -30,9 +35,7 @@ namespace tensorflow {
     static constexpr char kMyClassifySignatureDef[] = "classify";
 
     static constexpr char kMyPredictProbabilitySignatureDef[] = "predict_probability";
-
-////////////////////////////////////////////////////////////////////////////////
-    static constexpr char kKerasLearningPhase[] = "keras_learning_phase";
 }
+
 
 #endif //CLASSIFIER_IN_CPP_CONSTANTS_H

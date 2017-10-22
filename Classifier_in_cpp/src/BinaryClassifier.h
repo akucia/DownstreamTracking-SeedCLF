@@ -1,5 +1,5 @@
 //
-// Created by kuciu on 21.10.17.
+// Created by akucia on 21.10.17.
 //
 
 #ifndef CLASSIFIER_IN_CPP_KERASBINARYCLASSIFIER_H
@@ -13,7 +13,6 @@
 #include "tensorflow/cc/saved_model/loader.h"
 #include "tensorflow/cc/saved_model/tag_constants.h"
 #include "tensorflow/cc/client/client_session.h"
-#include "tensorflow/core/lib/core/threadpool.h"
 
 #include "myconstants.h"
 
@@ -30,16 +29,13 @@ public:
     std::vector<float> predict(std::vector<float>& X);
 
 private:
-
-    string prediction_mode;
-    SavedModelBundle bundle;
-
-    string input_name;
+    const string saved_model_dir;
+    const string prediction_mode;
     int input_features;
+
+    SavedModelBundle bundle;
+    string input_name;
     string output_name;
-
-    std::unique_ptr<thread::ThreadPool> step_threads;
-
     Tensor input;
     std::vector<Tensor> outputs {};
 
