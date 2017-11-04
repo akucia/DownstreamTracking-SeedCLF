@@ -1,0 +1,12 @@
+//
+// Created by akucia on 04.11.17.
+//
+
+#ifndef CLASSIFIER_IN_CPP_TUPLEDNETWORKCLASSIFIER_H
+#define CLASSIFIER_IN_CPP_TUPLEDNETWORKCLASSIFIER_H
+
+class TupledNetworkClassifier {
+
+};
+
+#endif //CLASSIFIER_IN_CPP_TUPLEDNETWORKCLASSIFIER_H

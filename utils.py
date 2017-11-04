@@ -41,3 +41,6 @@ def export_binary_clf_as_SavedModel(keras_model, export_dir):
             assets_collection=tf.get_collection(tf.GraphKeys.ASSET_FILEPATHS),
     )
     builder.save()
+
+def test_model(model, X, y):
+    pass

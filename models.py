@@ -1,3 +1,6 @@
+
+from __future__ import division, print_function, absolute_import
+
 import os
 import time
 
@@ -7,6 +10,12 @@ from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.metrics import accuracy_score
 from tensorflow.contrib.layers import dropout
 from tqdm import tqdm
+
+
+import numpy
+from collections import OrderedDict
+from sklearn.base import ClassifierMixin, BaseEstimator, clone
+from hep_ml.commonutils import to_pandas_dataframe, check_xyw, check_sample_weight, weighted_quantile
 
 
 class DNNSoftmaxClf(BaseEstimator, ClassifierMixin):
@@ -276,9 +285,10 @@ class DNNSoftmaxClf(BaseEstimator, ClassifierMixin):
 import keras
 
 from keras.wrappers.scikit_learn import KerasClassifier
+import keras
+from sklearn.base import BaseEstimator
 
-class KerasDNN(KerasClassifier):
-
+class KerasDNN(BaseEstimator, KerasClassifier):
     def __init__(self, input_shape, output_shape,
                  layers=3,
                  neurons=100,
@@ -287,7 +297,9 @@ class KerasDNN(KerasClassifier):
                  optimizer='adam',
                  batch_norm=True,
                  dropout=0.0,
-                 metrics=['accuracy']
+                 metrics=['accuracy'],
+                 last_layer_act='softmax',
+                 **kwargs
                  ):
         self.input_shape = input_shape
         self.output_shape = output_shape
@@ -299,6 +311,10 @@ class KerasDNN(KerasClassifier):
         self.batch_norm = batch_norm
         self.dropout = dropout
         self.metrics = metrics
+        self.last_layer_act = last_layer_act
+
+        super().__init__(**kwargs)
+
 
     def __call__(self):
         inp = keras.layers.Input(self.input_shape)
@@ -311,16 +327,157 @@ class KerasDNN(KerasClassifier):
             if self.dropout > 0:
                 layer = keras.layers.core.Dropout(self.dropout)(layer)
 
-        layer = keras.layers.Dense(self.output_shape[-1], activation='softmax')(layer)
+        layer = keras.layers.Dense(self.output_shape[-1], activation=self.last_layer_act)(layer)
 
         model = keras.models.Model(inputs=[inp], outputs=[layer])
-        model.compile(optimizer=self.optimizer, loss=self.loss_metric, metrics=self.metrics)
+        model.compile(optimizer=self.optimizer, loss=self.loss_metric,
+                      metrics=self.metrics)
         self.model = model
         return model
 
     def predict_proba(self, x, **kwargs):
-        return super.predict(x)
+        return self.model.predict(x)
 
     def predict(self, x, **kwargs):
         predictions = self.predict_proba(x, **kwargs)
         return np.argmax(predictions, axis=1)
+
+
+
+class LookupClassifier(BaseEstimator, ClassifierMixin):
+    def __init__(self, base_estimator, n_bins=16, max_cells=500000000, keep_trained_estimator=True):
+        """
+        LookupClassifier splits each of features into bins, trains a base_estimator to use this data.
+        To predict class for new observation, results of base_estimator are kept for all possible combinations of bins,
+        and saved together
+        :param base_estimator: classifier used to build predictions
+        :param n_bins:
+            * int: how many bins to use for each axis
+            * dict: feature_name -> int, specialize how many bins to use for each axis
+            * dict: feature_name -> list of floats, set manually edges of bins
+            By default, the (weighted) quantiles are used to compute bin edges.
+        :type n_bins: int | dict
+        :param int max_cells: raise error if lookup table will have more items.
+        :param bool keep_trained_estimator: if True, trained estimator will be saved.
+        See also: this idea is used inside LHCb triggers, see V. Gligorov, M. Williams, 'Bonsai BDT'
+        Resulting formula is very simple and can be rewritten in other language or environment (C++, CUDA, etc).
+        """
+        self.base_estimator = base_estimator
+        self.n_bins = n_bins
+        self.max_cells = max_cells
+        self.keep_trained_estimator = keep_trained_estimator
+
+    def check_dimensions(self, bin_edges):
+        cumulative_size = numpy.cumprod([len(bin_edge) + 1 for name, bin_edge in bin_edges.items()])
+        if numpy.any(cumulative_size > self.max_cells):
+            raise ValueError('the total size of lookup table exceeds {}, '
+                             'reduce n_bins or number of features in use'.format(self.max_cells))
+
+    def fit(self, X, y, sample_weight=None, **fit_params):
+        """Train a classifier and collect predictions for all possible combinations.
+        :param X: pandas.DataFrame or numpy.array with data of shape [n_samples, n_features]
+        :param y: array with labels of shape [n_samples]
+        :param sample_weight: None or array of shape [n_samples] with weights of events
+        :return: self
+        """
+        self.classes_ = numpy.unique(y)
+        X, y, normed_weights = check_xyw(X, y, sample_weight=sample_weight, classification=True)
+        X = to_pandas_dataframe(X)
+        normed_weights = check_sample_weight(y, sample_weight=normed_weights, normalize_by_class=True, normalize=True)
+
+        self.bin_edges = self._compute_bin_edges(X, normed_weights=normed_weights)
+        self.check_dimensions(self.bin_edges)
+
+        n_parameter_combinations = numpy.prod([len(bin_edge) + 1 for name, bin_edge in self.bin_edges.items()])
+
+        transformed_data = self.transform(X)
+        # fit_params = {}
+        if sample_weight is not None:
+            fit_params['sample_weights'] = sample_weight
+
+        self.base_estimator.fit(transformed_data, y, **fit_params)
+
+        all_lookup_indices = numpy.arange(int(n_parameter_combinations))
+        all_combinations = self.convert_lookup_index_to_bins(all_lookup_indices)
+        self._lookup_table = self.base_estimator.predict_proba(all_combinations)
+
+
+        return self
+
+    def _compute_bin_edges(self, X, normed_weights):
+        """
+        Compute edges of bins, weighted quantiles are used,
+        """
+        bins_over_axis = OrderedDict()
+        for column in X.columns:
+            if isinstance(self.n_bins, int):
+                bins_over_axis[column] = self.n_bins
+            else:
+                bins_over_axis[column] = self.n_bins[column]
+
+        bin_edges = OrderedDict()
+        for column, column_bins in bins_over_axis.items():
+            if isinstance(column_bins, int):
+                quantiles = numpy.linspace(0., 1., column_bins + 1)[1:-1]
+                bin_edges[column] = weighted_quantile(X[column], quantiles=quantiles, sample_weight=normed_weights)
+            else:
+                bin_edges[column] = numpy.array(list(column_bins))
+
+        return bin_edges
+
+    def convert_bins_to_lookup_index(self, bins_indices):
+        """
+        :param bins_indices: numpy.array of shape [n_samples, n_columns], filled with indices of bins.
+        :return: numpy.array of shape [n_samples] with corresponding index in lookup table
+        """
+        lookup_indices = numpy.zeros(len(bins_indices), dtype=int)
+        bins_indices = numpy.array(bins_indices)
+        assert bins_indices.shape[1] == len(self.bin_edges)
+        for i, (column_name, bin_edges) in enumerate(self.bin_edges.items()):
+            lookup_indices *= len(bin_edges) + 1
+            lookup_indices += bins_indices[:, i]
+        return lookup_indices
+
+    def convert_lookup_index_to_bins(self, lookup_indices):
+        """
+        :param lookup_indices: array of shape [n_samples] with positions at lookup table
+        :return: array of shape [n_samples, n_features] with indices of bins.
+        """
+
+        result = numpy.zeros([len(lookup_indices), len(self.bin_edges)], dtype='uint8')
+        for i, (column_name, bin_edges) in list(enumerate(self.bin_edges.items()))[::-1]:
+            n_columns = len(bin_edges) + 1
+            result[:, i] = lookup_indices % n_columns
+            lookup_indices = lookup_indices // n_columns
+
+        return result
+
+    def transform(self, X):
+        """Convert data to bin indices.
+        :param X: pandas.DataFrame or numpy.array with data
+        :return: numpy.array, where each column is replaced with index of bin
+        """
+        X = to_pandas_dataframe(X)
+        assert list(X.columns) == list(self.bin_edges.keys()), 'passed dataset with wrong columns'
+        result = numpy.zeros(X.shape, dtype='uint8')
+        for i, column in enumerate(X.columns):
+            edges = self.bin_edges[column]
+            result[:, i] = numpy.searchsorted(edges, X[column])
+
+        return result
+
+    def predict(self, X):
+        """Predict class for each event
+        :param X: pandas.DataFrame with data
+        :return: array of shape [n_samples] with predicted class labels.
+        """
+        return self.classes_[numpy.argmax(self.predict_proba(X), axis=1)]
+
+    def predict_proba(self, X):
+        """ Predict probabilities for new observations
+        :param X: pandas.DataFrame with data
+        :return: probabilities, array of shape [n_samples, n_classes]
+        """
+        bins_indices = self.transform(X)
+        lookup_indices = self.convert_bins_to_lookup_index(bins_indices)
+        return self._lookup_table[lookup_indices]

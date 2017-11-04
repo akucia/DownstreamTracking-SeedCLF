@@ -1,5 +1,6 @@
 #include "src/myconstants.h"
-#include "src/BinaryClassifier.h"
+#include "src/TFBinaryClassifier.h"
+#include "src/LWTNNClassifier.h"
 
 #include <iostream>
 #include <chrono>
@@ -25,6 +26,7 @@ private:
 
 int main(int argc, char* argv[]) {
 
+    using namespace tensorflow;
     std::string model_path = argv[2];
     std::vector<float> input_values {1.0, 9.0, 4.0, 1.0, 1.0, 1.0, 1.0, 50.0, 1.0, 1.0, 1.0, 3.0, 1.0, 1.0, 1.0};
 
@@ -44,5 +46,7 @@ int main(int argc, char* argv[]) {
     cout << endl;
     t = tmr.elapsed();
     cout << t << endl;
+
+    LWTNNClassifier clf (2);
 
 }
