@@ -12,7 +12,7 @@
 namespace PatBBDTSeedClassifier_details {
     static constexpr int s_featuresNumber = 10;
     static constexpr int s_binPerFeature = 3;
-    static constexpr int s_nBins = 1048576; //  ipow( s_binPerFeature+1, s_featuresNumber );
+    static constexpr int s_nBins = 1048576; //  ipow( s_binEdgesPerFeature+1, s_featuresNumber );
 }
 
 
