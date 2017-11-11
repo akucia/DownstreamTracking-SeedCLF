@@ -10,8 +10,8 @@ find_package(lwtnn)
 set(SOURCE_FILES
         src/myconstants.h
         src/TFBinaryClassifier.cpp src/TFBinaryClassifier.h
-        src/PatNeuralNetworkTupledSeedClassifier.cpp src/PatNeuralNetworkTupledSeedClassifier.h
-        src/PatBBDTSeedClassifier.cpp src/PatBBDTSeedClassifier.h
+#        src/PatNeuralNetworkTupledSeedClassifier.cpp src/PatNeuralNetworkTupledSeedClassifier.h
+#        src/PatBBDTSeedClassifier.cpp src/PatBBDTSeedClassifier.h
         main.cpp
         src/LWTNNClassifier.cpp src/LWTNNClassifier.h
         )
