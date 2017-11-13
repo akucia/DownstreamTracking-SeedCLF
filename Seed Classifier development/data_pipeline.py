@@ -272,7 +272,7 @@ def data_pipeline():
         ('tx',txScale()),
         # ('nbIT',nbITScale()),
         # ('nLayers',nLayersScale()),
-        ('nLHCbIDs',nLHCbIDsScale()),
+        ('nLHCbIDs', nLHCbIDsScale()),
         ('pt', ptScale()),
         ('p', pScale()),
         ('chi2PerDoF', chi2PerDoFScaler()),
@@ -430,9 +430,9 @@ def data_pipeline_3():
         num_pipeline = Pipeline([
             # ('dropFalseMCParticles', dropFalseMCParticles()),
             # ('dropUnnecessaryFeatures',dropUnnecessaryFeatures()),
-            ('angle', addAngle()),
+            # ('angle', addAngle()),
             ('pseudo rapidity', addPR()),
-            ('z magnet', addZ()),
+            # ('z magnet', addZ()),
             ('radius', addR()),
             ('y', yScale()),
             ('x', xScale()),
@@ -446,6 +446,7 @@ def data_pipeline_3():
             ('chi2PerDoF', chi2PerDoFScaler()),
         ])
         return num_pipeline
+
 # def data_pipeline_all_labels():
 #     num_pipeline = Pipeline([
 #         ('dropFalseMCParticles',dropFalseMCParticles()),
