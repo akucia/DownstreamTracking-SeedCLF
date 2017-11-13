@@ -13,6 +13,7 @@ set(SOURCE_FILES
 #        src/PatNeuralNetworkTupledSeedClassifier.cpp src/PatNeuralNetworkTupledSeedClassifier.h
 #        src/PatBBDTSeedClassifier.cpp src/PatBBDTSeedClassifier.h
         main.cpp
+        src/PatLWTNNSeedClassifier.cpp src/PatLWTNNSeedClassifier.h
         src/LWTNNClassifier.cpp src/LWTNNClassifier.h
         )
 
