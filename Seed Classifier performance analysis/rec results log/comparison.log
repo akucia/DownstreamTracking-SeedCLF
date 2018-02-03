@@ -1,0 +1,13 @@
+lwtnn
+PrChecker.Downs...   INFO **** Downstream                      15870 tracks including          5031 ghosts [31.7 %], Event average  26.0 % ****
+PrChecker.Downs...   INFO                             UT+T :    9620 from    16782 [ 57.3 %]     12 clones [ 0.1 %], purity: 97.59 %, hitEff: 98.93 %
+PrChecker.Downs...   INFO                        UT+T>5GeV :    6379 from    10318 [ 61.8 %]      9 clones [ 0.1 %], purity: 97.64 %, hitEff: 98.99 %
+PrChecker.Downs...   INFO                       UT+T_fromB :    1197 from     1913 [ 62.6 %]      1 clones [ 0.1 %], purity: 97.82 %, hitEff: 99.24 %
+PrChecker.Downs...   INFO                  UT+T_fromB>5GeV :     968 from     1496 [ 64.7 %]      1 clones [ 0.1 %], purity: 97.82 %, hitEff: 99.30 %
+
+bbdt
+PrChecker.Downs...   INFO **** Downstream                      20367 tracks including          6181 ghosts [30.3 %], Event average  24.8 % ****
+PrChecker.Downs...   INFO                             UT+T :   12591 from    16782 [ 75.0 %]     24 clones [ 0.2 %], purity: 97.58 %, hitEff: 98.94 %
+PrChecker.Downs...   INFO                        UT+T>5GeV :    8394 from    10318 [ 81.4 %]     20 clones [ 0.2 %], purity: 97.62 %, hitEff: 99.01 %
+PrChecker.Downs...   INFO                       UT+T_fromB :    1549 from     1913 [ 81.0 %]      4 clones [ 0.3 %], purity: 97.82 %, hitEff: 99.24 %
+PrChecker.Downs...   INFO                  UT+T_fromB>5GeV :    1270 from     1496 [ 84.9 %]      4 clones [ 0.3 %], purity: 97.80 %, hitEff: 99.33 %

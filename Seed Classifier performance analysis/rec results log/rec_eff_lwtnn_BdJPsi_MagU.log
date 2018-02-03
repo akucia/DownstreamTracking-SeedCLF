@@ -1,0 +1,1514 @@
+# setting LC_ALL to "C"
+# --> Including file '/data2/tracking/BrunelDev_v52r6/jobs/rec_eff.py'
+# <-- End of file '/data2/tracking/BrunelDev_v52r6/jobs/rec_eff.py'
+# --> Including file '/data2/tracking/BrunelDev_v52r6/jobs/BdJPsiKs_MagU_local_data.py'
+# <-- End of file '/data2/tracking/BrunelDev_v52r6/jobs/BdJPsiKs_MagU_local_data.py'
+# applying configuration of Brunel
+# /***** User Brunel/Brunel **************************************************************************
+# |-FilterTrackStates   = True
+# |-PhysFilterMask      = None
+# |-DatasetName         = 'test'  (default: 'Brunel')
+# |-Histograms          = 'OfflineFull'
+# |-DBSnapshotDirectory = '/group/online/hlt/conditions'
+# |-ProductionMode      = False
+# |-WriteLumi           = False
+# |-SplitRawEventInput  = None
+# |-PackType            = 'TES'
+# |-DDDBtag             = 'dddb-20150724'  (default: '')
+# |-WithMC              = True  (default: False)
+# |-MainSequence        = ['ProcessPhase/Reco', 'ProcessPhase/Moni', 'ProcessPhase/MCLinks', 'ProcessPhase/Check']
+# |                     (default: None)
+# |-OutputType          = 'NONE'  (default: 'DST')
+# |-DisableTiming       = False
+# |-DigiType            = 'Default'
+# |-UseDBSnapshot       = False
+# |-PartitionName       = 'LHCb'
+# |-VetoHltErrorEvents  = False  (default: True)
+# |-MCCheckSequence     = ['Pat']  (default: None)
+# |-InputType           = 'DIGI'  (default: 'MDF')
+# |-OnlineMode          = False
+# |-WriteFSR            = True
+# |-SkipTracking        = False
+# |-SkipEvents          = 0
+# |-PrintFreq           = 1  (default: 1)
+# |-Detectors           = ['Velo', 'PuVeto', 'TT', 'IT', 'OT', 'Magnet']  (default: None)
+# |-EvtMax              = 50000  (default: -1)
+# |-Simulation          = True  (default: False)
+# |-MergeGenFSR         = True
+# |-Context             = 'Offline'
+# |-RichSequences       = ['RICHFUTURE']  (default: ['RICHFUTURE'])
+# |-RecoSequence        = ['Decoding', 'VELO', 'TrHLT1', 'Vertex', 'TrHLT2']  (default: None)
+# |-CondDBtag           = 'sim-20161124-2-vc-mu100'  (default: '')
+# |-MCLinksSequence     = ['L0', 'Unpack', 'Tr', 'Calo']  (default: ['L0', 'Unpack', 'Tr', 'Calo'])
+# |-Hlt2FilterCode      = ''
+# |-Hlt1FilterCode      = ''
+# |-OutputLevel         = 3
+# |-InitSequence        = ['Brunel']  (default: None)
+# |-DataType            = '2015'  (default: '2016')
+# |-NoWarnings          = False
+# |-SplitRawEventOutput = 4.3
+# |-RecL0Only           = False
+# |-RawBanksToKill      = None
+# |-SpecialData         = []  (default: [])
+# |-Monitors            = []  (default: [])
+# \----- (End of User Brunel/Brunel) -----------------------------------------------------------------
+# /***** User RecSysConf/RecSysConf ******************************************************************
+# |-SkipTracking  = False
+# |-DataType      = '2015'  (default: '')
+# |-OutputLevel   = 3
+# |-Histograms    = 'OfflineFull'
+# |-Detectors     = ['Velo', 'PuVeto', 'TT', 'IT', 'OT', 'Magnet']
+# |               (default: ['Velo', 'TT', 'IT', 'OT', 'Rich', 'Tr', 'Calo', 'Muon', 'L0'])
+# |-OutputType    = 'NONE'  (default: '')
+# |-Simulation    = True  (default: False)
+# |-Context       = 'Offline'
+# |-RichSequences = ['RICHFUTURE']  (default: ['RICHFUTURE'])
+# |-RecoSequence  = ['Decoding', 'VELO', 'TrHLT1', 'Vertex', 'TrHLT2']  (default: None)
+# |-SpecialData   = []  (default: [])
+# |-OnlineMode    = False
+# \----- (End of User RecSysConf/RecSysConf) ---------------------------------------------------------
+# /***** User TrackSys/TrackSys **********************************************************************
+# |-FilterBeforeFit          = True
+# |-TrackingSequence         = []  (default: [])
+# |-ExpertTracking           = []  (default: [])
+# |-ExpertHistos             = False
+# |-TrackExtraInfoAlgorithms = []  (default: [])
+# |-DataType                 = '2015'  (default: '2011')
+# |-WithMC                   = True  (default: False)
+# |-TrackTypes               = ['Velo', 'Seeding', 'Downstream']  (default: [])
+# |-OutputType               = ''
+# |-Simulation               = True  (default: False)
+# |-OldCloneKiller           = False
+# |-ForceNewSeq              = False
+# |-GlobalCuts               = {}  (default: {})
+# |-ExcludedLayers           = []  (default: [])
+# |-ForceOldSeq              = False
+# |-SpecialData              = []  (default: [])
+# |-HltMode                  = False
+# |-TrackPatRecAlgorithms    = []  (default: [])
+# \----- (End of User TrackSys/TrackSys) -------------------------------------------------------------
+# /***** User RecMoniConf/RecMoniConf ****************************************************************
+# |-SkipTracking  = False
+# |-DataType      = '2015'  (default: '')
+# |-Detectors     = ['Velo', 'PuVeto', 'TT', 'IT', 'OT', 'Magnet']
+# |               (default: ['Velo', 'TT', 'IT', 'OT', 'Rich', 'Tr', 'Calo', 'Muon', 'L0'])
+# |-Histograms    = 'OfflineFull'
+# |-OutputLevel   = 3
+# |-Simulation    = True  (default: False)
+# |-Context       = 'Offline'
+# |-MoniSequence  = []  (default: None)
+# |-RichSequences = ['RICHFUTURE']  (default: ['RICHFUTURE'])
+# |-OnlineMode    = False
+# |-CheckEnabled  = True  (default: False)
+# \----- (End of User RecMoniConf/RecMoniConf) -------------------------------------------------------
+# No Writer defined for DIGI
+ApplicationMgr    SUCCESS 
+====================================================================================================================================
+                                                   Welcome to BrunelDev version v52r6
+                                          running on lhcbd1 on Tue Jan 16 19:41:40 2018
+====================================================================================================================================
+ApplicationMgr       INFO Application Manager Configured successfully
+ToolSvc.GitDDDB      INFO opening Git repository '/cvmfs/lhcb.cern.ch/lib/lhcb/git-conddb/DDDB.git'
+ToolSvc.GitDDDB      INFO using commit 'dddb-20150724' corresponding to f9ddb1b0c1c78a3e1ce37f75d62f2b01f3fd4776
+ToolSvc.GitSIMCOND   INFO opening Git repository '/cvmfs/lhcb.cern.ch/lib/lhcb/git-conddb/SIMCOND.git'
+ToolSvc.GitSIMCOND   INFO using commit 'sim-20161124-2-vc-mu100' corresponding to c1668b4e3363c5e6b04836c5d7256021e6269c0e
+DetectorPersist...   INFO Added successfully Conversion service:XmlCnvSvc
+DetectorDataSvc   SUCCESS Detector description database: git:/lhcb.xml
+NTupleSvc           DEBUG Property update for OutputLevel : new value = 1
+NTupleSvc           DEBUG Service base class initialized successfully
+NTupleSvc         VERBOSE ServiceLocatorHelper::service: found service IncidentSvc
+NTupleSvc            INFO Added stream file:~/work/tracking_data/my/Brunel_rec_eff_BdJPsi_MagU_lwtnn.root as FILE1
+RndmGenSvc.Engine    INFO Generator engine type:CLHEP::RanluxEngine
+RndmGenSvc.Engine    INFO Current Seed:1234567 Luxury:3
+RndmGenSvc           INFO Using Random engine:HepRndm::Engine<CLHEP::RanluxEngine>
+TimingAuditor.T...   INFO This machine has a speed about   3.33 times the speed of a 2.8 GHz Xeon.
+TransportSvc         INFO Initialize the static pointer to DetDesc::IGeometryErrorSvc
+TransportSvc         INFO Recovery of geometry errors is  ENABLED
+BrunelSequencer      INFO Member list: ProcessPhase/Init, GaudiSequencer/PhysicsSeq, ProcessPhase/Output, with context 'Offline'
+Init                 INFO Member list: GaudiSequencer/InitBrunelSeq, with context 'Offline'
+InitBrunelSeq        INFO Member list: RecInit/BrunelInit, EventCountHisto/BrunelEventCount, with context 'Offline'
+BrunelInit        SUCCESS ==================================================================
+BrunelInit        SUCCESS Requested to process 50000 events
+BrunelInit        SUCCESS ==================================================================
+RootHistSvc          INFO Writing ROOT histograms to: test-50000ev-histos.root
+HistogramPersis...   INFO Added successfully Conversion service:RootHistSvc
+PhysicsSeq           INFO Member list: GaudiSequencer/DecodeTriggerSeq, ProcessPhase/Reco, ProcessPhase/Moni, ProcessPhase/MCLinks, ProcessPhase/Check, with context 'Offline'
+DecodeTriggerSeq     INFO Member list: HltDecReportsDecoder/Hlt1DecReportsDecoder, HltDecReportsDecoder/Hlt2DecReportsDecoder, GaudiSequencer/L0TriggerSeq, with context 'Offline'
+L0TriggerSeq         INFO Member list: L0DUFromRawAlg/L0DUFromRaw, with context 'Offline'
+ToolSvc.L0DUConfig   INFO Creating the TEMPLATE configuration tools : ToolSvc.L0DUConfig.Template for time slot :  'T0'
+ToolSvc.L0CondD...   INFO Registered RAM(BCID) versions = {}
+ToolSvc.L0DUCon...   INFO --------------- TCK = 0x10000------------------
+ToolSvc.L0DUCon...   INFO **** L0DU Config loading : L0TCK = 0x10000 for slot T0 ==> OK 
+ToolSvc.L0DUCon...   INFO Short description :: NO DESCRIPTION (L0DUConfig.Template)
+Reco                 INFO Member list: GaudiSequencer/RecoDecodingSeq, GaudiSequencer/RecoVELOSeq, GaudiSequencer/RecoTrHLT1Seq, GaudiSequencer/RecoVertexSeq, GaudiSequencer/RecoTrHLT2Seq, with context 'Offline'
+RecoDecodingSeq      INFO Member list: DecodeVeloRawBuffer/createBothVeloClusters, RawBankToSTClusterAlg/createTTClusters, RawBankToSTLiteClusterAlg/createTTLiteClusters, RawBankToSTLiteClusterAlg/createITLiteClusters, RawBankToSTClusterAlg/createITClusters, with context 'Offline'
+createBothVeloC...   INFO Cancel processing of events with more than 6000 Velo clusters
+RecoVELOSeq          INFO Member list: FastVeloTracking, with context 'Offline'
+RecoTrHLT1Seq        INFO Member list: ProcessPhase/TrackHLT1, with context 'Offline'
+TrackHLT1            INFO Member list: GaudiSequencer/TrackHLT1VeloTTPatSeq, GaudiSequencer/TrackHLT1ForwardPatHLT1Seq, GaudiSequencer/TrackHLT1FitHLT1Seq, with context 'Offline'
+TrackHLT1VeloTT...   INFO Member list: PatVeloTTHybrid, with context 'Offline'
+MagneticFieldSvc     INFO Opened magnetic field file : /cvmfs/lhcb.cern.ch/lib/lhcb/DBASE/FieldMap/v5r7/cdf/field.v5r0.c1.up.cdf
+MagneticFieldSvc     INFO Opened magnetic field file : /cvmfs/lhcb.cern.ch/lib/lhcb/DBASE/FieldMap/v5r7/cdf/field.v5r0.c2.up.cdf
+MagneticFieldSvc     INFO Opened magnetic field file : /cvmfs/lhcb.cern.ch/lib/lhcb/DBASE/FieldMap/v5r7/cdf/field.v5r0.c3.up.cdf
+MagneticFieldSvc     INFO Opened magnetic field file : /cvmfs/lhcb.cern.ch/lib/lhcb/DBASE/FieldMap/v5r7/cdf/field.v5r0.c4.up.cdf
+MagneticFieldSvc     INFO Map scaled by factor 1 with polarity internally used: 1 signed relative current: 1
+ToolSvc.PatTTMa...   INFO Start generation of VeloTT Bdl LUTs
+ToolSvc.PatTTMa...   INFO Generation of VeloTT Bdl LUTs finished
+ToolSvc.PatTTMa...   INFO Start generation of VeloTT deflection LUTs
+ToolSvc.PatTTMa...   INFO Generation of VeloTT deflection LUTs finished
+PatVeloTTHybrid      INFO  InputTracksName    = Rec/Track/Velo
+PatVeloTTHybrid      INFO  OutputTracksName   = Rec/Track/VeloTT
+TrackHLT1Forwar...   INFO Member list: PatForward/PatForwardHLT1, with context 'Offline'
+ToolSvc.OTRawBa...   INFO  countsPerBX = 64 numberOfBX  = 3 timePerBX = 25 ForceBankVersion = 255 require window [-8,56], vetoing out of time hit pairs
+TrackHLT1FitHLT...   INFO Member list: TrackContainerCopy/CopyVeloTracks, TrackStateInitAlg/VeloOnlyInitAlg, TrackEventFitter/ForwardHLT1FitterAlg, with context 'Offline'
+ForwardHLT1Fitt...   INFO ==> Initialize 
+ToolSvc.VeloClu...   INFO  --> Tool configured using the Cond DB 
+ForwardHLT1Fitt...   INFO Rec/Track/ForwardHLT1 -> Rec/Track/FittedHLT1ForwardTracks using ForwardHLT1FitterAlg.Fit
+RecoVertexSeq        INFO Member list: PatPV3D, TrackContainerCleaner/PVVeloTracksCleaner, with context 'Offline'
+RecoTrHLT2Seq        INFO Member list: ProcessPhase/TrackHLT2, ProcessPhase/FitHLT2, ProcessPhase/RecV0, ProcessPhase/AddExtraInfo, with context 'Offline'
+TrackHLT2            INFO Member list: GaudiSequencer/TrackHLT2ForwardPatHLT2Seq, GaudiSequencer/TrackHLT2SeedPatSeq, GaudiSequencer/TrackHLT2MatchPatSeq, GaudiSequencer/TrackHLT2DownstreamPatSeq, with context 'Offline'
+TrackHLT2Forwar...   INFO Member list: PatForward/PatForwardHLT2, TrackContainerCopy/MergeForwardHLT1HLT2, with context 'Offline'
+TrackHLT2SeedPa...   INFO Member list: PatSeeding, TrackAssociator/AssocSeed, with context 'Offline'
+TrackHLT2MatchP...   INFO Member list: PatMatch, with context 'Offline'
+TrackHLT2Downst...   INFO Member list: PatLongLivedTracking, with context 'Offline'
+PatLongLivedTra...   INFO zMagnetParams 5363.5 -3615.15 399.87 97205 -0.01081 -0.15562 1624.3 
+PatLongLivedTra...   INFO momentumParams 1217 487.5 2864.7 
+PatLongLivedTra...   INFO This machine has a speed about   3.45 times the speed of a 2.8 GHz Xeon.
+ToolSvc.PatLWTN...   INFO opened network graph file: /data2/tracking/BrunelDev_v52r6/data/lwtnn_v1.13.json
+FitHLT2              INFO Member list: GaudiSequencer/FitHLT2BestSeq, with context 'Offline'
+FitHLT2BestSeq       INFO Member list: TrackBestTrackCreator, with context 'Offline'
+RecV0                INFO Member list: GaudiSequencer/RecV0MakeV0Seq, with context 'Offline'
+RecV0MakeV0Seq       INFO Member list: TrackV0Finder, with context 'Offline'
+AddExtraInfo         INFO Member list: GaudiSequencer/AddExtraInfoClonesSeq, GaudiSequencer/AddExtraInfoTrackLikelihoodSeq, GaudiSequencer/AddExtraInfoEraseExtraInfoSeq, with context 'Offline'
+AddExtraInfoClo...   INFO Member list: TrackBuildCloneTable/FindTrackClones, TrackCloneCleaner/FlagTrackClones, with context 'Offline'
+ToolSvc.TrackHe...   INFO ExtrapolatorID=5
+FindTrackClones      INFO Will build clone table for z=[0, 990, 9450]mm at 'Rec/Track/BestClones'
+FindTrackClones      INFO Max Kullbeck Liebler Distance = 5000
+AddExtraInfoTra...   INFO Member list: TrackAddLikelihood, with context 'Offline'
+AddExtraInfoEra...   INFO Member list: TrackEraseExtraInfo/TrackEraseExtraInfoBest, TrackEraseExtraInfo/TrackEraseExtraInfoFittedVelo, with context 'Offline'
+Moni                 INFO Member list: , with context 'Offline'
+MCLinks              INFO Member list: GaudiSequencer/MCLinksL0Seq, GaudiSequencer/MCLinksUnpackSeq, GaudiSequencer/MCLinksTrSeq, GaudiSequencer/MCLinksCaloSeq, with context 'Offline'
+MCLinksL0Seq         INFO Member list: , with context 'Offline'
+MCLinksUnpackSeq     INFO Member list: , with context 'Offline'
+MCLinksTrSeq         INFO Member list: TrackAssociator, with context 'Offline'
+MCLinksCaloSeq       INFO Member list: CaloDigit2MCLinks2Table, CaloClusterMCTruth, CaloHypoMCTruth, with context 'Offline'
+Check                INFO Member list: GaudiSequencer/CheckPatSeq, with context 'Offline'
+CheckPatSeq          INFO Member list: PatLHCbID2MCParticle, TrackAssociator/AssocVelo, TrackEffChecker/Velo, TrackAssociator/AssocVeloTT, TrackEffChecker/VeloTT, TrackAssociator/AssocForward, TrackEffChecker/Forward, TrackAssociator/AssocTTrack, TrackEffChecker/TTrack, TrackAssociator/AssocMatch, TrackEffChecker/Match, TrackAssociator/AssocDownstream, TrackEffChecker/Downstream, TrackAssociator/AssocBest, TrackEffChecker/BestTracks, DebugTrackingLosses, TrackResChecker, TrackOccupChecker/OccupancyCheck, PrChecker, PatLHCbID2MCParticle, PatCheckerNTuple, with context 'Offline'
+Velo.Selector.S...   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+Velo.Selector.S...   INFO            Beta * gamma cut : 0 < beta*gamma
+Velo.Selector.S...   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+Velo.Selector.S...   INFO            Will reject electrons
+Velo.Selector.S...   INFO            Will reject particles from interations before z=9400
+VeloTT.Selector...   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+VeloTT.Selector...   INFO            Beta * gamma cut : 0 < beta*gamma
+VeloTT.Selector...   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+VeloTT.Selector...   INFO            Will reject electrons
+VeloTT.Selector...   INFO            Will reject particles from interations before z=9400
+Forward.Selecto...   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+Forward.Selecto...   INFO            Beta * gamma cut : 0 < beta*gamma
+Forward.Selecto...   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+Forward.Selecto...   INFO            Will reject electrons
+Forward.Selecto...   INFO            Will reject particles from interations before z=9400
+TTrack.Selector...   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+TTrack.Selector...   INFO            Beta * gamma cut : 0 < beta*gamma
+TTrack.Selector...   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+TTrack.Selector...   INFO            Will reject electrons
+TTrack.Selector...   INFO            Will reject particles from interations before z=9400
+Match.Selector....   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+Match.Selector....   INFO            Beta * gamma cut : 0 < beta*gamma
+Match.Selector....   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+Match.Selector....   INFO            Will reject electrons
+Match.Selector....   INFO            Will reject particles from interations before z=9400
+Downstream.Sele...   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+Downstream.Sele...   INFO            Beta * gamma cut : 0 < beta*gamma
+Downstream.Sele...   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+Downstream.Sele...   INFO            Will reject electrons
+Downstream.Sele...   INFO            Will reject particles from interations before z=9400
+BestTracks.Sele...   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+BestTracks.Sele...   INFO            Beta * gamma cut : 0 < beta*gamma
+BestTracks.Sele...   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+BestTracks.Sele...   INFO            Will reject electrons
+BestTracks.Sele...   INFO            Will reject particles from interations before z=9400
+TrackResChecker...   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+TrackResChecker...   INFO            Beta * gamma cut : 0 < beta*gamma
+TrackResChecker...   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+TrackResChecker...   INFO            Will reject electrons
+TrackResChecker...   INFO            Will reject particles from interations before z=9400
+OccupancyCheck....   INFO MCParticle Momentum cut     : 0 GeV/c < P < 1.79769e+308 GeV/c
+OccupancyCheck....   INFO            Beta * gamma cut : 0 < beta*gamma
+OccupancyCheck....   INFO            Eta cut          : -1.79769e+308 < P < 1.79769e+308
+Output               INFO Member list: , with context 'Offline'
+EventPersistenc...   INFO Added successfully Conversion service:RootCnvSvc
+EventSelector        INFO Stream:EventSelector.DataStreamTool_1 Def:DATAFILE='/data2/tracking/mcdata/00056265_00000002_2.xdigi' SVC='Gaudi::RootEvtSelector' OPT='READ'
+ApplicationMgr       INFO Application Manager Initialized successfully
+ApplicationMgr       INFO Application Manager Started successfully
+BrunelInit           INFO Evt 101,  Run 5626502,  Nr. in job = 1
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+NTupleSvc         VERBOSE Requested object /NTUPLES/FILE1
+RFileCnv             INFO opening Root file "~/work/tracking_data/my/Brunel_rec_eff_BdJPsi_MagU_lwtnn.root" for writing
+NTupleSvc         VERBOSE Object /NTUPLES/FILE1 created
+NTupleSvc         VERBOSE Filling object /NTUPLES/FILE1
+NTupleSvc         VERBOSE Object /NTUPLES/FILE1 successfully loaded
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+RCWNTupleCnv         INFO Booked TTree with ID: DownstreamSeedDebugTuple "DownstreamSeedDebugTuple" in directory /home/kuciaa/work/tracking_data/my/Brunel_rec_eff_BdJPsi_MagU_lwtnn.root:/ToolSvc.PatDebugTTTruthTool
+RCWNTupleCnv         INFO Booked TTree with ID: chi2Tuple "chi2Tuple" in directory /home/kuciaa/work/tracking_data/my/Brunel_rec_eff_BdJPsi_MagU_lwtnn.root:/ToolSvc.PatDebugTTTruthTool
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]
+ToolSvc.PatDebu...WARNING PatDebugTTTruthTool:: The WARNING message is suppressed : 'Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]'
+RCWNTupleCnv         INFO Booked TTree with ID: finalTuple "finalTuple" in directory /home/kuciaa/work/tracking_data/my/Brunel_rec_eff_BdJPsi_MagU_lwtnn.root:/ToolSvc.PatDebugTTTruthTool
+RCWNTupleCnv         INFO Booked TTree with ID: Tracks "Tracks" in directory /home/kuciaa/work/tracking_data/my/Brunel_rec_eff_BdJPsi_MagU_lwtnn.root:/PatCheckerNTuple
+BrunelInit           INFO Evt 102,  Run 5626502,  Nr. in job = 2
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+ToolSvc.TrackMa...WARNING TrackMasterExtrapolator:: The WARNING message is suppressed : 'Transport to wall using ToolSvc.TrackMasterExtrapolator.TrackDistanceExtraSelector.LongDistanceExtrapolatorFAILED [TrackResChecker]' StatusCode=FAILURE
+BrunelInit           INFO Evt 103,  Run 5626502,  Nr. in job = 3
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+BrunelInit           INFO Evt 104,  Run 5626502,  Nr. in job = 4
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+BrunelInit           INFO Evt 105,  Run 5626502,  Nr. in job = 5
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+BrunelInit           INFO Evt 106,  Run 5626502,  Nr. in job = 6
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+BrunelInit           INFO Evt 107,  Run 5626502,  Nr. in job = 7
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+BrunelInit           INFO Evt 108,  Run 5626502,  Nr. in job = 8
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+BrunelInit           INFO Evt 109,  Run 5626502,  Nr. in job = 9
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: Unable to decode L0DU rawBank
+BrunelInit           INFO Evt 110,  Run 5626502,  Nr. in job = 10
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+L0DUFromRaw       WARNING L0DUFromRawAlg:: The WARNING message is suppressed : 'Unable to decode L0DU rawBank'
+BrunelInit           INFO Evt 111,  Run 5626502,  Nr. in job = 11
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 112,  Run 5626502,  Nr. in job = 12
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 113,  Run 5626502,  Nr. in job = 13
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 114,  Run 5626502,  Nr. in job = 14
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 115,  Run 5626502,  Nr. in job = 15
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 116,  Run 5626502,  Nr. in job = 16
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 117,  Run 5626502,  Nr. in job = 17
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 118,  Run 5626502,  Nr. in job = 18
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 119,  Run 5626502,  Nr. in job = 19
+Hlt1DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+Hlt2DecReportsD...WARNING HltDecReportsDecoder::  Could not find HltDecReports raw bank. Returning empty HltDecReports.
+BrunelInit           INFO Evt 120,  Run 5626502,  Nr. in job = 20
+Hlt1DecReportsD...WARNING HltDecReportsDecoder:: The WARNING message is suppressed : ' Could not find HltDecReports raw bank. Returning empty HltDecReports.'
+Hlt2DecReportsD...WARNING HltDecReportsDecoder:: The WARNING message is suppressed : ' Could not find HltDecReports raw bank. Returning empty HltDecReports.'
+BrunelInit           INFO Evt 121,  Run 5626502,  Nr. in job = 21
+BrunelInit           INFO Evt 122,  Run 5626502,  Nr. in job = 22
+BrunelInit           INFO Evt 123,  Run 5626502,  Nr. in job = 23
+BrunelInit           INFO Evt 124,  Run 5626502,  Nr. in job = 24
+BrunelInit           INFO Evt 125,  Run 5626502,  Nr. in job = 25
+BrunelInit           INFO Evt 126,  Run 5626502,  Nr. in job = 26
+BrunelInit           INFO Evt 127,  Run 5626502,  Nr. in job = 27
+BrunelInit           INFO Evt 128,  Run 5626502,  Nr. in job = 28
+BrunelInit           INFO Evt 129,  Run 5626502,  Nr. in job = 29
+BrunelInit           INFO Evt 130,  Run 5626502,  Nr. in job = 30
+BrunelInit           INFO Evt 131,  Run 5626502,  Nr. in job = 31
+BrunelInit           INFO Evt 132,  Run 5626502,  Nr. in job = 32
+BrunelInit           INFO Evt 133,  Run 5626502,  Nr. in job = 33
+BrunelInit           INFO Evt 134,  Run 5626502,  Nr. in job = 34
+BrunelInit           INFO Evt 135,  Run 5626502,  Nr. in job = 35
+BrunelInit           INFO Evt 136,  Run 5626502,  Nr. in job = 36
+BrunelInit           INFO Evt 137,  Run 5626502,  Nr. in job = 37
+BrunelInit           INFO Evt 138,  Run 5626502,  Nr. in job = 38
+BrunelInit           INFO Evt 139,  Run 5626502,  Nr. in job = 39
+BrunelInit           INFO Evt 140,  Run 5626502,  Nr. in job = 40
+BrunelInit           INFO Evt 141,  Run 5626502,  Nr. in job = 41
+BrunelInit           INFO Evt 142,  Run 5626502,  Nr. in job = 42
+BrunelInit           INFO Evt 143,  Run 5626502,  Nr. in job = 43
+BrunelInit           INFO Evt 144,  Run 5626502,  Nr. in job = 44
+BrunelInit           INFO Evt 145,  Run 5626502,  Nr. in job = 45
+BrunelInit           INFO Evt 146,  Run 5626502,  Nr. in job = 46
+BrunelInit           INFO Evt 147,  Run 5626502,  Nr. in job = 47
+BrunelInit           INFO Evt 148,  Run 5626502,  Nr. in job = 48
+BrunelInit           INFO Evt 149,  Run 5626502,  Nr. in job = 49
+BrunelInit           INFO Evt 150,  Run 5626502,  Nr. in job = 50
+BrunelInit           INFO Evt 151,  Run 5626502,  Nr. in job = 51
+BrunelInit           INFO Evt 152,  Run 5626502,  Nr. in job = 52
+BrunelInit           INFO Evt 153,  Run 5626502,  Nr. in job = 53
+BrunelInit           INFO Evt 154,  Run 5626502,  Nr. in job = 54
+BrunelInit           INFO Evt 155,  Run 5626502,  Nr. in job = 55
+BrunelInit           INFO Evt 156,  Run 5626502,  Nr. in job = 56
+ToolSvc.TrackMa...   INFO TrackRungeKuttaExtrapolator:: The INFO message is suppressed : 'Very large value (> 1e6 mm) for state position. Breaking iteration [TrackResChecker]' StatusCode=FAILURE
+BrunelInit           INFO Evt 157,  Run 5626502,  Nr. in job = 57
+BrunelInit           INFO Evt 158,  Run 5626502,  Nr. in job = 58
+BrunelInit           INFO Evt 159,  Run 5626502,  Nr. in job = 59
+BrunelInit           INFO Evt 160,  Run 5626502,  Nr. in job = 60
+BrunelInit           INFO Evt 161,  Run 5626502,  Nr. in job = 61
+BrunelInit           INFO Evt 162,  Run 5626502,  Nr. in job = 62
+BrunelInit           INFO Evt 163,  Run 5626502,  Nr. in job = 63
+BrunelInit           INFO Evt 164,  Run 5626502,  Nr. in job = 64
+BrunelInit           INFO Evt 165,  Run 5626502,  Nr. in job = 65
+BrunelInit           INFO Evt 166,  Run 5626502,  Nr. in job = 66
+BrunelInit           INFO Evt 167,  Run 5626502,  Nr. in job = 67
+BrunelInit           INFO Evt 168,  Run 5626502,  Nr. in job = 68
+BrunelInit           INFO Evt 169,  Run 5626502,  Nr. in job = 69
+BrunelInit           INFO Evt 170,  Run 5626502,  Nr. in job = 70
+BrunelInit           INFO Evt 171,  Run 5626502,  Nr. in job = 71
+BrunelInit           INFO Evt 172,  Run 5626502,  Nr. in job = 72
+BrunelInit           INFO Evt 173,  Run 5626502,  Nr. in job = 73
+BrunelInit           INFO Evt 174,  Run 5626502,  Nr. in job = 74
+BrunelInit           INFO Evt 175,  Run 5626502,  Nr. in job = 75
+BrunelInit           INFO Evt 176,  Run 5626502,  Nr. in job = 76
+BrunelInit           INFO Evt 177,  Run 5626502,  Nr. in job = 77
+BrunelInit           INFO Evt 178,  Run 5626502,  Nr. in job = 78
+BrunelInit           INFO Evt 179,  Run 5626502,  Nr. in job = 79
+BrunelInit           INFO Evt 180,  Run 5626502,  Nr. in job = 80
+BrunelInit           INFO Evt 181,  Run 5626502,  Nr. in job = 81
+BrunelInit           INFO Evt 182,  Run 5626502,  Nr. in job = 82
+BrunelInit           INFO Evt 183,  Run 5626502,  Nr. in job = 83
+BrunelInit           INFO Evt 184,  Run 5626502,  Nr. in job = 84
+BrunelInit           INFO Evt 185,  Run 5626502,  Nr. in job = 85
+BrunelInit           INFO Evt 186,  Run 5626502,  Nr. in job = 86
+BrunelInit           INFO Evt 187,  Run 5626502,  Nr. in job = 87
+BrunelInit           INFO Evt 188,  Run 5626502,  Nr. in job = 88
+BrunelInit           INFO Evt 189,  Run 5626502,  Nr. in job = 89
+BrunelInit           INFO Evt 190,  Run 5626502,  Nr. in job = 90
+BrunelInit           INFO Evt 191,  Run 5626502,  Nr. in job = 91
+BrunelInit           INFO Evt 192,  Run 5626502,  Nr. in job = 92
+BrunelInit           INFO Evt 193,  Run 5626502,  Nr. in job = 93
+BrunelInit           INFO Evt 194,  Run 5626502,  Nr. in job = 94
+BrunelInit           INFO Evt 195,  Run 5626502,  Nr. in job = 95
+BrunelInit           INFO Evt 196,  Run 5626502,  Nr. in job = 96
+BrunelInit           INFO Evt 197,  Run 5626502,  Nr. in job = 97
+BrunelInit           INFO Evt 198,  Run 5626502,  Nr. in job = 98
+BrunelInit           INFO Evt 199,  Run 5626502,  Nr. in job = 99
+BrunelInit           INFO Memory has changed from 1019324 to 1083296 KB (63972KB, 6.27592%) in last  'Increment':100 events
+BrunelInit           INFO Evt 200,  Run 5626502,  Nr. in job = 100
+EventSelector        INFO Stream:EventSelector.DataStreamTool_2 Def:DATAFILE='/data2/tracking/mcdata/00056265_00000004_2.xdigi' SVC='Gaudi::RootEvtSelector' OPT='READ'
+IODataManager        INFO Disconnect from dataset /data2/tracking/mcdata/00056265_00000002_2.xdigi [36D44027-42C2-E611-A179-00259090826A]
+RootCnvSvc           INFO Removed disconnected IO  stream:36D44027-42C2-E611-A179-00259090826A [/data2/tracking/mcdata/00056265_00000002_2.xdigi]
+BrunelInit           INFO Evt 301,  Run 5626504,  Nr. in job = 101
+BrunelInit           INFO Evt 302,  Run 5626504,  Nr. in job = 102
+BrunelInit           INFO Evt 303,  Run 5626504,  Nr. in job = 103
+BrunelInit           INFO Evt 304,  Run 5626504,  Nr. in job = 104
+BrunelInit           INFO Evt 305,  Run 5626504,  Nr. in job = 105
+BrunelInit           INFO Evt 306,  Run 5626504,  Nr. in job = 106
+BrunelInit           INFO Evt 307,  Run 5626504,  Nr. in job = 107
+BrunelInit           INFO Evt 308,  Run 5626504,  Nr. in job = 108
+BrunelInit           INFO Evt 309,  Run 5626504,  Nr. in job = 109
+BrunelInit           INFO Evt 310,  Run 5626504,  Nr. in job = 110
+BrunelInit           INFO Evt 311,  Run 5626504,  Nr. in job = 111
+BrunelInit           INFO Evt 312,  Run 5626504,  Nr. in job = 112
+BrunelInit           INFO Evt 313,  Run 5626504,  Nr. in job = 113
+BrunelInit           INFO Evt 314,  Run 5626504,  Nr. in job = 114
+BrunelInit           INFO Evt 315,  Run 5626504,  Nr. in job = 115
+BrunelInit           INFO Evt 316,  Run 5626504,  Nr. in job = 116
+BrunelInit           INFO Evt 317,  Run 5626504,  Nr. in job = 117
+BrunelInit           INFO Evt 318,  Run 5626504,  Nr. in job = 118
+BrunelInit           INFO Evt 319,  Run 5626504,  Nr. in job = 119
+BrunelInit           INFO Evt 320,  Run 5626504,  Nr. in job = 120
+BrunelInit           INFO Evt 321,  Run 5626504,  Nr. in job = 121
+BrunelInit           INFO Evt 322,  Run 5626504,  Nr. in job = 122
+BrunelInit           INFO Evt 323,  Run 5626504,  Nr. in job = 123
+BrunelInit           INFO Evt 324,  Run 5626504,  Nr. in job = 124
+BrunelInit           INFO Evt 325,  Run 5626504,  Nr. in job = 125
+BrunelInit           INFO Evt 326,  Run 5626504,  Nr. in job = 126
+BrunelInit           INFO Evt 327,  Run 5626504,  Nr. in job = 127
+BrunelInit           INFO Evt 328,  Run 5626504,  Nr. in job = 128
+BrunelInit           INFO Evt 329,  Run 5626504,  Nr. in job = 129
+BrunelInit           INFO Evt 330,  Run 5626504,  Nr. in job = 130
+BrunelInit           INFO Evt 331,  Run 5626504,  Nr. in job = 131
+BrunelInit           INFO Evt 332,  Run 5626504,  Nr. in job = 132
+BrunelInit           INFO Evt 333,  Run 5626504,  Nr. in job = 133
+BrunelInit           INFO Evt 334,  Run 5626504,  Nr. in job = 134
+BrunelInit           INFO Evt 335,  Run 5626504,  Nr. in job = 135
+BrunelInit           INFO Evt 336,  Run 5626504,  Nr. in job = 136
+BrunelInit           INFO Evt 337,  Run 5626504,  Nr. in job = 137
+BrunelInit           INFO Evt 338,  Run 5626504,  Nr. in job = 138
+BrunelInit           INFO Evt 339,  Run 5626504,  Nr. in job = 139
+BrunelInit           INFO Evt 340,  Run 5626504,  Nr. in job = 140
+BrunelInit           INFO Evt 341,  Run 5626504,  Nr. in job = 141
+BrunelInit           INFO Evt 342,  Run 5626504,  Nr. in job = 142
+BrunelInit           INFO Evt 343,  Run 5626504,  Nr. in job = 143
+BrunelInit           INFO Evt 344,  Run 5626504,  Nr. in job = 144
+BrunelInit           INFO Evt 345,  Run 5626504,  Nr. in job = 145
+BrunelInit           INFO Evt 346,  Run 5626504,  Nr. in job = 146
+BrunelInit           INFO Evt 347,  Run 5626504,  Nr. in job = 147
+BrunelInit           INFO Evt 348,  Run 5626504,  Nr. in job = 148
+BrunelInit           INFO Evt 349,  Run 5626504,  Nr. in job = 149
+BrunelInit           INFO Evt 350,  Run 5626504,  Nr. in job = 150
+BrunelInit           INFO Evt 351,  Run 5626504,  Nr. in job = 151
+BrunelInit           INFO Evt 352,  Run 5626504,  Nr. in job = 152
+BrunelInit           INFO Evt 353,  Run 5626504,  Nr. in job = 153
+BrunelInit           INFO Evt 354,  Run 5626504,  Nr. in job = 154
+BrunelInit           INFO Evt 355,  Run 5626504,  Nr. in job = 155
+BrunelInit           INFO Evt 356,  Run 5626504,  Nr. in job = 156
+BrunelInit           INFO Evt 357,  Run 5626504,  Nr. in job = 157
+BrunelInit           INFO Evt 358,  Run 5626504,  Nr. in job = 158
+BrunelInit           INFO Evt 359,  Run 5626504,  Nr. in job = 159
+BrunelInit           INFO Evt 360,  Run 5626504,  Nr. in job = 160
+ToolSvc.TrackMa...WARNING TrackMasterExtrapolator:: The WARNING message is suppressed : 'Protect against absurd tracks. See debug for details [TrackResChecker]' StatusCode=FAILURE
+BrunelInit           INFO Evt 361,  Run 5626504,  Nr. in job = 161
+BrunelInit           INFO Evt 362,  Run 5626504,  Nr. in job = 162
+BrunelInit           INFO Evt 363,  Run 5626504,  Nr. in job = 163
+BrunelInit           INFO Evt 364,  Run 5626504,  Nr. in job = 164
+BrunelInit           INFO Evt 365,  Run 5626504,  Nr. in job = 165
+BrunelInit           INFO Evt 366,  Run 5626504,  Nr. in job = 166
+BrunelInit           INFO Evt 367,  Run 5626504,  Nr. in job = 167
+BrunelInit           INFO Evt 368,  Run 5626504,  Nr. in job = 168
+BrunelInit           INFO Evt 369,  Run 5626504,  Nr. in job = 169
+BrunelInit           INFO Evt 370,  Run 5626504,  Nr. in job = 170
+BrunelInit           INFO Evt 371,  Run 5626504,  Nr. in job = 171
+BrunelInit           INFO Evt 372,  Run 5626504,  Nr. in job = 172
+BrunelInit           INFO Evt 373,  Run 5626504,  Nr. in job = 173
+BrunelInit           INFO Evt 374,  Run 5626504,  Nr. in job = 174
+BrunelInit           INFO Evt 375,  Run 5626504,  Nr. in job = 175
+BrunelInit           INFO Evt 376,  Run 5626504,  Nr. in job = 176
+BrunelInit           INFO Evt 377,  Run 5626504,  Nr. in job = 177
+BrunelInit           INFO Evt 378,  Run 5626504,  Nr. in job = 178
+BrunelInit           INFO Evt 379,  Run 5626504,  Nr. in job = 179
+BrunelInit           INFO Evt 380,  Run 5626504,  Nr. in job = 180
+BrunelInit           INFO Evt 381,  Run 5626504,  Nr. in job = 181
+BrunelInit           INFO Evt 382,  Run 5626504,  Nr. in job = 182
+BrunelInit           INFO Evt 383,  Run 5626504,  Nr. in job = 183
+BrunelInit           INFO Evt 384,  Run 5626504,  Nr. in job = 184
+BrunelInit           INFO Evt 385,  Run 5626504,  Nr. in job = 185
+BrunelInit           INFO Evt 386,  Run 5626504,  Nr. in job = 186
+BrunelInit           INFO Evt 387,  Run 5626504,  Nr. in job = 187
+BrunelInit           INFO Evt 388,  Run 5626504,  Nr. in job = 188
+BrunelInit           INFO Evt 389,  Run 5626504,  Nr. in job = 189
+BrunelInit           INFO Evt 390,  Run 5626504,  Nr. in job = 190
+BrunelInit           INFO Evt 391,  Run 5626504,  Nr. in job = 191
+BrunelInit           INFO Evt 392,  Run 5626504,  Nr. in job = 192
+BrunelInit           INFO Evt 393,  Run 5626504,  Nr. in job = 193
+BrunelInit           INFO Evt 394,  Run 5626504,  Nr. in job = 194
+BrunelInit           INFO Evt 395,  Run 5626504,  Nr. in job = 195
+BrunelInit           INFO Evt 396,  Run 5626504,  Nr. in job = 196
+BrunelInit           INFO Evt 397,  Run 5626504,  Nr. in job = 197
+BrunelInit           INFO Evt 398,  Run 5626504,  Nr. in job = 198
+BrunelInit           INFO Evt 399,  Run 5626504,  Nr. in job = 199
+BrunelInit           INFO Memory has changed from 1083296 to 1122936 KB (39640KB, 3.6592%) in last  'Increment':100 events
+BrunelInit           INFO Evt 400,  Run 5626504,  Nr. in job = 200
+EventSelector        INFO Stream:EventSelector.DataStreamTool_3 Def:DATAFILE='/data2/tracking/mcdata/00056265_00000005_2.xdigi' SVC='Gaudi::RootEvtSelector' OPT='READ'
+IODataManager        INFO Disconnect from dataset /data2/tracking/mcdata/00056265_00000004_2.xdigi [2869F298-4CC2-E611-A931-002590907832]
+RootCnvSvc           INFO Removed disconnected IO  stream:2869F298-4CC2-E611-A931-002590907832 [/data2/tracking/mcdata/00056265_00000004_2.xdigi]
+BrunelInit           INFO Evt 401,  Run 5626505,  Nr. in job = 201
+BrunelInit           INFO Evt 402,  Run 5626505,  Nr. in job = 202
+BrunelInit           INFO Evt 403,  Run 5626505,  Nr. in job = 203
+BrunelInit           INFO Evt 404,  Run 5626505,  Nr. in job = 204
+BrunelInit           INFO Evt 405,  Run 5626505,  Nr. in job = 205
+BrunelInit           INFO Evt 406,  Run 5626505,  Nr. in job = 206
+BrunelInit           INFO Evt 407,  Run 5626505,  Nr. in job = 207
+BrunelInit           INFO Evt 408,  Run 5626505,  Nr. in job = 208
+BrunelInit           INFO Evt 409,  Run 5626505,  Nr. in job = 209
+BrunelInit           INFO Evt 410,  Run 5626505,  Nr. in job = 210
+BrunelInit           INFO Evt 411,  Run 5626505,  Nr. in job = 211
+BrunelInit           INFO Evt 412,  Run 5626505,  Nr. in job = 212
+BrunelInit           INFO Evt 413,  Run 5626505,  Nr. in job = 213
+BrunelInit           INFO Evt 414,  Run 5626505,  Nr. in job = 214
+BrunelInit           INFO Evt 415,  Run 5626505,  Nr. in job = 215
+BrunelInit           INFO Evt 416,  Run 5626505,  Nr. in job = 216
+BrunelInit           INFO Evt 417,  Run 5626505,  Nr. in job = 217
+BrunelInit           INFO Evt 418,  Run 5626505,  Nr. in job = 218
+BrunelInit           INFO Evt 419,  Run 5626505,  Nr. in job = 219
+BrunelInit           INFO Evt 420,  Run 5626505,  Nr. in job = 220
+BrunelInit           INFO Evt 421,  Run 5626505,  Nr. in job = 221
+BrunelInit           INFO Evt 422,  Run 5626505,  Nr. in job = 222
+BrunelInit           INFO Evt 423,  Run 5626505,  Nr. in job = 223
+BrunelInit           INFO Evt 424,  Run 5626505,  Nr. in job = 224
+BrunelInit           INFO Evt 425,  Run 5626505,  Nr. in job = 225
+BrunelInit           INFO Evt 426,  Run 5626505,  Nr. in job = 226
+BrunelInit           INFO Evt 427,  Run 5626505,  Nr. in job = 227
+BrunelInit           INFO Evt 428,  Run 5626505,  Nr. in job = 228
+BrunelInit           INFO Evt 429,  Run 5626505,  Nr. in job = 229
+BrunelInit           INFO Evt 430,  Run 5626505,  Nr. in job = 230
+BrunelInit           INFO Evt 431,  Run 5626505,  Nr. in job = 231
+BrunelInit           INFO Evt 432,  Run 5626505,  Nr. in job = 232
+BrunelInit           INFO Evt 433,  Run 5626505,  Nr. in job = 233
+BrunelInit           INFO Evt 434,  Run 5626505,  Nr. in job = 234
+BrunelInit           INFO Evt 435,  Run 5626505,  Nr. in job = 235
+BrunelInit           INFO Evt 436,  Run 5626505,  Nr. in job = 236
+BrunelInit           INFO Evt 437,  Run 5626505,  Nr. in job = 237
+BrunelInit           INFO Evt 438,  Run 5626505,  Nr. in job = 238
+BrunelInit           INFO Evt 439,  Run 5626505,  Nr. in job = 239
+BrunelInit           INFO Evt 440,  Run 5626505,  Nr. in job = 240
+BrunelInit           INFO Evt 441,  Run 5626505,  Nr. in job = 241
+BrunelInit           INFO Evt 442,  Run 5626505,  Nr. in job = 242
+BrunelInit           INFO Evt 443,  Run 5626505,  Nr. in job = 243
+BrunelInit           INFO Evt 444,  Run 5626505,  Nr. in job = 244
+BrunelInit           INFO Evt 445,  Run 5626505,  Nr. in job = 245
+BrunelInit           INFO Evt 446,  Run 5626505,  Nr. in job = 246
+BrunelInit           INFO Evt 447,  Run 5626505,  Nr. in job = 247
+BrunelInit           INFO Evt 448,  Run 5626505,  Nr. in job = 248
+BrunelInit           INFO Evt 449,  Run 5626505,  Nr. in job = 249
+BrunelInit           INFO Evt 450,  Run 5626505,  Nr. in job = 250
+BrunelInit           INFO Evt 451,  Run 5626505,  Nr. in job = 251
+BrunelInit           INFO Evt 452,  Run 5626505,  Nr. in job = 252
+BrunelInit           INFO Evt 453,  Run 5626505,  Nr. in job = 253
+BrunelInit           INFO Evt 454,  Run 5626505,  Nr. in job = 254
+BrunelInit           INFO Evt 455,  Run 5626505,  Nr. in job = 255
+BrunelInit           INFO Evt 456,  Run 5626505,  Nr. in job = 256
+BrunelInit           INFO Evt 457,  Run 5626505,  Nr. in job = 257
+BrunelInit           INFO Evt 458,  Run 5626505,  Nr. in job = 258
+BrunelInit           INFO Evt 459,  Run 5626505,  Nr. in job = 259
+BrunelInit           INFO Evt 460,  Run 5626505,  Nr. in job = 260
+BrunelInit           INFO Evt 461,  Run 5626505,  Nr. in job = 261
+BrunelInit           INFO Evt 462,  Run 5626505,  Nr. in job = 262
+BrunelInit           INFO Evt 463,  Run 5626505,  Nr. in job = 263
+BrunelInit           INFO Evt 464,  Run 5626505,  Nr. in job = 264
+BrunelInit           INFO Evt 465,  Run 5626505,  Nr. in job = 265
+BrunelInit           INFO Evt 466,  Run 5626505,  Nr. in job = 266
+BrunelInit           INFO Evt 467,  Run 5626505,  Nr. in job = 267
+BrunelInit           INFO Evt 468,  Run 5626505,  Nr. in job = 268
+BrunelInit           INFO Evt 469,  Run 5626505,  Nr. in job = 269
+BrunelInit           INFO Evt 470,  Run 5626505,  Nr. in job = 270
+BrunelInit           INFO Evt 471,  Run 5626505,  Nr. in job = 271
+BrunelInit           INFO Evt 472,  Run 5626505,  Nr. in job = 272
+ToolSvc.TrackMa...WARNING TrackMasterExtrapolator:: The WARNING message is suppressed : 'Protect against looping tracks. See debug for details [TrackResChecker]' StatusCode=FAILURE
+BrunelInit           INFO Evt 473,  Run 5626505,  Nr. in job = 273
+BrunelInit           INFO Evt 474,  Run 5626505,  Nr. in job = 274
+BrunelInit           INFO Evt 475,  Run 5626505,  Nr. in job = 275
+BrunelInit           INFO Evt 476,  Run 5626505,  Nr. in job = 276
+BrunelInit           INFO Evt 477,  Run 5626505,  Nr. in job = 277
+BrunelInit           INFO Evt 478,  Run 5626505,  Nr. in job = 278
+BrunelInit           INFO Evt 479,  Run 5626505,  Nr. in job = 279
+BrunelInit           INFO Evt 480,  Run 5626505,  Nr. in job = 280
+BrunelInit           INFO Evt 481,  Run 5626505,  Nr. in job = 281
+BrunelInit           INFO Evt 482,  Run 5626505,  Nr. in job = 282
+BrunelInit           INFO Evt 483,  Run 5626505,  Nr. in job = 283
+BrunelInit           INFO Evt 484,  Run 5626505,  Nr. in job = 284
+BrunelInit           INFO Evt 485,  Run 5626505,  Nr. in job = 285
+BrunelInit           INFO Evt 486,  Run 5626505,  Nr. in job = 286
+BrunelInit           INFO Evt 487,  Run 5626505,  Nr. in job = 287
+BrunelInit           INFO Evt 488,  Run 5626505,  Nr. in job = 288
+BrunelInit           INFO Evt 489,  Run 5626505,  Nr. in job = 289
+BrunelInit           INFO Evt 490,  Run 5626505,  Nr. in job = 290
+BrunelInit           INFO Evt 491,  Run 5626505,  Nr. in job = 291
+BrunelInit           INFO Evt 492,  Run 5626505,  Nr. in job = 292
+BrunelInit           INFO Evt 493,  Run 5626505,  Nr. in job = 293
+BrunelInit           INFO Evt 494,  Run 5626505,  Nr. in job = 294
+BrunelInit           INFO Evt 495,  Run 5626505,  Nr. in job = 295
+BrunelInit           INFO Evt 496,  Run 5626505,  Nr. in job = 296
+BrunelInit           INFO Evt 497,  Run 5626505,  Nr. in job = 297
+BrunelInit           INFO Evt 498,  Run 5626505,  Nr. in job = 298
+BrunelInit           INFO Evt 499,  Run 5626505,  Nr. in job = 299
+BrunelInit           INFO Memory has changed from 1122936 to 1137348 KB (14412KB, 1.28342%) in last  'Increment':100 events
+BrunelInit           INFO Evt 500,  Run 5626505,  Nr. in job = 300
+EventSelector        INFO Stream:EventSelector.DataStreamTool_4 Def:DATAFILE='/data2/tracking/mcdata/00056265_00000006_2.xdigi' SVC='Gaudi::RootEvtSelector' OPT='READ'
+IODataManager        INFO Disconnect from dataset /data2/tracking/mcdata/00056265_00000005_2.xdigi [1897AFF9-47C2-E611-B858-00259090788E]
+RootCnvSvc           INFO Removed disconnected IO  stream:1897AFF9-47C2-E611-B858-00259090788E [/data2/tracking/mcdata/00056265_00000005_2.xdigi]
+BrunelInit           INFO Evt 501,  Run 5626506,  Nr. in job = 301
+BrunelInit           INFO Evt 502,  Run 5626506,  Nr. in job = 302
+BrunelInit           INFO Evt 503,  Run 5626506,  Nr. in job = 303
+BrunelInit           INFO Evt 504,  Run 5626506,  Nr. in job = 304
+BrunelInit           INFO Evt 505,  Run 5626506,  Nr. in job = 305
+BrunelInit           INFO Evt 506,  Run 5626506,  Nr. in job = 306
+BrunelInit           INFO Evt 507,  Run 5626506,  Nr. in job = 307
+BrunelInit           INFO Evt 508,  Run 5626506,  Nr. in job = 308
+BrunelInit           INFO Evt 509,  Run 5626506,  Nr. in job = 309
+BrunelInit           INFO Evt 510,  Run 5626506,  Nr. in job = 310
+BrunelInit           INFO Evt 511,  Run 5626506,  Nr. in job = 311
+BrunelInit           INFO Evt 512,  Run 5626506,  Nr. in job = 312
+BrunelInit           INFO Evt 513,  Run 5626506,  Nr. in job = 313
+BrunelInit           INFO Evt 514,  Run 5626506,  Nr. in job = 314
+BrunelInit           INFO Evt 515,  Run 5626506,  Nr. in job = 315
+BrunelInit           INFO Evt 516,  Run 5626506,  Nr. in job = 316
+BrunelInit           INFO Evt 517,  Run 5626506,  Nr. in job = 317
+BrunelInit           INFO Evt 518,  Run 5626506,  Nr. in job = 318
+BrunelInit           INFO Evt 519,  Run 5626506,  Nr. in job = 319
+BrunelInit           INFO Evt 520,  Run 5626506,  Nr. in job = 320
+BrunelInit           INFO Evt 521,  Run 5626506,  Nr. in job = 321
+BrunelInit           INFO Evt 522,  Run 5626506,  Nr. in job = 322
+BrunelInit           INFO Evt 523,  Run 5626506,  Nr. in job = 323
+BrunelInit           INFO Evt 524,  Run 5626506,  Nr. in job = 324
+BrunelInit           INFO Evt 525,  Run 5626506,  Nr. in job = 325
+BrunelInit           INFO Evt 526,  Run 5626506,  Nr. in job = 326
+BrunelInit           INFO Evt 527,  Run 5626506,  Nr. in job = 327
+BrunelInit           INFO Evt 528,  Run 5626506,  Nr. in job = 328
+BrunelInit           INFO Evt 529,  Run 5626506,  Nr. in job = 329
+BrunelInit           INFO Evt 530,  Run 5626506,  Nr. in job = 330
+BrunelInit           INFO Evt 531,  Run 5626506,  Nr. in job = 331
+BrunelInit           INFO Evt 532,  Run 5626506,  Nr. in job = 332
+BrunelInit           INFO Evt 533,  Run 5626506,  Nr. in job = 333
+BrunelInit           INFO Evt 534,  Run 5626506,  Nr. in job = 334
+BrunelInit           INFO Evt 535,  Run 5626506,  Nr. in job = 335
+BrunelInit           INFO Evt 536,  Run 5626506,  Nr. in job = 336
+BrunelInit           INFO Evt 537,  Run 5626506,  Nr. in job = 337
+BrunelInit           INFO Evt 538,  Run 5626506,  Nr. in job = 338
+BrunelInit           INFO Evt 539,  Run 5626506,  Nr. in job = 339
+BrunelInit           INFO Evt 540,  Run 5626506,  Nr. in job = 340
+BrunelInit           INFO Evt 541,  Run 5626506,  Nr. in job = 341
+BrunelInit           INFO Evt 542,  Run 5626506,  Nr. in job = 342
+BrunelInit           INFO Evt 543,  Run 5626506,  Nr. in job = 343
+BrunelInit           INFO Evt 544,  Run 5626506,  Nr. in job = 344
+BrunelInit           INFO Evt 545,  Run 5626506,  Nr. in job = 345
+BrunelInit           INFO Evt 546,  Run 5626506,  Nr. in job = 346
+BrunelInit           INFO Evt 547,  Run 5626506,  Nr. in job = 347
+BrunelInit           INFO Evt 548,  Run 5626506,  Nr. in job = 348
+BrunelInit           INFO Evt 549,  Run 5626506,  Nr. in job = 349
+BrunelInit           INFO Evt 550,  Run 5626506,  Nr. in job = 350
+BrunelInit           INFO Evt 551,  Run 5626506,  Nr. in job = 351
+BrunelInit           INFO Evt 552,  Run 5626506,  Nr. in job = 352
+BrunelInit           INFO Evt 553,  Run 5626506,  Nr. in job = 353
+BrunelInit           INFO Evt 554,  Run 5626506,  Nr. in job = 354
+BrunelInit           INFO Evt 555,  Run 5626506,  Nr. in job = 355
+BrunelInit           INFO Evt 556,  Run 5626506,  Nr. in job = 356
+BrunelInit           INFO Evt 557,  Run 5626506,  Nr. in job = 357
+BrunelInit           INFO Evt 558,  Run 5626506,  Nr. in job = 358
+BrunelInit           INFO Evt 559,  Run 5626506,  Nr. in job = 359
+BrunelInit           INFO Evt 560,  Run 5626506,  Nr. in job = 360
+BrunelInit           INFO Evt 561,  Run 5626506,  Nr. in job = 361
+BrunelInit           INFO Evt 562,  Run 5626506,  Nr. in job = 362
+BrunelInit           INFO Evt 563,  Run 5626506,  Nr. in job = 363
+BrunelInit           INFO Evt 564,  Run 5626506,  Nr. in job = 364
+BrunelInit           INFO Evt 565,  Run 5626506,  Nr. in job = 365
+BrunelInit           INFO Evt 566,  Run 5626506,  Nr. in job = 366
+BrunelInit           INFO Evt 567,  Run 5626506,  Nr. in job = 367
+BrunelInit           INFO Evt 568,  Run 5626506,  Nr. in job = 368
+BrunelInit           INFO Evt 569,  Run 5626506,  Nr. in job = 369
+BrunelInit           INFO Evt 570,  Run 5626506,  Nr. in job = 370
+BrunelInit           INFO Evt 571,  Run 5626506,  Nr. in job = 371
+BrunelInit           INFO Evt 572,  Run 5626506,  Nr. in job = 372
+BrunelInit           INFO Evt 573,  Run 5626506,  Nr. in job = 373
+BrunelInit           INFO Evt 574,  Run 5626506,  Nr. in job = 374
+BrunelInit           INFO Evt 575,  Run 5626506,  Nr. in job = 375
+BrunelInit           INFO Evt 576,  Run 5626506,  Nr. in job = 376
+BrunelInit           INFO Evt 577,  Run 5626506,  Nr. in job = 377
+BrunelInit           INFO Evt 578,  Run 5626506,  Nr. in job = 378
+BrunelInit           INFO Evt 579,  Run 5626506,  Nr. in job = 379
+BrunelInit           INFO Evt 580,  Run 5626506,  Nr. in job = 380
+BrunelInit           INFO Evt 581,  Run 5626506,  Nr. in job = 381
+BrunelInit           INFO Evt 582,  Run 5626506,  Nr. in job = 382
+BrunelInit           INFO Evt 583,  Run 5626506,  Nr. in job = 383
+BrunelInit           INFO Evt 584,  Run 5626506,  Nr. in job = 384
+BrunelInit           INFO Evt 585,  Run 5626506,  Nr. in job = 385
+BrunelInit           INFO Evt 586,  Run 5626506,  Nr. in job = 386
+BrunelInit           INFO Evt 587,  Run 5626506,  Nr. in job = 387
+BrunelInit           INFO Evt 588,  Run 5626506,  Nr. in job = 388
+BrunelInit           INFO Evt 589,  Run 5626506,  Nr. in job = 389
+BrunelInit           INFO Evt 590,  Run 5626506,  Nr. in job = 390
+BrunelInit           INFO Evt 591,  Run 5626506,  Nr. in job = 391
+BrunelInit           INFO Evt 592,  Run 5626506,  Nr. in job = 392
+BrunelInit           INFO Evt 593,  Run 5626506,  Nr. in job = 393
+BrunelInit           INFO Evt 594,  Run 5626506,  Nr. in job = 394
+BrunelInit           INFO Evt 595,  Run 5626506,  Nr. in job = 395
+BrunelInit           INFO Evt 596,  Run 5626506,  Nr. in job = 396
+BrunelInit           INFO Evt 597,  Run 5626506,  Nr. in job = 397
+BrunelInit           INFO Evt 598,  Run 5626506,  Nr. in job = 398
+BrunelInit           INFO Evt 599,  Run 5626506,  Nr. in job = 399
+BrunelInit           INFO Memory has changed from 1137348 to 1139320 KB (1972KB, 0.173386%) in last  'Increment':100 events
+BrunelInit           INFO Evt 600,  Run 5626506,  Nr. in job = 400
+EventLoopMgr         INFO No more events in event selection 
+ApplicationMgr       INFO Application Manager Stopped successfully
+BrunelInit        SUCCESS ==================================================================
+BrunelInit        SUCCESS 400 events processed
+BrunelInit        SUCCESS ==================================================================
+BrunelInit        WARNING Should have processed 50000 events
+BrunelInit        WARNING ==================================================================
+BrunelEventCount     INFO 400 events processed
+BrunelEventCount  SUCCESS Booked 1 Histogram(s) : 1D=1 
+Hlt1DecReportsD...SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/1/0
+Hlt1DecReportsD...SUCCESS  #WARNINGS   = 400      Message = ' Could not find HltDecReports raw bank. Returning empty HltDecReports.'
+Hlt2DecReportsD...SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/1/0
+Hlt2DecReportsD...SUCCESS  #WARNINGS   = 400      Message = ' Could not find HltDecReports raw bank. Returning empty HltDecReports.'
+L0DUFromRaw       SUCCESS Number of counters : 1
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "L0DU RawBank Size (Bytes)"                     |       400 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+L0DUFromRaw       SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/1/0
+L0DUFromRaw       SUCCESS  #WARNINGS   = 400      Message = 'Unable to decode L0DU rawBank'
+createTTClusters     INFO Successfully processed 100 %
+createTTClusters  SUCCESS Number of counters : 3
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "# banks found"                                 |     19200 |      19200 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "# valid banks"                                 |     19200 |      19200 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "skipped Banks"                                 |         0 |          0 |     0.0000 |     0.0000 | 1.7977e+308 |-1.7977e+308 |
+createTTLiteClu...   INFO Successfully processed 100 %
+createTTLiteClu...SUCCESS Number of counters : 3
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "# valid banks"                                 |     19200 |      19200 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "# valid source ID"                             |     19200 |      19200 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "skipped Banks"                                 |         0 |          0 |     0.0000 |     0.0000 | 1.7977e+308 |-1.7977e+308 |
+createITLiteClu...   INFO Successfully processed 100 %
+createITLiteClu...SUCCESS Number of counters : 3
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "# valid banks"                                 |     16800 |      16800 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "# valid source ID"                             |     16800 |      16800 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "skipped Banks"                                 |         0 |          0 |     0.0000 |     0.0000 | 1.7977e+308 |-1.7977e+308 |
+createITClusters     INFO Successfully processed 100 %
+createITClusters  SUCCESS Number of counters : 3
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "# banks found"                                 |     16800 |      16800 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "# valid banks"                                 |     16800 |      16800 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "skipped Banks"                                 |         0 |          0 |     0.0000 |     0.0000 | 1.7977e+308 |-1.7977e+308 |
+PatVeloTTHybrid   SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#seeds"                                        |       400 |      43684 |     109.21 |     58.374 |      13.000 |      392.00 |
+ | "#tracks"                                       |       400 |      23853 |     59.633 |     33.954 |      4.0000 |      223.00 |
+PatForwardHLT1    SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#Seeds"                                        |       400 |      23853 |     59.633 |     33.954 |      4.0000 |      223.00 |
+ | "#Tracks"                                       |       400 |       6875 |     17.188 |     9.3895 |      1.0000 |      57.000 |
+ForwardHLT1Fitt...   INFO   Fitting performance   :   100.00 %
+ForwardHLT1Fitt...SUCCESS Number of counters : 8
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "Long.RejectedChisqCut"                         |       152 |        152 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "Long.badChisq"                                 |      6875 |        625 |   0.090909 |    0.28748 |      0.0000 |      1.0000 |
+ | "Long.chisqprobSum"                             |      6875 |   2897.189 |    0.42141 |    0.30582 |      0.0000 |     0.99976 |
+ | "Long.flipCharge"                               |      6875 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ | "Long.numOutliers"                              |      6875 |       3105 |    0.45164 |    0.68995 |      0.0000 |      2.0000 |
+ | "nBadInput"                                     |       400 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ | "nFitted"                                       |       400 |       6875 |     17.188 |     9.3895 |      1.0000 |      57.000 |
+ | "nTracks"                                       |       400 |       6875 |     17.188 |     9.3895 |      1.0000 |      57.000 |
+PVVeloTracksCle...SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "# input tracks"                                |       400 |      27748 |     69.370 |     34.767 |      6.0000 |      196.00 |
+ | "# removed tracks"                              |       400 |      15936 |     39.840 |     25.826 |      3.0000 |      196.00 |
+PatForwardHLT2    SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#Seeds"                                        |       400 |      43684 |     109.21 |     58.374 |      13.000 |      392.00 |
+ | "#Tracks"                                       |       400 |      11687 |     29.218 |     20.791 |      1.0000 |      173.00 |
+PatLongLivedTra...SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "# Downstream tracks made"                      |     15870 |      15870 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "#TT hits added"                                |     63885 |      63885 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+TrackBestTrackC...   INFO   Fitting performance   :   100.00 %
+TrackBestTrackC...SUCCESS Number of counters : 27
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "BadInput"                                      |     68435 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ | "Downstream.badChisq"                           |      6060 |       2223 |    0.36683 |    0.48194 |      0.0000 |      1.0000 |
+ | "Downstream.chisqprobSum"                       |      6060 |   1556.964 |    0.25692 |    0.31530 |      0.0000 |     0.99992 |
+ | "Downstream.flipCharge"                         |      6060 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ | "Downstream.numOutliers"                        |      6060 |       4263 |    0.70347 |    0.81388 |      0.0000 |      2.0000 |
+ | "FitFailed"                                     |     68435 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ | "FittedBefore"                                  |      4976 |       4976 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "Long.badChisq"                                 |     15262 |       4261 |    0.27919 |    0.44860 |      0.0000 |      1.0000 |
+ | "Long.chisqprobSum"                             |     15262 |    5116.59 |    0.33525 |    0.33472 |      0.0000 |     0.99998 |
+ | "Long.flipCharge"                               |     15262 |          2 | 0.00013104 |   0.011447 |      0.0000 |      1.0000 |
+ | "Long.numOutliers"                              |     15262 |       9175 |    0.60117 |    0.78234 |      0.0000 |      2.0000 |
+ | "Ttrack.badChisq"                               |     14284 |        383 |   0.026813 |    0.16154 |      0.0000 |      1.0000 |
+ | "Ttrack.chisqprobSum"                           |     14284 |   6199.919 |    0.43405 |    0.30403 |  4.8149e-07 |      1.0000 |
+ | "Ttrack.flipCharge"                             |     14284 |       1039 |   0.072739 |    0.25971 |      0.0000 |      1.0000 |
+ | "Ttrack.numOutliers"                            |     14284 |       2722 |    0.19056 |    0.43904 |      0.0000 |      2.0000 |
+ | "Upstream.badChisq"                             |      7703 |       1750 |    0.22718 |    0.41901 |      0.0000 |      1.0000 |
+ | "Upstream.chisqprobSum"                         |      7703 |   2968.473 |    0.38537 |    0.35031 |      0.0000 |     0.99994 |
+ | "Upstream.flipCharge"                           |      7703 |        457 |   0.059328 |    0.23624 |      0.0000 |      1.0000 |
+ | "Upstream.numOutliers"                          |      7703 |       3726 |    0.48371 |    0.71079 |      0.0000 |      2.0000 |
+ | "Velo.badChisq"                                 |     10202 |       1136 |    0.11135 |    0.31457 |      0.0000 |      1.0000 |
+ | "Velo.chisqprobSum"                             |     10202 |   3500.423 |    0.34311 |    0.30885 |      0.0000 |     0.99970 |
+ | "Velo.flipCharge"                               |     10202 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ | "Velo.numOutliers"                              |     10202 |       3902 |    0.38247 |    0.62582 |      0.0000 |      2.0000 |
+ | "VeloBackward.badChisq"                         |      9948 |        481 |   0.048351 |    0.21451 |      0.0000 |      1.0000 |
+ | "VeloBackward.chisqprobSum"                     |      9948 |   4469.071 |    0.44924 |    0.30900 |      0.0000 |     0.99981 |
+ | "VeloBackward.flipCharge"                       |      9948 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ | "VeloBackward.numOutliers"                      |      9948 |       1542 |    0.15501 |    0.41033 |      0.0000 |      2.0000 |
+TrackV0Finder     SUCCESS Number of counters : 1
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "numselected"                                   |       400 |        432 |     1.0800 |     1.3941 |      0.0000 |      9.0000 |
+CaloDigit2MCLin...SUCCESS Number of counters : 1
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#CD2MC links"                                  |       400 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+CaloClusterMCTruthSUCCESS Number of counters : 1
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#CC2MC links"                                  |       400 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+CaloHypoMCTruth   SUCCESS Number of counters : 4
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "No container Rec/Calo/Electrons"               |       400 |        400 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "No container Rec/Calo/MergedPi0s"              |       400 |        400 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "No container Rec/Calo/Photons"                 |       400 |        400 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "No container Rec/Calo/SplitPhotons"            |       400 |        400 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+Velo                 INFO              **************                      43684 tracks including     4324 ghosts [  9.9 %] Event average   7.5  ****
+Velo                 INFO      all  long                          :        14724 from    15294 [ 96.3 %];   0.9 % clones;  99.4 % hit purity;  97.4 % hit efficiency
+Velo                 INFO      long, p > 5 GeV                    :         9788 from    10093 [ 97.0 %];   0.6 % clones;  99.5 % hit purity;  98.2 % hit efficiecy
+Velo                 INFO      all  long B daughers               :         1516 from     1583 [ 95.8 %];   0.5 % clones;  99.5 % hit purity;  97.8 % hit efficiency
+Velo                 INFO    long B daughters, p > 5 GeV          :         1247 from     1291 [ 96.6 %];   0.5 % clones;  99.5 % hit purity;  98.2 % hit efficiency
+Velo                 INFO      all  long good B daughers          :          664 from      679 [ 97.8 %];   0.4 % clones;  99.7 % hit purity;  98.4 % hit efficiency
+Velo                 INFO    long good B daughters , p > 5 GeV    :          599 from      609 [ 98.4 %];   0.3 % clones;  99.7 % hit purity;  98.7 % hit efficiency
+Velo                 INFO      all  long  Ks/Lambda               :          591 from      675 [ 87.6 %];   0.4 % clones;  98.8 % hit purity;  93.3 % hit efficiency
+Velo                 INFO    long Ks/Lambda, p > 5 GeV            :          319 from      357 [ 89.4 %];   0.0 % clones;  98.7 % hit purity;  95.6 % hit efficiency
+Velo                 INFO      all  long large IP                 :          159 from      164 [ 97.0 %];   0.6 % clones;  99.0 % hit purity;  97.4 % hit efficiency
+Velo                 INFO    long largeIP, p > 5 GeV              :          130 from      132 [ 98.5 %];   0.8 % clones;  99.1 % hit purity;  97.6 % hit efficiency
+Velo              SUCCESS Booked 28 Histogram(s) : 1D=28 
+VeloTT               INFO              **************                      23853 tracks including     4303 ghosts [ 18.0 %] Event average  14.2  ****
+VeloTT               INFO      all  long                          :        13345 from    15294 [ 87.3 %];   0.5 % clones;  99.3 % hit purity;  97.7 % hit efficiency
+VeloTT               INFO      long, p > 5 GeV                    :         9219 from    10093 [ 91.3 %];   0.4 % clones;  99.4 % hit purity;  98.5 % hit efficiecy
+VeloTT               INFO      all  long B daughers               :         1415 from     1583 [ 89.4 %];   0.3 % clones;  99.4 % hit purity;  98.0 % hit efficiency
+VeloTT               INFO    long B daughters, p > 5 GeV          :         1193 from     1291 [ 92.4 %];   0.4 % clones;  99.5 % hit purity;  98.4 % hit efficiency
+VeloTT               INFO      all  long good B daughers          :          631 from      679 [ 92.9 %];   0.1 % clones;  99.6 % hit purity;  98.5 % hit efficiency
+VeloTT               INFO    long good B daughters , p > 5 GeV    :          577 from      609 [ 94.7 %];   0.2 % clones;  99.6 % hit purity;  98.7 % hit efficiency
+VeloTT               INFO      all  long  Ks/Lambda               :          512 from      675 [ 75.9 %];   0.3 % clones;  98.9 % hit purity;  94.7 % hit efficiency
+VeloTT               INFO    long Ks/Lambda, p > 5 GeV            :          297 from      357 [ 83.2 %];   0.0 % clones;  98.9 % hit purity;  96.5 % hit efficiency
+VeloTT               INFO      all  long large IP                 :          153 from      164 [ 93.3 %];   0.6 % clones;  99.1 % hit purity;  97.7 % hit efficiency
+VeloTT               INFO    long largeIP, p > 5 GeV              :          127 from      132 [ 96.2 %];   0.8 % clones;  99.2 % hit purity;  98.1 % hit efficiency
+VeloTT            SUCCESS Booked 30 Histogram(s) : 1D=30 
+Forward              INFO              **************                      18410 tracks including     3841 ghosts [ 20.9 %] Event average  15.4  ****
+Forward              INFO      all  long                          :        13230 from    15294 [ 86.5 %];   0.5 % clones;  97.5 % hit purity;  95.0 % hit efficiency
+Forward              INFO      long, p > 5 GeV                    :         9257 from    10093 [ 91.7 %];   0.3 % clones;  97.7 % hit purity;  96.5 % hit efficiecy
+Forward              INFO      all  long B daughers               :         1419 from     1583 [ 89.6 %];   0.3 % clones;  97.8 % hit purity;  95.7 % hit efficiency
+Forward              INFO    long B daughters, p > 5 GeV          :         1203 from     1291 [ 93.2 %];   0.3 % clones;  97.9 % hit purity;  96.4 % hit efficiency
+Forward              INFO      all  long good B daughers          :          637 from      679 [ 93.8 %];   0.3 % clones;  98.2 % hit purity;  96.4 % hit efficiency
+Forward              INFO    long good B daughters , p > 5 GeV    :          583 from      609 [ 95.7 %];   0.2 % clones;  98.2 % hit purity;  96.8 % hit efficiency
+Forward              INFO      all  long  Ks/Lambda               :          505 from      675 [ 74.8 %];   0.4 % clones;  97.1 % hit purity;  93.3 % hit efficiency
+Forward              INFO    long Ks/Lambda, p > 5 GeV            :          302 from      357 [ 84.6 %];   0.0 % clones;  97.1 % hit purity;  95.2 % hit efficiency
+Forward              INFO      all  long large IP                 :          147 from      164 [ 89.6 %];   0.6 % clones;  97.4 % hit purity;  94.3 % hit efficiency
+Forward              INFO    long largeIP, p > 5 GeV              :          125 from      132 [ 94.7 %];   0.8 % clones;  97.5 % hit purity;  95.0 % hit efficiency
+Forward           SUCCESS Booked 35 Histogram(s) : 1D=35 
+TTrack               INFO              **************                      33165 tracks including     3231 ghosts [  9.7 %] Event average   7.6  ****
+TTrack               INFO      all  long                          :        14206 from    15294 [ 92.9 %];   0.5 % clones;  97.2 % hit purity;  92.9 % hit efficiency
+TTrack               INFO      long, p > 5 GeV                    :         9454 from    10093 [ 93.7 %];   0.7 % clones;  97.3 % hit purity;  93.3 % hit efficiecy
+TTrack               INFO      all  long B daughers               :         1489 from     1583 [ 94.1 %];   0.3 % clones;  97.5 % hit purity;  94.3 % hit efficiency
+TTrack               INFO    long B daughters, p > 5 GeV          :         1223 from     1291 [ 94.7 %];   0.4 % clones;  97.5 % hit purity;  94.5 % hit efficiency
+TTrack               INFO      all  long good B daughers          :          646 from      679 [ 95.1 %];   0.3 % clones;  97.6 % hit purity;  94.5 % hit efficiency
+TTrack               INFO    long good B daughters , p > 5 GeV    :          581 from      609 [ 95.4 %];   0.2 % clones;  97.6 % hit purity;  94.6 % hit efficiency
+TTrack               INFO      all  long  Ks/Lambda               :          628 from      675 [ 93.0 %];   0.3 % clones;  97.1 % hit purity;  93.4 % hit efficiency
+TTrack               INFO    long Ks/Lambda, p > 5 GeV            :          336 from      357 [ 94.1 %];   0.6 % clones;  97.2 % hit purity;  94.1 % hit efficiency
+TTrack               INFO      all  long large IP                 :          157 from      164 [ 95.7 %];   0.0 % clones;  97.5 % hit purity;  94.3 % hit efficiency
+TTrack               INFO    long largeIP, p > 5 GeV              :          128 from      132 [ 97.0 %];   0.0 % clones;  97.5 % hit purity;  94.9 % hit efficiency
+TTrack            SUCCESS Booked 30 Histogram(s) : 1D=30 
+Match                INFO              **************                      15809 tracks including     2040 ghosts [ 12.9 %] Event average  10.2  ****
+Match                INFO      all  long                          :        12705 from    15294 [ 83.1 %];   0.0 % clones;  98.2 % hit purity;  94.7 % hit efficiency
+Match                INFO      long, p > 5 GeV                    :         8779 from    10093 [ 87.0 %];   0.0 % clones;  98.3 % hit purity;  95.1 % hit efficiecy
+Match                INFO      all  long B daughers               :         1367 from     1583 [ 86.4 %];   0.0 % clones;  98.5 % hit purity;  95.7 % hit efficiency
+Match                INFO    long B daughters, p > 5 GeV          :         1154 from     1291 [ 89.4 %];   0.0 % clones;  98.5 % hit purity;  95.9 % hit efficiency
+Match                INFO      all  long good B daughers          :          621 from      679 [ 91.5 %];   0.0 % clones;  98.6 % hit purity;  96.1 % hit efficiency
+Match                INFO    long good B daughters , p > 5 GeV    :          567 from      609 [ 93.1 %];   0.0 % clones;  98.6 % hit purity;  96.1 % hit efficiency
+Match                INFO      all  long  Ks/Lambda               :          492 from      675 [ 72.9 %];   0.0 % clones;  97.9 % hit purity;  93.5 % hit efficiency
+Match                INFO    long Ks/Lambda, p > 5 GeV            :          286 from      357 [ 80.1 %];   0.0 % clones;  98.0 % hit purity;  94.5 % hit efficiency
+Match                INFO      all  long large IP                 :          147 from      164 [ 89.6 %];   0.0 % clones;  98.4 % hit purity;  95.1 % hit efficiency
+Match                INFO    long largeIP, p > 5 GeV              :          124 from      132 [ 93.9 %];   0.0 % clones;  98.4 % hit purity;  95.3 % hit efficiency
+Match             SUCCESS Booked 30 Histogram(s) : 1D=30 
+Downstream           INFO              **************                      15870 tracks including     5031 ghosts [ 31.7 %] Event average  26.0  ****
+Downstream           INFO      all  long                          :         9497 from    16512 [ 57.5 %];   0.1 % clones;  97.6 % hit purity;  94.4 % hit efficiency
+Downstream           INFO      long, p > 5 GeV                    :         6292 from    10165 [ 61.9 %];   0.1 % clones;  97.7 % hit purity;  94.9 % hit efficiecy
+Downstream           INFO      all  long B daughers               :         1183 from     1886 [ 62.7 %];   0.1 % clones;  97.8 % hit purity;  95.3 % hit efficiency
+Downstream           INFO    long B daughters, p > 5 GeV          :          955 from     1476 [ 64.7 %];   0.1 % clones;  97.8 % hit purity;  95.7 % hit efficiency
+Downstream           INFO      all  long good B daughers          :          494 from      759 [ 65.1 %];   0.0 % clones;  97.9 % hit purity;  95.5 % hit efficiency
+Downstream           INFO    long good B daughters , p > 5 GeV    :          437 from      669 [ 65.3 %];   0.0 % clones;  98.0 % hit purity;  95.7 % hit efficiency
+Downstream           INFO      all  long  Ks/Lambda               :          962 from     1762 [ 54.6 %];   0.1 % clones;  97.5 % hit purity;  94.2 % hit efficiency
+Downstream           INFO    long Ks/Lambda, p > 5 GeV            :          584 from      981 [ 59.5 %];   0.1 % clones;  97.6 % hit purity;  95.3 % hit efficiency
+Downstream           INFO      all  long large IP                 :          109 from      169 [ 64.5 %];   0.0 % clones;  97.6 % hit purity;  95.4 % hit efficiency
+Downstream           INFO    long largeIP, p > 5 GeV              :           87 from      136 [ 64.0 %];   0.0 % clones;  97.7 % hit purity;  96.0 % hit efficiency
+Downstream        SUCCESS Booked 30 Histogram(s) : 1D=30 
+BestTracks           INFO              **************                      17184 tracks including     2168 ghosts [ 12.6 %] Event average  10.4  ****
+BestTracks           INFO      all  long                          :        13617 from    15294 [ 89.0 %];   0.5 % clones;  97.7 % hit purity;  96.6 % hit efficiency
+BestTracks           INFO      long, p > 5 GeV                    :         9337 from    10093 [ 92.5 %];   0.3 % clones;  97.8 % hit purity;  97.6 % hit efficiecy
+BestTracks           INFO      all  long B daughers               :         1451 from     1583 [ 91.7 %];   0.6 % clones;  98.0 % hit purity;  97.2 % hit efficiency
+BestTracks           INFO    long B daughters, p > 5 GeV          :         1217 from     1291 [ 94.3 %];   0.3 % clones;  98.0 % hit purity;  97.7 % hit efficiency
+BestTracks           INFO      all  long good B daughers          :          650 from      679 [ 95.7 %];   0.6 % clones;  98.2 % hit purity;  97.8 % hit efficiency
+BestTracks           INFO    long good B daughters , p > 5 GeV    :          591 from      609 [ 97.0 %];   0.3 % clones;  98.2 % hit purity;  98.0 % hit efficiency
+BestTracks           INFO      all  long  Ks/Lambda               :          531 from      675 [ 78.7 %];   0.1 % clones;  97.3 % hit purity;  94.9 % hit efficiency
+BestTracks           INFO    long Ks/Lambda, p > 5 GeV            :          302 from      357 [ 84.6 %];   0.0 % clones;  97.2 % hit purity;  96.4 % hit efficiency
+BestTracks           INFO      all  long large IP                 :          153 from      164 [ 93.3 %];   1.2 % clones;  97.9 % hit purity;  96.4 % hit efficiency
+BestTracks           INFO    long largeIP, p > 5 GeV              :          128 from      132 [ 97.0 %];   0.0 % clones;  97.8 % hit purity;  97.0 % hit efficiency
+BestTracks        SUCCESS Booked 35 Histogram(s) : 1D=35 
+TrackResChecker      INFO      ************************************    
+TrackResChecker      INFO Velo/x pull     :  mean =  -0.014 +/- 0.012, RMS = 1.498 +/- 0.011
+TrackResChecker      INFO Velo/y pull     :  mean =  -0.032 +/- 0.012, RMS = 1.503 +/- 0.011
+TrackResChecker      INFO Velo/tx pull    :  mean =  -0.008 +/- 0.011, RMS = 1.423 +/- 0.011
+TrackResChecker      INFO Velo/ty pull    :  mean =  0.008 +/- 0.012, RMS = 1.498 +/- 0.011
+TrackResChecker      INFO Velo/p pull     :  mean =  -0.043 +/- 0.001, RMS = 0.134 +/- 0.007
+TrackResChecker      INFO Velo/x resolution:  RMS =  13.748 +/- 0.138 micron
+TrackResChecker      INFO Velo/y resolution:  RMS =  13.295 +/- 0.136 micron
+TrackResChecker      INFO Velo/dp/p:  mean =  -0.0016 +/- 0.0010, RMS =  0.0282 +/- 0.0005
+TrackResChecker      INFO Long/x pull     :  mean =  0.012 +/- 0.009, RMS = 1.112 +/- 0.009
+TrackResChecker      INFO Long/y pull     :  mean =  -0.007 +/- 0.009, RMS = 1.130 +/- 0.009
+TrackResChecker      INFO Long/tx pull    :  mean =  -0.010 +/- 0.009, RMS = 1.051 +/- 0.008
+TrackResChecker      INFO Long/ty pull    :  mean =  0.004 +/- 0.009, RMS = 1.071 +/- 0.009
+TrackResChecker      INFO Long/p pull     :  mean =  -0.127 +/- 0.010, RMS = 1.216 +/- 0.010
+TrackResChecker      INFO Long/x resolution:  RMS =  10.711 +/- 0.131 micron
+TrackResChecker      INFO Long/y resolution:  RMS =  10.629 +/- 0.134 micron
+TrackResChecker      INFO Long/dp/p:  mean =  -0.0002 +/- 0.0001, RMS =  0.0063 +/- 0.0001
+TrackResChecker      INFO Upstream/x pull     :  mean =  -0.024 +/- 0.018, RMS = 1.150 +/- 0.018
+TrackResChecker      INFO Upstream/y pull     :  mean =  -0.035 +/- 0.019, RMS = 1.168 +/- 0.019
+TrackResChecker      INFO Upstream/tx pull    :  mean =  0.005 +/- 0.017, RMS = 1.068 +/- 0.017
+TrackResChecker      INFO Upstream/ty pull    :  mean =  0.024 +/- 0.017, RMS = 1.093 +/- 0.018
+TrackResChecker      INFO Upstream/p pull     :  mean =  -0.023 +/- 0.020, RMS = 1.218 +/- 0.019
+TrackResChecker      INFO Upstream/x resolution:  RMS =  11.992 +/- 0.265 micron
+TrackResChecker      INFO Upstream/y resolution:  RMS =  11.618 +/- 0.252 micron
+TrackResChecker      INFO Upstream/dp/p:  mean =  -0.0003 +/- 0.0009, RMS =  0.0283 +/- 0.0004
+TrackResChecker      INFO Downstream/x pull     :  mean =  0.023 +/- 0.030, RMS = 1.312 +/- 0.030
+TrackResChecker      INFO Downstream/y pull     :  mean =  -0.075 +/- 0.029, RMS = 1.287 +/- 0.028
+TrackResChecker      INFO Downstream/tx pull    :  mean =  -0.077 +/- 0.029, RMS = 1.260 +/- 0.029
+TrackResChecker      INFO Downstream/ty pull    :  mean =  0.069 +/- 0.029, RMS = 1.279 +/- 0.031
+TrackResChecker      INFO Downstream/p pull     :  mean =  0.039 +/- 0.032, RMS = 1.325 +/- 0.028
+TrackResChecker      INFO Downstream/x resolution:  RMS =  29.785 +/- 0.530 micron
+TrackResChecker      INFO Downstream/y resolution:  RMS =  32.850 +/- 0.649 micron
+TrackResChecker      INFO Downstream/dp/p:  mean =  0.0016 +/- 0.0002, RMS =  0.0091 +/- 0.0003
+TrackResChecker      INFO Ttrack/x pull     :  mean =  0.007 +/- 0.016, RMS = 1.566 +/- 0.013
+TrackResChecker      INFO Ttrack/y pull     :  mean =  -0.006 +/- 0.016, RMS = 1.638 +/- 0.013
+TrackResChecker      INFO Ttrack/tx pull    :  mean =  -0.009 +/- 0.016, RMS = 1.592 +/- 0.013
+TrackResChecker      INFO Ttrack/ty pull    :  mean =  0.016 +/- 0.017, RMS = 1.681 +/- 0.013
+TrackResChecker      INFO Ttrack/p pull     :  mean =  0.187 +/- 0.017, RMS = 1.673 +/- 0.014
+TrackResChecker      INFO Ttrack/x resolution:  RMS =  26.094 +/- 0.579 micron
+TrackResChecker      INFO Ttrack/y resolution:  RMS =  34.376 +/- 0.505 micron
+TrackResChecker      INFO Ttrack/dp/p:  mean =  -0.0002 +/- 0.0005, RMS =  0.0282 +/- 0.0002
+OccupancyCheck       INFO  *** Occupancies, %, event-averaged: OT: 8.95 (T1: 8.95, T2: 8.82, T3: 9.07), IT (horizontal boxes): 1.21 (T1: 1.41, T2: 1.20, T3: 1.01), IT (vertical boxes): 0.46 (T1: 0.52, T2: 0.45, T3: 0.39)
+OccupancyCheck    SUCCESS Booked 57 Histogram(s) : 1D=56 2D=1 
+PrChecker            INFO Results
+PrChecker.Velo       INFO **** Velo                            43684 tracks including          4324 ghosts [ 9.9 %], Event average   7.5 % ****
+PrChecker.Velo       INFO                             velo :   35827 from    41496 [ 86.3 %]    422 clones [ 1.2 %], purity: 99.22 %, hitEff: 94.10 %
+PrChecker.Velo       INFO                             long :   14958 from    15545 [ 96.2 %]    134 clones [ 0.9 %], purity: 99.30 %, hitEff: 96.99 %
+PrChecker.Velo       INFO                        long>5GeV :    9940 from    10252 [ 97.0 %]     58 clones [ 0.6 %], purity: 99.36 %, hitEff: 97.93 %
+PrChecker.Velo       INFO                     long_strange :     682 from      783 [ 87.1 %]      7 clones [ 1.0 %], purity: 98.71 %, hitEff: 93.19 %
+PrChecker.Velo       INFO                long_strange>5GeV :     367 from      409 [ 89.7 %]      2 clones [ 0.5 %], purity: 98.77 %, hitEff: 95.43 %
+PrChecker.Velo       INFO                       long_fromB :    1535 from     1603 [ 95.8 %]      8 clones [ 0.5 %], purity: 99.41 %, hitEff: 97.50 %
+PrChecker.Velo       INFO                  long_fromB>5GeV :    1262 from     1306 [ 96.6 %]      6 clones [ 0.5 %], purity: 99.40 %, hitEff: 97.96 %
+PrChecker.Velo       INFO 
+PrChecker.Forward    INFO **** Forward                         18410 tracks including          3841 ghosts [20.9 %], Event average  15.4 % ****
+PrChecker.Forward    INFO                             long :   13393 from    15545 [ 86.2 %]     83 clones [ 0.6 %], purity: 97.42 %, hitEff: 93.54 %
+PrChecker.Forward    INFO                        long>5GeV :    9377 from    10252 [ 91.5 %]     35 clones [ 0.4 %], purity: 97.61 %, hitEff: 95.77 %
+PrChecker.Forward    INFO                     long_strange :     588 from      783 [ 75.1 %]      3 clones [ 0.5 %], purity: 97.11 %, hitEff: 92.66 %
+PrChecker.Forward    INFO                long_strange>5GeV :     348 from      409 [ 85.1 %]      0 clones [ 0.0 %], purity: 97.11 %, hitEff: 95.17 %
+PrChecker.Forward    INFO                       long_fromB :    1436 from     1603 [ 89.6 %]      5 clones [ 0.3 %], purity: 97.81 %, hitEff: 94.55 %
+PrChecker.Forward    INFO                  long_fromB>5GeV :    1217 from     1306 [ 93.2 %]      4 clones [ 0.3 %], purity: 97.84 %, hitEff: 95.57 %
+PrChecker.Forward    INFO 
+PrChecker.Match      INFO **** Match                           15809 tracks including          2040 ghosts [12.9 %], Event average  10.2 % ****
+PrChecker.Match      INFO                             long :   12850 from    15545 [ 82.7 %]      0 clones [ 0.0 %], purity: 98.19 %, hitEff: 93.26 %
+PrChecker.Match      INFO                        long>5GeV :    8885 from    10252 [ 86.7 %]      0 clones [ 0.0 %], purity: 98.29 %, hitEff: 93.50 %
+PrChecker.Match      INFO                     long_strange :     562 from      783 [ 71.8 %]      0 clones [ 0.0 %], purity: 97.89 %, hitEff: 93.69 %
+PrChecker.Match      INFO                long_strange>5GeV :     326 from      409 [ 79.7 %]      0 clones [ 0.0 %], purity: 97.95 %, hitEff: 94.24 %
+PrChecker.Match      INFO                       long_fromB :    1382 from     1603 [ 86.2 %]      0 clones [ 0.0 %], purity: 98.49 %, hitEff: 94.64 %
+PrChecker.Match      INFO                  long_fromB>5GeV :    1166 from     1306 [ 89.3 %]      0 clones [ 0.0 %], purity: 98.48 %, hitEff: 94.73 %
+PrChecker.Match      INFO 
+PrChecker.Upstream   INFO **** Upstream                        23853 tracks including          4303 ghosts [18.0 %], Event average  14.2 % ****
+PrChecker.Upstream   INFO                             velo :   18510 from    41496 [ 44.6 %]    122 clones [ 0.7 %], purity: 99.13 %, hitEff: 88.73 %
+PrChecker.Upstream   INFO                          velo+UT :   16910 from    21655 [ 78.1 %]    117 clones [ 0.7 %], purity: 99.15 %, hitEff: 96.38 %
+PrChecker.Upstream   INFO                     velo+UT>5GeV :    9802 from    10511 [ 93.3 %]     50 clones [ 0.5 %], purity: 99.31 %, hitEff: 98.55 %
+PrChecker.Upstream   INFO                     velo+notLong :    4968 from    25951 [ 19.1 %]     42 clones [ 0.8 %], purity: 98.85 %, hitEff: 80.50 %
+PrChecker.Upstream   INFO                  velo+UT+notLong :    4269 from     7608 [ 56.1 %]     38 clones [ 0.9 %], purity: 98.85 %, hitEff: 92.22 %
+PrChecker.Upstream   INFO             velo+UT+notLong>5GeV :    1290 from     1407 [ 91.7 %]      6 clones [ 0.5 %], purity: 99.23 %, hitEff: 98.73 %
+PrChecker.Upstream   INFO                             long :   13542 from    15545 [ 87.1 %]     80 clones [ 0.6 %], purity: 99.24 %, hitEff: 91.76 %
+PrChecker.Upstream   INFO                        long>5GeV :    9353 from    10252 [ 91.2 %]     45 clones [ 0.5 %], purity: 99.31 %, hitEff: 90.15 %
+PrChecker.Upstream   INFO                       long_fromB :    1433 from     1603 [ 89.4 %]      5 clones [ 0.3 %], purity: 99.41 %, hitEff: 94.67 %
+PrChecker.Upstream   INFO                  long_fromB>5GeV :    1208 from     1306 [ 92.5 %]      5 clones [ 0.4 %], purity: 99.43 %, hitEff: 94.55 %
+PrChecker.Upstream   INFO 
+PrChecker.TTrack     INFO **** TTrack                          33165 tracks including          3231 ghosts [ 9.7 %], Event average   7.6 % ****
+PrChecker.TTrack     INFO                             hasT :   23515 from    30433 [ 77.3 %]    111 clones [ 0.5 %], purity: 96.95 %, hitEff: 91.53 %
+PrChecker.TTrack     INFO                             long :   14419 from    15545 [ 92.8 %]     72 clones [ 0.5 %], purity: 97.12 %, hitEff: 92.59 %
+PrChecker.TTrack     INFO                        long>5GeV :    9597 from    10252 [ 93.6 %]     70 clones [ 0.7 %], purity: 97.18 %, hitEff: 92.92 %
+PrChecker.TTrack     INFO                       long_fromB :    1507 from     1603 [ 94.0 %]      5 clones [ 0.3 %], purity: 97.47 %, hitEff: 94.08 %
+PrChecker.TTrack     INFO                  long_fromB>5GeV :    1237 from     1306 [ 94.7 %]      5 clones [ 0.4 %], purity: 97.44 %, hitEff: 94.28 %
+PrChecker.TTrack     INFO                     UT+T_strange :    1630 from     1765 [ 92.4 %]     10 clones [ 0.6 %], purity: 96.79 %, hitEff: 92.56 %
+PrChecker.TTrack     INFO                UT+T_strange>5GeV :     939 from     1005 [ 93.4 %]      8 clones [ 0.8 %], purity: 96.78 %, hitEff: 93.61 %
+PrChecker.TTrack     INFO              noVelo+UT+T_strange :     972 from     1054 [ 92.2 %]      8 clones [ 0.8 %], purity: 96.71 %, hitEff: 92.09 %
+PrChecker.TTrack     INFO         noVelo+UT+T_strange>5GeV :     597 from      638 [ 93.6 %]      6 clones [ 1.0 %], purity: 96.75 %, hitEff: 93.40 %
+PrChecker.TTrack     INFO                     UT+T_SfromDB :     412 from      447 [ 92.2 %]      2 clones [ 0.5 %], purity: 96.79 %, hitEff: 94.01 %
+PrChecker.TTrack     INFO                UT+T_SfromDB>5GeV :     315 from      338 [ 93.2 %]      2 clones [ 0.6 %], purity: 96.83 %, hitEff: 94.29 %
+PrChecker.TTrack     INFO              noVelo+UT+T_SfromDB :     288 from      314 [ 91.7 %]      2 clones [ 0.7 %], purity: 96.85 %, hitEff: 93.50 %
+PrChecker.TTrack     INFO         noVelo+UT+T_SfromDB>5GeV :     222 from      240 [ 92.5 %]      2 clones [ 0.9 %], purity: 96.95 %, hitEff: 93.92 %
+PrChecker.TTrack     INFO 
+PrChecker.Downs...   INFO **** Downstream                      15870 tracks including          5031 ghosts [31.7 %], Event average  26.0 % ****
+PrChecker.Downs...   INFO                             UT+T :    9620 from    16782 [ 57.3 %]     12 clones [ 0.1 %], purity: 97.59 %, hitEff: 98.93 %
+PrChecker.Downs...   INFO                        UT+T>5GeV :    6379 from    10318 [ 61.8 %]      9 clones [ 0.1 %], purity: 97.64 %, hitEff: 98.99 %
+PrChecker.Downs...   INFO                     UT+T_strange :     975 from     1765 [ 55.2 %]      1 clones [ 0.1 %], purity: 97.39 %, hitEff: 98.96 %
+PrChecker.Downs...   INFO                UT+T_strange>5GeV :     603 from     1005 [ 60.0 %]      0 clones [ 0.0 %], purity: 97.58 %, hitEff: 99.13 %
+PrChecker.Downs...   INFO              noVelo+UT+T_strange :     558 from     1054 [ 52.9 %]      1 clones [ 0.2 %], purity: 97.36 %, hitEff: 98.90 %
+PrChecker.Downs...   INFO         noVelo+UT+T_strange>5GeV :     373 from      638 [ 58.5 %]      0 clones [ 0.0 %], purity: 97.75 %, hitEff: 99.16 %
+PrChecker.Downs...   INFO                       UT+T_fromB :    1197 from     1913 [ 62.6 %]      1 clones [ 0.1 %], purity: 97.82 %, hitEff: 99.24 %
+PrChecker.Downs...   INFO                  UT+T_fromB>5GeV :     968 from     1496 [ 64.7 %]      1 clones [ 0.1 %], purity: 97.82 %, hitEff: 99.30 %
+PrChecker.Downs...   INFO                noVelo+UT+T_fromB :     239 from      434 [ 55.1 %]      0 clones [ 0.0 %], purity: 97.78 %, hitEff: 99.07 %
+PrChecker.Downs...   INFO           noVelo+UT+T_fromB>5GeV :     171 from      283 [ 60.4 %]      0 clones [ 0.0 %], purity: 97.79 %, hitEff: 99.19 %
+PrChecker.Downs...   INFO                     UT+T_SfromDB :     288 from      447 [ 64.4 %]      0 clones [ 0.0 %], purity: 97.50 %, hitEff: 99.28 %
+PrChecker.Downs...   INFO                UT+T_SfromDB>5GeV :     221 from      338 [ 65.4 %]      0 clones [ 0.0 %], purity: 97.52 %, hitEff: 99.28 %
+PrChecker.Downs...   INFO              noVelo+UT+T_SfromDB :     195 from      314 [ 62.1 %]      0 clones [ 0.0 %], purity: 97.66 %, hitEff: 99.39 %
+PrChecker.Downs...   INFO         noVelo+UT+T_SfromDB>5GeV :     152 from      240 [ 63.3 %]      0 clones [ 0.0 %], purity: 97.62 %, hitEff: 99.22 %
+PrChecker.Downs...   INFO 
+PrChecker.Best       INFO **** Best                            60013 tracks including          9739 ghosts [16.2 %], Event average  13.4 % ****
+PrChecker.Best       INFO                             long :   15198 from    15545 [ 97.8 %]    618 clones [ 3.9 %], purity: 97.65 %, hitEff: 90.38 %
+PrChecker.Best       INFO                        long>5GeV :   10080 from    10252 [ 98.3 %]    239 clones [ 2.3 %], purity: 97.74 %, hitEff: 93.71 %
+PrChecker.Best       INFO                     long_strange :     752 from      783 [ 96.0 %]     37 clones [ 4.7 %], purity: 97.36 %, hitEff: 85.42 %
+PrChecker.Best       INFO                long_strange>5GeV :     398 from      409 [ 97.3 %]     15 clones [ 3.6 %], purity: 97.19 %, hitEff: 89.86 %
+PrChecker.Best       INFO                       long_fromB :    1570 from     1603 [ 97.9 %]     39 clones [ 2.4 %], purity: 97.91 %, hitEff: 93.25 %
+PrChecker.Best       INFO                  long_fromB>5GeV :    1289 from     1306 [ 98.7 %]     18 clones [ 1.4 %], purity: 97.93 %, hitEff: 95.24 %
+PrChecker.Best       INFO 
+PrChecker.BestLong   INFO **** BestLong                        17184 tracks including          2168 ghosts [12.6 %], Event average  10.4 % ****
+PrChecker.BestLong   INFO                             long :   13826 from    15545 [ 88.9 %]     25 clones [ 0.2 %], purity: 97.67 %, hitEff: 96.46 %
+PrChecker.BestLong   INFO                        long>5GeV :    9476 from    10252 [ 92.4 %]      5 clones [ 0.1 %], purity: 97.76 %, hitEff: 97.50 %
+PrChecker.BestLong   INFO                     long_strange :     611 from      783 [ 78.0 %]      1 clones [ 0.2 %], purity: 97.37 %, hitEff: 94.99 %
+PrChecker.BestLong   INFO                long_strange>5GeV :     348 from      409 [ 85.1 %]      0 clones [ 0.0 %], purity: 97.22 %, hitEff: 96.41 %
+PrChecker.BestLong   INFO                       long_fromB :    1471 from     1603 [ 91.8 %]      1 clones [ 0.1 %], purity: 98.01 %, hitEff: 97.19 %
+PrChecker.BestLong   INFO                  long_fromB>5GeV :    1233 from     1306 [ 94.4 %]      0 clones [ 0.0 %], purity: 97.99 %, hitEff: 97.69 %
+PrChecker.BestLong   INFO 
+PrChecker.BestDown   INFO **** BestDown                         3484 tracks including          1422 ghosts [40.8 %], Event average  36.3 % ****
+PrChecker.BestDown   INFO                             UT+T :    1457 from    16782 [  8.7 %]      2 clones [ 0.1 %], purity: 97.50 %, hitEff: 93.76 %
+PrChecker.BestDown   INFO                        UT+T>5GeV :     796 from    10318 [  7.7 %]      2 clones [ 0.3 %], purity: 97.85 %, hitEff: 94.84 %
+PrChecker.BestDown   INFO                     UT+T_strange :     597 from     1765 [ 33.8 %]      0 clones [ 0.0 %], purity: 97.38 %, hitEff: 94.10 %
+PrChecker.BestDown   INFO                UT+T_strange>5GeV :     384 from     1005 [ 38.2 %]      0 clones [ 0.0 %], purity: 97.76 %, hitEff: 95.21 %
+PrChecker.BestDown   INFO              noVelo+UT+T_strange :     534 from     1054 [ 50.7 %]      0 clones [ 0.0 %], purity: 97.42 %, hitEff: 94.00 %
+PrChecker.BestDown   INFO         noVelo+UT+T_strange>5GeV :     358 from      638 [ 56.1 %]      0 clones [ 0.0 %], purity: 97.77 %, hitEff: 95.12 %
+PrChecker.BestDown   INFO                       UT+T_fromB :     275 from     1913 [ 14.4 %]      0 clones [ 0.0 %], purity: 97.59 %, hitEff: 95.39 %
+PrChecker.BestDown   INFO                  UT+T_fromB>5GeV :     191 from     1496 [ 12.8 %]      0 clones [ 0.0 %], purity: 97.67 %, hitEff: 96.14 %
+PrChecker.BestDown   INFO                noVelo+UT+T_fromB :     231 from      434 [ 53.2 %]      0 clones [ 0.0 %], purity: 97.77 %, hitEff: 95.34 %
+PrChecker.BestDown   INFO           noVelo+UT+T_fromB>5GeV :     164 from      283 [ 58.0 %]      0 clones [ 0.0 %], purity: 97.77 %, hitEff: 95.97 %
+PrChecker.BestDown   INFO                     UT+T_SfromDB :     208 from      447 [ 46.5 %]      0 clones [ 0.0 %], purity: 97.53 %, hitEff: 95.37 %
+PrChecker.BestDown   INFO                UT+T_SfromDB>5GeV :     157 from      338 [ 46.4 %]      0 clones [ 0.0 %], purity: 97.59 %, hitEff: 95.81 %
+PrChecker.BestDown   INFO              noVelo+UT+T_SfromDB :     191 from      314 [ 60.8 %]      0 clones [ 0.0 %], purity: 97.65 %, hitEff: 95.27 %
+PrChecker.BestDown   INFO         noVelo+UT+T_SfromDB>5GeV :     148 from      240 [ 61.7 %]      0 clones [ 0.0 %], purity: 97.61 %, hitEff: 95.67 %
+PrChecker.BestDown   INFO 
+PatCheckerNTuple  SUCCESS Booked 1 N-Tuples and 0 Event Tag Collections
+PatCheckerNTuple  SUCCESS List of booked N-Tuples in directory "FILE1/PatCheckerNTuple"
+PatCheckerNTuple  SUCCESS  ID=Tracks        Title="Tracks"                                  #items=11 {x,y,z,tx,ty,p,dx,dy,dtx,dty,dp}
+EventLoopMgr         INFO Histograms converted successfully according to request.
+TransportSvc      SUCCESS  GEOMETRY ERRORS: 'Skip'     map has the size 0
+
+TransportSvc      SUCCESS  GEOMETRY ERRORS: 'Recover'  map has the size 0
+
+TransportSvc      SUCCESS  GEOMETRY ERRORS: 'Codes'    map has the size 0
+
+TransportSvc         INFO Reset the static pointer to DetDesc::IGeometyrErrorSvc
+RootCnvSvc           INFO Disconnected data IO:7CB6F1C7-4AC2-E611-81E8-002590907876 [/data2/tracking/mcdata/00056265_00000006_2.xdigi]
+ToolSvc              INFO Removing all tools created by ToolSvc
+TrackResChecker...SUCCESS Booked 21 Histogram(s) : 1D=17 2D=4 
+TrackResChecker...SUCCESS Booked 21 Histogram(s) : 1D=17 2D=4 
+TrackResChecker...SUCCESS Booked 21 Histogram(s) : 1D=17 2D=4 
+TrackResChecker...SUCCESS Booked 21 Histogram(s) : 1D=17 2D=4 
+TrackResChecker...SUCCESS Booked 17 Histogram(s) : 1D=17 
+ToolSvc.TrackMa...SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/3/0
+ToolSvc.TrackMa...SUCCESS  #WARNINGS   = 3        Message = 'Protect against absurd tracks. See debug for details [TrackResChecker]'
+ToolSvc.TrackMa...SUCCESS  #WARNINGS   = 1        Message = 'Protect against looping tracks. See debug for details [TrackResChecker]'
+ToolSvc.TrackMa...SUCCESS  #WARNINGS   = 21       Message = 'Transport to wall using ToolSvc.TrackMasterExtrapolator.TrackDistanceExtraSelector.LongDistanceExtrapolatorFAILED [TrackResChecker]'
+ToolSvc.TrackSt...SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "Number of states added"                        |       400 |       3484 |     8.7100 |     5.3671 |      0.0000 |      27.000 |
+ | "Number of tracks seen"                         |       401 |       8239 |     20.546 |     11.049 |      0.0000 |      58.000 |
+PatLongLivedTra...   INFO --------------------------------------------------------------------------------------------------
+PatLongLivedTra...   INFO This machine has a speed about   3.45 times the speed of a 2.8 GHz Xeon.
+PatLongLivedTra...   INFO Algorithm          (millisec) |    <user> |   <clock> |      min       max    sigma | entries | total (s) |
+PatLongLivedTra...   INFO --------------------------------------------------------------------------------------------------
+PatLongLivedTra...   INFO   Execute                     |    41.400 |    41.558 |    0.709     237.4    39.49 |     400 |    16.624 |
+PatLongLivedTra...   INFO   getPreSelection             |     0.010 |     0.006 |    0.001       0.1     0.00 |   20777 |     0.141 |
+PatLongLivedTra...   INFO   FindMatchingHits            |     0.000 |     0.000 |    0.000       0.0     0.00 |  509840 |     0.336 |
+PatLongLivedTra...   INFO   FitXProjection              |     0.001 |     0.001 |    0.001       0.1     0.00 |  421763 |     0.742 |
+PatLongLivedTra...   INFO   FitAndRemove                |     0.000 |     0.000 |    0.000       0.0     0.00 | 2555755 |     1.788 |
+PatLongLivedTra...   INFO   xFit                        |     0.000 |     0.000 |    0.000       0.0     0.00 |  702847 |     0.405 |
+PatLongLivedTra...   INFO   AddUHits                    |     0.000 |     0.000 |    0.000       0.0     0.00 |  509840 |     0.507 |
+PatLongLivedTra...   INFO   AddVHits                    |     0.001 |     0.001 |    0.000       0.1     0.00 |  807520 |     1.274 |
+PatLongLivedTra...   INFO   acceptCandidate             |     0.000 |     0.000 |    0.000       0.0     0.00 |  911968 |     0.545 |
+PatLongLivedTra...   INFO   addOverlap                  |     0.001 |     0.001 |    0.000       0.0     0.00 |  104448 |     0.162 |
+PatLongLivedTra...   INFO   storeTrack                  |     0.002 |     0.004 |    0.003       0.0     0.00 |   15870 |     0.067 |
+PatLongLivedTra...   INFO --------------------------------------------------------------------------------------------------
+ToolSvc.PatDebu...SUCCESS Booked 3 N-Tuples and 0 Event Tag Collections
+ToolSvc.PatDebu...SUCCESS List of booked N-Tuples in directory "FILE1/ToolSvc.PatDebugTTTruthTool"
+ToolSvc.PatDebu...SUCCESS  ID=DownstreamSeedDebugTupleTitle="DownstreamSeedDebugTuple"                #items=16 {has_MCParticle,is_downstream_reconstructible,has_MCParticle_not_electron,is_downs}
+ToolSvc.PatDebu...SUCCESS  ID=chi2Tuple     Title="chi2Tuple"                               #items=17 {p,nHits,chi2,AcceptCandidate,AddOverlapRegions,AddUHits,AddVHits,BeampipeCut,FitA}
+ToolSvc.PatDebu...SUCCESS  ID=finalTuple    Title="finalTuple"                              #items=10 {logChi2,logP,logPt,deltaP,logDxMagnet,logDistance,logYAt0,logXAt0,firedLayers,goo}
+ToolSvc.PatDebu...SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/1/0
+ToolSvc.PatDebu...SUCCESS  #WARNINGS   = 33165    Message = 'Tuple 'DownstreamSeedDebugTuple' 'unsigned long' has different sizes on 32/64 bit systems. Casting 'seed_nLayers' to 'unsigned long long' [PatLongLivedTracking]'
+PatForwardHLT2....SUCCESS Number of counters : 3
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#FinishedTracks"                               |     26481 |      12050 |    0.45504 |    0.54247 |      0.0000 |      4.0000 |
+ | "#Seeds"                                        |     26481 |      26481 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ | "#SkippedUsedSeeds"                             |      6681 |       6681 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+PatForwardHLT1....SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#FinishedTracks"                               |     13396 |       6898 |    0.51493 |    0.50793 |      0.0000 |      3.0000 |
+ | "#Seeds"                                        |     23853 |      23853 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+BrunelInit.Brun...SUCCESS Booked 4 Histogram(s) : 1D=4 
+BrunelInit.Brun...SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "Delta Memory/MB"                               |       390 |     78.608 |    0.20156 |     2.2878 |    -0.49200 |      38.120 |
+ | "Total Memory/MB"                               |       400 |   445451.1 |     1113.6 |     27.945 |      1019.3 |      1139.3 |
+BrunelInit.Brun...SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/2/0
+BrunelInit.Brun...SUCCESS  #WARNINGS   = 2        Message = 'Delta Memory for the event exceeds 3*sigma'
+BrunelInit.Brun...SUCCESS  #WARNINGS   = 11       Message = 'Total Memory for the event exceeds 3*sigma'
+ToolSvc.TrackVe...SUCCESS Number of counters : 1
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "Number of tracks seen"                         |       401 |          0 |     0.0000 |     0.0000 |      0.0000 |      0.0000 |
+ToolSvc.PatAddT...SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#TT hits added"                                |     13531 |      53998 |     3.9907 |    0.55878 |      3.0000 |      8.0000 |
+ | "#tracks with hits added"                       |     13531 |      13531 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+PatForwardHLT2....SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#TT hits added"                                |      9203 |      36298 |     3.9441 |    0.61698 |      3.0000 |      8.0000 |
+ | "#tracks with hits added"                       |      9203 |       9203 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ToolSvc.PatSeedFitSUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/4/0
+ToolSvc.PatSeedFitSUCCESS  #WARNINGS   = 1        Message = 'First full fit failed, falling back on emergency fit [TrackBestTrackCreator]'
+ToolSvc.PatSeedFitSUCCESS  #WARNINGS   = 2        Message = 'First full fit failed, using best guess parameters [TrackBestTrackCreator]'
+ToolSvc.PatSeedFitSUCCESS  #WARNINGS   = 13       Message = 'Stub fit failed, using best guess parameters [ForwardHLT1FitterAlg]'
+ToolSvc.PatSeedFitSUCCESS  #WARNINGS   = 409      Message = 'Stub fit failed, using best guess parameters [TrackBestTrackCreator]'
+PatForwardHLT1....SUCCESS Number of counters : 2
+ |    Counter                                      |     #     |    sum     | mean/eff^* | rms/err^*  |     min     |     max     |
+ | "#TT hits added"                                |        10 |         30 |     3.0000 |     0.0000 |      3.0000 |      3.0000 |
+ | "#tracks with hits added"                       |        10 |         10 |     1.0000 |     0.0000 |      1.0000 |      1.0000 |
+ToolSvc.TrackMa...SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/1/1
+ToolSvc.TrackMa...SUCCESS  #WARNINGS   = 21       Message = 'RungeKuttaExtrapolator failed with code: 2 [TrackResChecker]'
+ToolSvc.TrackMa...SUCCESS  #INFOS      = 4        Message = 'Very large value (> 1e6 mm) for state position. Breaking iteration [TrackResChecker]'
+ToolSvc.FastVel...   INFO Maximum number of Velo hits 4280
+ToolSvc.L0DUCon...   INFO --------------- TCK = 0x10000------------------
+ToolSvc.OTChann...SUCCESS Exceptions/Errors/Warnings/Infos Statistics : 0/0/2/0
+ToolSvc.OTChann...SUCCESS  #WARNINGS   = 1        Message = 'Updating OT channel map for bank version 3 [PatForwardHLT1]'
+ToolSvc.OTChann...SUCCESS  #WARNINGS   = 1        Message = 'Updating OT channel map for bank version 63 [PatForwardHLT1]'
+TimingAuditor.T...   INFO --------------------------------------------------------------------------------------------------
+TimingAuditor.T...   INFO This machine has a speed about   3.33 times the speed of a 2.8 GHz Xeon.
+TimingAuditor.T...   INFO Algorithm          (millisec) |    <user> |   <clock> |      min       max    sigma | entries | total (s) |
+TimingAuditor.T...   INFO --------------------------------------------------------------------------------------------------
+TimingAuditor.T...   INFO EVENT LOOP                    |   218.775 |   219.030 |   20.020    1243.5   176.49 |     400 |    87.612 |
+TimingAuditor.T...   INFO  BrunelSequencer              |   215.325 |   215.409 |   18.343    1237.0   175.56 |     400 |    86.164 |
+TimingAuditor.T...   INFO   Init                        |     0.100 |     0.162 |    0.099       2.8     0.13 |     400 |     0.065 |
+TimingAuditor.T...   INFO    InitBrunelSeq              |     0.100 |     0.158 |    0.097       2.8     0.13 |     400 |     0.064 |
+TimingAuditor.T...   INFO     BrunelInit                |     0.100 |     0.150 |    0.091       2.7     0.13 |     400 |     0.060 |
+TimingAuditor.T...   INFO     BrunelEventCount          |     0.000 |     0.001 |    0.001       0.0     0.00 |     400 |     0.001 |
+TimingAuditor.T...   INFO   PhysicsSeq                  |   215.225 |   215.238 |   18.135    1236.8   175.55 |     400 |    86.096 |
+TimingAuditor.T...   INFO    DecodeTriggerSeq           |     0.000 |     0.068 |    0.040       1.6     0.08 |     400 |     0.027 |
+TimingAuditor.T...   INFO     Hlt1DecReportsDecoder     |     0.000 |     0.014 |    0.006       0.6     0.03 |     400 |     0.006 |
+TimingAuditor.T...   INFO     Hlt2DecReportsDecoder     |     0.000 |     0.005 |    0.003       0.0     0.00 |     400 |     0.002 |
+TimingAuditor.T...   INFO     L0TriggerSeq              |     0.000 |     0.040 |    0.024       0.9     0.05 |     400 |     0.016 |
+TimingAuditor.T...   INFO      L0DUFromRaw              |     0.000 |     0.034 |    0.021       0.9     0.05 |     400 |     0.014 |
+TimingAuditor.T...   INFO    Reco                       |   192.525 |   192.507 |   14.184    1176.0   165.68 |     400 |    77.003 |
+TimingAuditor.T...   INFO     RecoDecodingSeq           |     1.575 |     1.781 |    0.360       4.0     0.68 |     400 |     0.713 |
+TimingAuditor.T...   INFO      createBothVeloClusters   |     0.600 |     0.707 |    0.134       1.8     0.28 |     400 |     0.283 |
+TimingAuditor.T...   INFO      createTTClusters         |     0.475 |     0.498 |    0.126       1.9     0.21 |     400 |     0.200 |
+TimingAuditor.T...   INFO      createTTLiteClusters     |     0.075 |     0.105 |    0.040       0.3     0.03 |     400 |     0.042 |
+TimingAuditor.T...   INFO      createITLiteClusters     |     0.025 |     0.089 |    0.019       0.2     0.03 |     400 |     0.036 |
+TimingAuditor.T...   INFO      createITClusters         |     0.350 |     0.365 |    0.024       1.1     0.19 |     400 |     0.146 |
+TimingAuditor.T...   INFO     RecoVELOSeq               |     1.900 |     1.770 |    0.184       9.2     1.28 |     400 |     0.708 |
+TimingAuditor.T...   INFO      FastVeloTracking         |     1.900 |     1.766 |    0.180       9.2     1.28 |     400 |     0.706 |
+TimingAuditor.T...   INFO     RecoTrHLT1Seq             |    11.900 |    11.535 |    1.299      62.2     7.10 |     400 |     4.614 |
+TimingAuditor.T...   INFO      TrackHLT1                |    11.900 |    11.531 |    1.296      62.2     7.10 |     400 |     4.613 |
+TimingAuditor.T...   INFO       TrackHLT1VeloTTPatSeq   |     0.425 |     0.477 |    0.073       1.6     0.26 |     400 |     0.191 |
+TimingAuditor.T...   INFO        PatVeloTTHybrid        |     0.425 |     0.472 |    0.069       1.6     0.26 |     400 |     0.189 |
+TimingAuditor.T...   INFO       TrackHLT1ForwardPatHLT1S|     3.050 |     2.943 |    0.430      14.9     2.07 |     400 |     1.177 |
+TimingAuditor.T...   INFO        PatForwardHLT1         |     3.050 |     2.938 |    0.425      14.9     2.07 |     400 |     1.175 |
+TimingAuditor.T...   INFO       TrackHLT1FitHLT1Seq     |     8.425 |     8.102 |    0.613      56.6     5.16 |     400 |     3.241 |
+TimingAuditor.T...   INFO        CopyVeloTracks         |     0.200 |     0.076 |    0.019       0.3     0.04 |     400 |     0.030 |
+TimingAuditor.T...   INFO        VeloOnlyInitAlg        |     0.350 |     0.449 |    0.062       1.6     0.24 |     400 |     0.180 |
+TimingAuditor.T...   INFO        ForwardHLT1FitterAlg   |     7.850 |     7.567 |    0.460      55.2     4.92 |     400 |     3.027 |
+TimingAuditor.T...   INFO     RecoVertexSeq             |     0.325 |     0.350 |    0.069       2.4     0.29 |     400 |     0.140 |
+TimingAuditor.T...   INFO      PatPV3D                  |     0.275 |     0.297 |    0.050       2.3     0.27 |     400 |     0.119 |
+TimingAuditor.T...   INFO      PVVeloTracksCleaner      |     0.050 |     0.046 |    0.013       0.3     0.03 |     400 |     0.019 |
+TimingAuditor.T...   INFO     RecoTrHLT2Seq             |   176.825 |   177.056 |   11.864    1134.0   158.00 |     400 |    70.823 |
+TimingAuditor.T...   INFO      TrackHLT2                |   120.425 |   120.615 |    6.262     893.9   124.22 |     400 |    48.246 |
+TimingAuditor.T...   INFO       TrackHLT2ForwardPatHLT2S|    24.150 |    24.347 |    0.403     223.6    31.06 |     400 |     9.739 |
+TimingAuditor.T...   INFO        PatForwardHLT2         |    23.375 |    23.553 |    0.273     221.5    30.70 |     400 |     9.422 |
+TimingAuditor.T...   INFO        MergeForwardHLT1HLT2   |     0.775 |     0.785 |    0.058       3.3     0.50 |     400 |     0.314 |
+TimingAuditor.T...   INFO       TrackHLT2SeedPatSeq     |    54.525 |    54.329 |    2.245     493.5    60.74 |     400 |    21.732 |
+TimingAuditor.T...   INFO        PatSeeding             |    38.275 |    38.429 |    0.409     463.2    56.36 |     400 |    15.372 |
+TimingAuditor.T...   INFO        AssocSeed              |    16.250 |    15.890 |    1.440     175.2    10.76 |     400 |     6.356 |
+TimingAuditor.T...   INFO       TrackHLT2MatchPatSeq    |     0.350 |     0.358 |    0.039       1.6     0.26 |     400 |     0.144 |
+TimingAuditor.T...   INFO        PatMatch               |     0.350 |     0.354 |    0.035       1.6     0.26 |     400 |     0.142 |
+TimingAuditor.T...   INFO       TrackHLT2DownstreamPatSe|    41.400 |    41.568 |    0.717     237.5    39.49 |     400 |    16.627 |
+TimingAuditor.T...   INFO        PatLongLivedTracking   |    41.400 |    41.563 |    0.713     237.4    39.49 |     400 |    16.625 |
+TimingAuditor.T...   INFO      FitHLT2                  |    41.600 |    41.526 |    2.187     199.8    28.48 |     400 |    16.611 |
+TimingAuditor.T...   INFO       FitHLT2BestSeq          |    41.600 |    41.522 |    2.183     199.8    28.48 |     400 |    16.609 |
+TimingAuditor.T...   INFO        TrackBestTrackCreator  |    41.600 |    41.515 |    2.178     199.8    28.48 |     400 |    16.606 |
+TimingAuditor.T...   INFO      RecV0                    |     0.575 |     0.587 |    0.035       2.5     0.42 |     400 |     0.235 |
+TimingAuditor.T...   INFO       RecV0MakeV0Seq          |     0.575 |     0.583 |    0.032       2.5     0.42 |     400 |     0.233 |
+TimingAuditor.T...   INFO        TrackV0Finder          |     0.575 |     0.578 |    0.028       2.5     0.42 |     400 |     0.231 |
+TimingAuditor.T...   INFO      AddExtraInfo             |    14.200 |    14.314 |    1.406      45.2     7.79 |     400 |     5.726 |
+TimingAuditor.T...   INFO       AddExtraInfoClonesSeq   |     1.750 |     1.850 |    0.082      11.0     1.65 |     400 |     0.740 |
+TimingAuditor.T...   INFO        FindTrackClones        |     1.750 |     1.826 |    0.071      11.0     1.65 |     400 |     0.731 |
+TimingAuditor.T...   INFO        FlagTrackClones        |     0.000 |     0.016 |    0.005       0.2     0.02 |     400 |     0.007 |
+TimingAuditor.T...   INFO       AddExtraInfoTrackLikelih|    12.400 |    12.414 |    1.288      34.1     6.20 |     400 |     4.966 |
+TimingAuditor.T...   INFO        TrackAddLikelihood     |    12.375 |    12.409 |    1.285      34.1     6.20 |     400 |     4.964 |
+TimingAuditor.T...   INFO       AddExtraInfoEraseExtraIn|     0.050 |     0.041 |    0.012       0.1     0.02 |     400 |     0.017 |
+TimingAuditor.T...   INFO        TrackEraseExtraInfoBest|     0.050 |     0.023 |    0.006       0.1     0.01 |     400 |     0.010 |
+TimingAuditor.T...   INFO        TrackEraseExtraInfoFitt|     0.000 |     0.011 |    0.002       0.0     0.01 |     400 |     0.005 |
+TimingAuditor.T...   INFO    Moni                       |     0.000 |     0.001 |    0.001       0.0     0.00 |     400 |     0.001 |
+TimingAuditor.T...   INFO    MCLinks                    |     0.850 |     0.829 |    0.152       2.8     0.47 |     400 |     0.332 |
+TimingAuditor.T...   INFO     MCLinksL0Seq              |     0.000 |     0.001 |    0.000       0.0     0.00 |     400 |     0.000 |
+TimingAuditor.T...   INFO     MCLinksUnpackSeq          |     0.000 |     0.001 |    0.001       0.0     0.00 |     400 |     0.001 |
+TimingAuditor.T...   INFO     MCLinksTrSeq              |     0.750 |     0.730 |    0.064       2.7     0.47 |     400 |     0.292 |
+TimingAuditor.T...   INFO      TrackAssociator          |     0.725 |     0.726 |    0.060       2.7     0.47 |     400 |     0.291 |
+TimingAuditor.T...   INFO     MCLinksCaloSeq            |     0.100 |     0.087 |    0.068       1.1     0.05 |     400 |     0.035 |
+TimingAuditor.T...   INFO      CaloDigit2MCLinks2Table  |     0.025 |     0.019 |    0.014       0.6     0.03 |     400 |     0.008 |
+TimingAuditor.T...   INFO      CaloClusterMCTruth       |     0.025 |     0.017 |    0.014       0.3     0.01 |     400 |     0.007 |
+TimingAuditor.T...   INFO      CaloHypoMCTruth          |     0.050 |     0.041 |    0.036       0.1     0.00 |     400 |     0.017 |
+TimingAuditor.T...   INFO    Check                      |    21.850 |    21.821 |    3.322      62.4    10.36 |     400 |     8.729 |
+TimingAuditor.T...   INFO     CheckPatSeq               |    21.850 |    21.817 |    3.319      62.4    10.36 |     400 |     8.727 |
+TimingAuditor.T...   INFO      PatLHCbID2MCParticle     |     1.975 |     1.968 |    0.186       5.8     1.04 |     400 |     0.787 |
+TimingAuditor.T...   INFO      AssocVelo                |     0.150 |     0.218 |    0.034       0.8     0.12 |     400 |     0.087 |
+TimingAuditor.T...   INFO      Velo                     |     1.450 |     1.736 |    0.245       5.1     0.87 |     400 |     0.694 |
+TimingAuditor.T...   INFO      AssocVeloTT              |     0.275 |     0.185 |    0.028       0.7     0.11 |     400 |     0.074 |
+TimingAuditor.T...   INFO      VeloTT                   |     1.500 |     1.222 |    0.199       3.6     0.58 |     400 |     0.489 |
+TimingAuditor.T...   INFO      AssocForward             |     0.400 |     0.291 |    0.028       1.4     0.19 |     400 |     0.117 |
+TimingAuditor.T...   INFO      Forward                  |     1.050 |     1.367 |    0.233       3.9     0.64 |     400 |     0.547 |
+TimingAuditor.T...   INFO      AssocTTrack              |     0.350 |     0.262 |    0.019       1.0     0.15 |     400 |     0.105 |
+TimingAuditor.T...   INFO      TTrack                   |     1.350 |     1.234 |    0.224       3.6     0.59 |     400 |     0.494 |
+TimingAuditor.T...   INFO      AssocMatch               |     0.150 |     0.253 |    0.025       0.9     0.14 |     400 |     0.101 |
+TimingAuditor.T...   INFO      Match                    |     1.400 |     1.217 |    0.196       3.6     0.58 |     400 |     0.487 |
+TimingAuditor.T...   INFO      AssocDownstream          |     0.125 |     0.181 |    0.019       0.7     0.10 |     400 |     0.072 |
+TimingAuditor.T...   INFO      Downstream               |     1.000 |     1.167 |    0.178       3.5     0.56 |     400 |     0.467 |
+TimingAuditor.T...   INFO      AssocBest                |     0.425 |     0.488 |    0.039       1.7     0.28 |     400 |     0.195 |
+TimingAuditor.T...   INFO      BestTracks               |     1.350 |     1.415 |    0.237       3.9     0.67 |     400 |     0.566 |
+TimingAuditor.T...   INFO      DebugTrackingLosses      |     0.000 |     0.001 |    0.001       0.0     0.00 |     400 |     0.001 |
+TimingAuditor.T...   INFO      TrackResChecker          |     1.750 |     1.432 |    0.153       3.4     0.61 |     400 |     0.573 |
+TimingAuditor.T...   INFO      OccupancyCheck           |     3.700 |     3.752 |    0.468       9.4     1.60 |     400 |     1.501 |
+TimingAuditor.T...   INFO      PrChecker                |     3.200 |     3.232 |    0.292      10.2     1.68 |     400 |     1.293 |
+TimingAuditor.T...   INFO      PatCheckerNTuple         |     0.175 |     0.128 |    0.021      10.4     0.72 |     400 |     0.052 |
+TimingAuditor.T...   INFO   Output                      |     0.000 |     0.001 |    0.001       0.0     0.00 |     400 |     0.000 |
+TimingAuditor.T...   INFO *        UnpackMCParticles    |     5.200 |     5.226 |    0.542      13.3     2.51 |     400 |     2.090 |
+TimingAuditor.T...   INFO *        UnpackMCVertices     |     6.200 |     6.230 |    0.445      17.6     3.21 |     400 |     2.492 |
+TimingAuditor.T...   INFO --------------------------------------------------------------------------------------------------
+DataOnDemandSvc      INFO Handled "DataFault" incidents: 800/0/18400(Alg/Node/Total).
+RFileCnv             INFO dumping contents of /NTUPLES/FILE1
+TFile: name=/home/kuciaa/work/tracking_data/my/Brunel_rec_eff_BdJPsi_MagU_lwtnn.root, title=Gaudi Trees, option=CREATE
+******************************************************************************
+*Tree    :DownstreamSeedDebugTuple: DownstreamSeedDebugTuple                               *
+*Entries :    33165 : Total =         2838070 bytes  File  Size =    2050768 *
+*        :          : Tree compression factor =   1.38                       *
+******************************************************************************
+*Br    0 :has_MCParticle : has_MCParticle/O                                  *
+*Entries :    33165 : Total  Size=      33883 bytes  File Size  =       3950 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   8.45     *
+*............................................................................*
+*Br    1 :is_downstream_reconstructible : is_downstream_reconstructible/O    *
+*Entries :    33165 : Total  Size=      33973 bytes  File Size  =       7420 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   4.50     *
+*............................................................................*
+*Br    2 :has_MCParticle_not_electron : has_MCParticle_not_electron/O        *
+*Entries :    33165 : Total  Size=      33961 bytes  File Size  =       6971 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   4.79     *
+*............................................................................*
+*Br    3 :is_downstream_reconstructible_not_electron :                       *
+*         | is_downstream_reconstructible_not_electron/O                     *
+*Entries :    33165 : Total  Size=      34051 bytes  File Size  =       7562 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   4.42     *
+*............................................................................*
+*Br    4 :is_true_seed : is_true_seed/O                                      *
+*Entries :    33165 : Total  Size=      33871 bytes  File Size  =       4341 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   7.69     *
+*............................................................................*
+*Br    5 :seed_chi2PerDoF : seed_chi2PerDoF/D                                *
+*Entries :    33165 : Total  Size=     266800 bytes  File Size  =     255259 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br    6 :seed_p    : seed_p/D                                               *
+*Entries :    33165 : Total  Size=     266683 bytes  File Size  =     253046 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br    7 :seed_pt   : seed_pt/D                                              *
+*Entries :    33165 : Total  Size=     266696 bytes  File Size  =     251586 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br    8 :seed_nLHCbIDs : seed_nLHCbIDs/i                                    *
+*Entries :    33165 : Total  Size=     133690 bytes  File Size  =      23177 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   5.75     *
+*............................................................................*
+*Br    9 :seed_nbIT : seed_nbIT/i                                            *
+*Entries :    33165 : Total  Size=     133654 bytes  File Size  =       9285 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=  14.34     *
+*............................................................................*
+*Br   10 :seed_nLayers : seed_nLayers/l                                      *
+*Entries :    33165 : Total  Size=     266761 bytes  File Size  =      21771 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=  12.23     *
+*............................................................................*
+*Br   11 :seed_x    : seed_x/D                                               *
+*Entries :    33165 : Total  Size=     266683 bytes  File Size  =     255666 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br   12 :seed_y    : seed_y/D                                               *
+*Entries :    33165 : Total  Size=     266683 bytes  File Size  =     255707 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br   13 :seed_tx   : seed_tx/D                                              *
+*Entries :    33165 : Total  Size=     266696 bytes  File Size  =     255690 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br   14 :seed_ty   : seed_ty/D                                              *
+*Entries :    33165 : Total  Size=     266696 bytes  File Size  =     255732 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br   15 :seed_mva_value : seed_mva_value/D                                  *
+*Entries :    33165 : Total  Size=     266787 bytes  File Size  =     181173 *
+*Baskets :        9 : Basket Size=      32000 bytes  Compression=   1.47     *
+*............................................................................*
+******************************************************************************
+*Tree    :chi2Tuple : chi2Tuple                                              *
+*Entries :    15870 : Total =          550512 bytes  File  Size =     253653 *
+*        :          : Tree compression factor =   2.15                       *
+******************************************************************************
+*Br    0 :p         : p/D                                                    *
+*Entries :    15870 : Total  Size=     127738 bytes  File Size  =     120919 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br    1 :nHits     : nHits/i                                                *
+*Entries :    15870 : Total  Size=      64120 bytes  File Size  =       6130 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=  10.38     *
+*............................................................................*
+*Br    2 :chi2      : chi2/D                                                 *
+*Entries :    15870 : Total  Size=     127762 bytes  File Size  =     122349 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br    3 :AcceptCandidate : AcceptCandidate/O                                *
+*Entries :    15870 : Total  Size=      16473 bytes  File Size  =        189 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  84.43     *
+*............................................................................*
+*Br    4 :AddOverlapRegions : AddOverlapRegions/O                            *
+*Entries :    15870 : Total  Size=      16483 bytes  File Size  =        191 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  83.55     *
+*............................................................................*
+*Br    5 :AddUHits  : AddUHits/O                                             *
+*Entries :    15870 : Total  Size=      16438 bytes  File Size  =        182 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  87.64     *
+*............................................................................*
+*Br    6 :AddVHits  : AddVHits/O                                             *
+*Entries :    15870 : Total  Size=      16438 bytes  File Size  =        182 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  87.64     *
+*............................................................................*
+*Br    7 :BeampipeCut : BeampipeCut/O                                        *
+*Entries :    15870 : Total  Size=      16453 bytes  File Size  =        185 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  86.23     *
+*............................................................................*
+*Br    8 :FitAndRemove : FitAndRemove/O                                      *
+*Entries :    15870 : Total  Size=      16458 bytes  File Size  =        186 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  85.77     *
+*............................................................................*
+*Br    9 :Preselection : Preselection/O                                      *
+*Entries :    15870 : Total  Size=      16458 bytes  File Size  =        186 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  85.77     *
+*............................................................................*
+*Br   10 :ReconstructibleAsDown : ReconstructibleAsDown/O                    *
+*Entries :    15870 : Total  Size=      16503 bytes  File Size  =        195 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  81.86     *
+*............................................................................*
+*Br   11 :ReconstructibleAsLong : ReconstructibleAsLong/O                    *
+*Entries :    15870 : Total  Size=      16503 bytes  File Size  =        195 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  81.86     *
+*............................................................................*
+*Br   12 :addUHits  : addUHits/O                                             *
+*Entries :    15870 : Total  Size=      16438 bytes  File Size  =        182 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  87.64     *
+*............................................................................*
+*Br   13 :fisher    : fisher/O                                               *
+*Entries :    15870 : Total  Size=      16428 bytes  File Size  =        180 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  88.60     *
+*............................................................................*
+*Br   14 :fitXProjection : fitXProjection/O                                  *
+*Entries :    15870 : Total  Size=      16468 bytes  File Size  =        188 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  84.87     *
+*............................................................................*
+*Br   15 :fitXprojection : fitXprojection/O                                  *
+*Entries :    15870 : Total  Size=      16468 bytes  File Size  =        188 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  84.87     *
+*............................................................................*
+*Br   16 :initEvent : initEvent/O                                            *
+*Entries :    15870 : Total  Size=      16443 bytes  File Size  =        183 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  87.16     *
+*............................................................................*
+******************************************************************************
+*Tree    :finalTuple: finalTuple                                             *
+*Entries :    13140 : Total =          967714 bytes  File  Size =     746223 *
+*        :          : Tree compression factor =   1.29                       *
+******************************************************************************
+*Br    0 :logChi2   : logChi2/D                                              *
+*Entries :    13140 : Total  Size=     105950 bytes  File Size  =      98863 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br    1 :logP      : logP/D                                                 *
+*Entries :    13140 : Total  Size=     105926 bytes  File Size  =      85061 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.24     *
+*............................................................................*
+*Br    2 :logPt     : logPt/D                                                *
+*Entries :    13140 : Total  Size=     105934 bytes  File Size  =      86521 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.22     *
+*............................................................................*
+*Br    3 :deltaP    : deltaP/D                                               *
+*Entries :    13140 : Total  Size=     105942 bytes  File Size  =      89140 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.18     *
+*............................................................................*
+*Br    4 :logDxMagnet : logDxMagnet/D                                        *
+*Entries :    13140 : Total  Size=     105982 bytes  File Size  =      93786 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br    5 :logDistance : logDistance/D                                        *
+*Entries :    13140 : Total  Size=     105982 bytes  File Size  =      95085 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br    6 :logYAt0   : logYAt0/D                                              *
+*Entries :    13140 : Total  Size=     105950 bytes  File Size  =      94440 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br    7 :logXAt0   : logXAt0/D                                              *
+*Entries :    13140 : Total  Size=     105950 bytes  File Size  =      96533 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br    8 :firedLayers : firedLayers/D                                        *
+*Entries :    13140 : Total  Size=     105982 bytes  File Size  =       4054 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=  26.01     *
+*............................................................................*
+*Br    9 :goodTrack : goodTrack/O                                            *
+*Entries :    13140 : Total  Size=      13714 bytes  File Size  =       1418 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   9.32     *
+*............................................................................*
+******************************************************************************
+*Tree    :Tracks    : Tracks                                                 *
+*Entries :     9701 : Total =          861747 bytes  File  Size =     769390 *
+*        :          : Tree compression factor =   1.11                       *
+******************************************************************************
+*Br    0 :x         : x/D                                                    *
+*Entries :     9701 : Total  Size=      78300 bytes  File Size  =      74196 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br    1 :y         : y/D                                                    *
+*Entries :     9701 : Total  Size=      78300 bytes  File Size  =      73878 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br    2 :z         : z/D                                                    *
+*Entries :     9701 : Total  Size=      78300 bytes  File Size  =      25433 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   3.06     *
+*............................................................................*
+*Br    3 :tx        : tx/D                                                   *
+*Entries :     9701 : Total  Size=      78307 bytes  File Size  =      74794 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br    4 :ty        : ty/D                                                   *
+*Entries :     9701 : Total  Size=      78307 bytes  File Size  =      74778 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br    5 :p         : p/D                                                    *
+*Entries :     9701 : Total  Size=      78300 bytes  File Size  =      74679 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.04     *
+*............................................................................*
+*Br    6 :dx        : dx/D                                                   *
+*Entries :     9701 : Total  Size=      78307 bytes  File Size  =      75201 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.03     *
+*............................................................................*
+*Br    7 :dy        : dy/D                                                   *
+*Entries :     9701 : Total  Size=      78307 bytes  File Size  =      75668 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.03     *
+*............................................................................*
+*Br    8 :dtx       : dtx/D                                                  *
+*Entries :     9701 : Total  Size=      78314 bytes  File Size  =      74350 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br    9 :dty       : dty/D                                                  *
+*Entries :     9701 : Total  Size=      78314 bytes  File Size  =      73556 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br   10 :dp        : dp/D                                                   *
+*Entries :     9701 : Total  Size=      78307 bytes  File Size  =      71768 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+NTupleSvc            INFO NTuples saved successfully
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully

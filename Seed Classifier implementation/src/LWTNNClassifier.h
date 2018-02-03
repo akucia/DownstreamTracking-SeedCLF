@@ -3,8 +3,8 @@
 //
 
 
-#ifndef CLASSIFIER_IN_CPP_LWTNNCLASSIFIER_H
-#define CLASSIFIER_IN_CPP_LWTNNCLASSIFIER_H
+#ifndef CLASSIFIER_IN_CPP_LWTNNCLASSIFIER2_H
+#define CLASSIFIER_IN_CPP_LWTNNCLASSIFIER2_H
 
 #include "lwtnn/LightweightGraph.hh"
 #include "lwtnn/parse_json.hh"
@@ -13,13 +13,13 @@
 #include <string>
 #include <memory>
 
-class LWTNNClassifier {
+class LWTNNClassifier2 {
 public:
-    LWTNNClassifier(std::string model_path, std::string default_output);
+    LWTNNClassifier2(std::string model_path, std::string default_output);
     double predict(std::vector<double>& input);
 
 private:
     std::unique_ptr<lwt::LightweightGraph> lwg;
 };
 
-#endif //CLASSIFIER_IN_CPP_LWTNNCLASSIFIER_H
+#endif //CLASSIFIER_IN_CPP_LWTNNCLASSIFIER2_H

@@ -1,0 +1,10 @@
+#pragma print on
+// This file (PatSeedingTool-FieldOff.opts) is obsolete, please needed
+// configuration directly included in RecoTracking.py 
+#pragma print off
+
+// options to tune PatSeeding for tracking with B field off
+PatSeeding.PatSeedingTool.xMagTol = 4e2;
+PatSeeding.PatSeedingTool.zMagnet = 0.;
+PatSeeding.PatSeedingTool.FieldOff = true;
+PatSeeding.PatSeedingTool.MinMomentum = 5e4;

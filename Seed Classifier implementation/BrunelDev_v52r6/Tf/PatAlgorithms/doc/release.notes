@@ -1,0 +1,1565 @@
+!-----------------------------------------------------------------------------
+! Package     : Tf/PatAlgorithms
+! Responsible : Stephanie-Hansmann-Menzemer
+! Purpose     : track finding
+!-----------------------------------------------------------------------------
+
+! 2016-05-24 - Michel De Cian
+ - Fix small bug in PatLongLivedTracking with hit flagging, small improvement in performance.
+
+!========================= PatAlgorithms v5r1 2016-04-15 =========================
+! 2016-04-15 - Marian Stahl
+ - new tuning for PatForwardTool after tuning on 2015 data
+
+!========================= PatAlgorithms v5r0 2016-03-17 =========================
+! 2016-03-15 - Marian Stahl
+ - forgot to commit release notes
+
+! 2016-03-15 - Marian Stahl
+ - fixed memory problem in PatForwardTool 
+ - renamed NN variables 
+ - specified several lambda captures
+
+! 2016-03-13 - Marian Stahl
+ - deleted parameter infos in initialize of PatForwardTool
+
+! 2016-03-12 - Marian Stahl
+ - reimplemented changes from r201466 onward in PatForwardTool
+
+! 2016-03-12 - Marian Stahl
+ - Implemented 2 neural nets. One that replaces the quality parameter when switched on, the other before the fit of XCandidates that (if switched on) is only used in the SecondLoop
+ - Clustering: MaxXCandidateSize now depends on the number of hit XPlanes
+ - removed chi2 after XFit, since chi2 in the XFit was sufficient
+ - added new chi2 for stereo fit
+ - updated config file
+
+! 2016-03-03 - Michel De Cian
+ - Put in protection against empty layers in PatAddTTCoord (again...).
+
+! 2016-03-01 - Sascha Stahl
+ - PatForwardTool: Reimplement option to use momentum estimate to guide the Forward tracking.
+   Can be activated with option UseProperMomentumEstimate.
+
+! 2016-02-24 - Michel De Cian
+ - Adapt PatAddTTCoord and PatLongLivedTracking for the changes in TTStationHitManager
+
+! 2016-02-22 - Sascha Stahl
+ - PatForward: Use OTHitCreator to get the number of OT hits. This will trigger the
+   creation of all OT hits, if not done before. Since we do not cut tight on the number of hits 
+   the hits are created anyways later for almost all events and one avoids 
+   double work.
+
+! 2016-02-22 - Marco Cattaneo
+ - Add a missing override qualifier
+
+! 2016-02-16 - Michel De Cian
+ - Clean up last commit for PatLongLivedTracking a bit.
+
+! 2016-02-13 - Gerhard Raven
+ - follow const-ification of Tr/TrackInterfaces
+
+! 2016-02-13 - Michel De Cian
+ - Fix another small bug in PatLongLivedTracking, implement some speed-ups.
+
+! 2016-02-10 - Michel De Cian
+ - Fix two bugs in PatLongLivedTracking, and change chi2-cut in x-layers fit.
+
+! 2016-02-08 - Adam Davis
+ - Add more debugging tools to PatLongLivedTracking
+
+!========================= PatAlgorithms v4r45 2016-01-28 ========================
+! 2016-01-21 - Marco Cattaneo
+ - Add missing override qualifiers and remove unused variables, to silence
+   clang warnings
+
+! 2016-01-16 - Michel De Cian
+- Revert previous commit of PatAddTTCoord, as it might cause not understood effects.
+
+! 2016-01-14 - Michel De Cian
+- Small speed improvement in PatAddTTCoord.
+
+! 2016-01-07 - Gerhard Raven
+ - replace StaticArray in PatSeedTrack and PatSeedTool with boost::container::static_vector
+
+! 2016-01-01 - Gerhard Raven
+ - fix bug in PatForward 2nd loop: hits following a not selected OT hit are skipped,
+   and if the not selected hit is the last one, the loop termination fails, and
+   things go horribly out-of-bounds... 
+   see http://coliru.stacked-crooked.com/a/05c025ed212ca589 for a demo...
+
+! 2015-12-09 - Manuel Tobias Schiller
+ - PatSeedingTool: fix clang warning (no changes in performance)
+
+! 2015-12-05 - Gerhard Raven
+ - improve/simplify vectorization in PatFwdTool using new scatter_invoke 
+   and make_array functionality in VectorizationSupport.h
+
+!========================= PatAlgorithms v4r44 2015-11-23 =========================
+! 2015-11-2 - Michel De Cian
+ - Add counter to PatLongLivedTracking.cpp
+
+! 2015-10-30 - Michel De Cian
+ - Change in PatAddTTCoord and PatLongLivedTracking for new access method of hits.
+
+! 2015-10-29 - Michel De Cian
+ - Change in PatAddTTCoord and PatLongLivedTracking to new name of hit-sorting function.
+
+! 2015-10-28 - Michel De Cian
+ - Change in PatLongLivedTracking to exploit new hit sorting in TTStationHitManager.
+
+! 2015-10-26 - Michel De Cian
+ - Change in PatAddTTCoord to be smarter with memory (std::vector as member variable), chi2 calculation and exploiting new hit sorting in hit manager.
+
+!========================= PatAlgorithms v4r43 2015-10-13 =========================
+! 2015-09-23 - Michel De Cian
+ - add 2 counters to PatAddTTCoord.
+
+! 2015-08-12 - Gerhard Raven
+ - remove #include of obsolete Gaudi headers
+
+!========================= PatAlgorithms v4r42 2015-07-20 =========================
+! 2015-07-15 - Michel De Cian
+ - Add check for empty preselection vector in PatLongLivedTracking.
+
+! 2015-07-13 - Michel De Cian
+ - Fix bug in PatLongLivedTracking that did not take custom input location into account.
+
+! 2015-06-09 - Michel De Cian
+ - First commit of PatLongLivedTracking, an improved version of PatDownstream for Run II.
+
+! 2015-06-02 - Michel De Cian
+ - Modify PatDownTrack, and as a consequence PatDownstream, in preparation for a modified downstream algorithm
+
+!========================= PatAlgorithms v4r41 2015-05-26 =========================
+! 2015-05-14 - Manuel Tobias Schiller
+ - PatSeedingTool: fix a bug where the PatSeeding output depended on the
+   "history" of the input hits (i.e. which other pattern reco algorithms ran
+   in which order)
+
+! 2015-04-28 - Sascha Stahl
+ - Fix configuration of GEC for PatForward for HLT2 for 2015.
+
+!========================= PatAlgorithms v4r40 2015-04-27 =========================
+! 2015-04-22 - Rosen Matev
+ - Fix bug in PatAddTTCoord (segfault when no hits in a layer).
+
+! 2015-04-09 - Michel De Cian
+ - Change input location of long tracks to veto in PatForward for HLT2 for 2015.
+
+! 2015-04-08 - Michel De Cian
+ - Make 'PatAddTTCoord' default for PatForwardTool.
+
+! 2015-04-02 - Michel De Cian
+ - Changes to 2015 configuration of forward tracking.
+
+! 2015-03-30 - Michel De Cian
+ - Changes to 2015 configuration of forward tracking.
+
+! 2015-03-30 - Marian Stahl
+  - release.notes: Didn't enter release note for my commit on 2015-03-27
+
+! 2015-03-29 - Michel De Cian
+ - Add configuration for PatForward in HLT1 in 2015 to 'PatAlgConf'.
+
+! 2015-03-27 - Marian Stahl
+ - PatForwardTool: New implementation of SecondLoop.
+   Moved it from forwardTrack into tracksFromTrack and pulled out
+   fillXList while processing SecondLoop. Speeds up the code by 6%, 
+   no changes in efficiency/ghost rate
+
+! 2015-03-23 - Sascha Stahl
+ - PatForwardTool: The ranges to project hits into the reference plane take
+   now the charge estimate properly into account. This speeds up the HLT1
+   configuration by 10%.
+
+! 2015-03-03 - Manuel Tobias Schiller
+ - PatSeedTrack: (very) slight code modernisation
+ - PatSeedTool: clean up further
+
+! 2015-03-02 - Manuel Tobias Schiller
+ - PatSeedingTool, PatSeedTool, PatSeedTrack, PatSeedFits: refactor bits of
+   code to avoid code duplication; no changes in performance or timing
+
+! 2015-03-02 - Michel De Cian
+ - Change 'ifndef KSTRACK' to 'ifndef PATDOWNTRACK' in PatDownTrack.h to get rid of relics.
+
+! 2015-02-28 - Manuel Tobias Schiller
+ - PatSeedTrack: rewrite code in constructor which calculates parabola
+   parameters from three X hits (permille level increase in efficiency)
+ - various PatSeeding classes: remove dynamic memory management by replacing
+   std::vector<PatFwdHit*> with StaticArray class from DetDesc; this speeds up
+   the Seeding by 4% without significant changes in performance (the code will
+   now abandon track candidates which accumulate a crazy number of hits 72 or
+   more, i.e. at least 6 in every layer of the T stations) 
+
+! 2015-02-28 - Manuel Tobias Schiller
+ - PatSeedingTool/PatSeedTool/PatSeedFit: continue to push outward decision if
+   hit is IT or OT (in many cases, we can now neglect to check the track
+   altogether); this gains another 5 permille in speed without affecting
+   results one bit
+
+! 2015-02-28 - Manuel Tobias Schiller
+ - PatFwdTool: be a bit smarter in setting up the data structure used to
+   resolve ambiguities (avoid dynamic memory management, sort only once);
+   this speeds up the Forward by 2% without any change in performance
+
+! 2015-02-27 - Manuel Tobias Schiller
+ - PatSeedTool: add improvements made in the ambiguity resolution of the
+   Forward:
+   - keep track of quality of last ambiguity assignment, and make sure each
+     hit keeps the best assignment that is possible
+   - do not assign ambiguities if the pitch residual looks fishy (too large) 
+   These changes speed up the Seeding by 2%, raise the efficiency by up to
+   half a percent while keeping the ghost rate stable with permille level
+   fluctuations.
+
+! 2015-02-27 - Manuel Tobias Schiller
+ - PatSeedFits: add template argument to select OT only, IT only, or mixed hit
+   content to avoid if statements in fits
+ - PatSeedTool: count OT hits being passed, so can call specialised variant of
+   fit (this is part of an ongoing effort to push the conditional jumps out of
+   the hot code path(s)); this saves about 2% CPU without affecting results
+
+!========================= PatAlgorithms v4r39 2015-02-23 =========================
+! 2015-02-21 - Manuel Tobias Schiller
+ - PatSeedingTool: be a bit smarter in hitsInRange method - saves 0.9% in CPU,
+   same results
+
+! 2015-02-21 - Manuel Tobias Schiller
+ - PatSeedingTool changes for running in tandem with Forward:
+   - remove the old UseForward property in favour of Sascha's clearly superior
+     'UsedLHCbIDToolName' property; to only run over hits not used by the
+     Forward, use these options:
+
+     from Configurables import PatSeeding, PatSeedingTool, TrackUsedLHCbID
+     seeding = PatSeeding('PatSeedingTool')
+     seeding.addTool(PatSeedingTool, name = 'PatSeedingTool')
+     seeding.PatSeedingTool.addTool(TrackUsedLHCbID, name = 'TrackUsedLHCbID')
+     seeding.PatSeedingTool.UsedLHCbIDToolName = 'TrackUsedLHCbID'
+     seeding.PatSeedingTool.TrackUsedLHCbID.inputContainers = [
+         'location/of/good/forward/tracks/on/the/TES', ... ]
+     
+     With this new flexibility, the old properties OnlyGood and DiscardChi2
+     have become obsolete, too, and have been removed. The functionality can
+     be duplicated with the 'selectorNames' property of the TrackUsedLHCbID
+     tool.
+
+   - slightly modernise the code which allows "injecting" the T station
+     segments of Forward tracks into the output of the Seeding (property
+     'UseForwardTracks'); the main application for this is specialised
+     studies; also add a property to limit the extraction of Forward tracks to
+     those which have a minimum chi^2/ndf
+   
+   These changes do not affect performance or timing in the default
+   configuration of the Seeding. 
+
+! 2015-02-19 - Michel De Cian
+ - Tuned uncertainty of point on magnetic plane in downstream tracking, change zMagnet parametrisation. 
+  Should slightly improve efficiency / ghost rate.
+
+! 2015-02-16 - Manuel Tobias Schiller
+ - Tested patch by Gerhard Raven which switches off the OT walk correction in
+   the combinatorial stages of the Forward tracking to save even more time.
+   The impact of this was verified on MC with the same method the approximated
+   walk correction was verified in last week's Tracking and Alignment meeting.
+   Efficiencies and ghost rates are essentially unchanged (there are permille
+   level fluctuations), and so are pulls. The Forward tracking will become
+   about 9% faster.
+
+! 2015-02-15 - Manuel Tobias Schiller
+ - PatFwdTool: protect debug() printout
+ - PatSeedFit: fix bug which caused a successful stub fit to produce a warning
+   and have its results ignored; having done some subversion araeology, it
+   appears to be a long-standing bug in the logic of the tool. the impact on
+   track parameters is negligible, though, because the stub fit is only needed
+   on a small fraction of tracks, and the fit subsequently recovers by using
+   the best guess parameters to start the Kalman Filter fit
+
+! 2015-02-09 - Sascha Stahl
+ - PatForwardTool: Added a protection in case the location of veto tracks does not exist.
+
+! 2015-02-05 - Michel De Cian
+ - Simplify some things in PatDownTrack and PatDownstream. No performance changes.
+
+! 2015-02-04 - Sascha Stahl
+ - PatMatchTool: Added the option to veto Velo seeds similar to PatForwardTool. 
+ - PatForwardTool: Do not add additional TT hits to Forward candidates if the
+   Seed is an Upstream track. 
+
+! 2015-01-29 - Sascha Stahl
+ - PatSeedingTool: Added option to flag previously used hits with UsedLHCbIDTool.
+ - PatForwardTool: Made the location to flag Velo seeds as used a vector of locations.
+   Renamed this from VeloVetoTracksName to VeloVetoTracksNames.
+
+! 2015-01-27 - Manuel Tobias Schiller
+ - PatFwdTool: following decision in today's tracking meeting, use ambiguity
+   resolution from pitch residuals by default
+
+! 2015-01-27 - Manuel Tobias Schiller
+ - PatFwdTool: demote an info() printout to debug(), to keep the log files
+   clean
+
+! 2015-01-27 - Manuel Tobias Schiller
+ - PatSeeding & friends: more work to take advantage of PatForwardHit::isOT()
+
+! 2015-01-25 - Manuel Tobias Schiller
+ - PatFwdTool: add option to use pitch residuals to resolve ambiguities in
+   the OT in a manner similar to the seeding; this results in slight
+   efficiency gains (permille level), a ghost rate reduction on the percent
+   level and a very marginal speedup (half a percent); there is a property
+   which can be used to enable the new code:
+
+   from Configurables import PatForward, PatForwardTool, PatFwdTool
+   fwd = PatForward('PatForward')
+   fwd.addTool(PatForwardTool, name='PatForwardTool')
+   fwd.PatForwardTool.addTool(PatFwdTool, name='PatFwdTool')
+   fwd.PatForwardTool.PatFwdTool.AmbiguitiesFromPitchResiduals = True
+
+   The old method of resolving ambiguities remains the default for now.
+
+ - PatSeeding and classes used by it: take advantage of the new isOT()
+   method available from PatForwardHit
+
+! 2015-01-22 - Sascha Stahl
+ - PatForward and PatForwardTool: Moved options to flag hits and seeds from
+   PatForward to PatForwardTool, such that PatForwardTool is aware of hit
+   flagging. Changed the flag wich is used to flag used hits.  Removed
+   option to flag Velo seeds as at this point it is not clear which Velo
+   seeds should be flagged.
+
+!========================= PatAlgorithms v4r38 2015-01-14 =========================
+! 2015-01-09 - Michel De Cian
+ - New parametrisations in 'PatMatchTool', lower ghost right and higher
+   efficiency, mostly for low p tracks.
+
+! 2015-01-08 - Michel De Cian
+ - Make Tool in PatMatch a configurable name, add 'getIfExists' and some
+   doxygen comments.
+
+! 2014-12-22 - Michel De Cian
+ - Fix bug in PatAddTTCoord in 'returnTTClusters' which caused wrong chi2 to
+   be returned.  Calculate part of the bending parameter only once per
+   event. Add some doxygen comments.
+
+! 2014-12-15 - Gerhard Raven
+ - PatFwdTool: use new PatForwardHit methods to speed things up 
+   (note: relies on new PatKernel, and one must recompile TfKernel and TfTools 
+    as the methods rely on items set in an inline c'tor!)
+
+!========================= PatAlgorithms v4r37 2014-12-11 =========================
+! 2014-12-11 - Gerhard Raven
+ - PatFwdTrackCondidate: use vdt::fast_isqrt 
+ - PatFwdTool: speed up distanceForFit, simplify inline methods
+
+! 2014-12-10 - Sebastian Neubert
+ - PatForward uses Ranges now to access track selections as well as containers
+
+! 2014-11-29 - Gerhard Raven
+ - PatForwardTool: small speedup in fillXList
+
+! 2014-11-29 - Gerhard Raven
+ - PatFwdTrackCanddiate: 
+     o move data members to the 'top' of the class so that one can use 'auto' 
+       (trailing) return specifitation
+     o improve PatFwdTrackCandidate memory layout: move 'cold' pointer towards 
+       the 'back'
+ - PatFwdTool: better use of ranges
+ - PatFwdPlaneCounter: add addHitwWhile
+ - PatForwardTool: cleanup
+
+! 2014-11-29 - Michel De Cian
+ - Fix in PatDownstream such that hits in at least three layers are required for a track.
+
+! 2014-11-13 - Michel De Cian
+ - New implementation of the search for compatible hits in PatAddTTCoord. Faster, but efficiency performance should be stable.
+
+! 2014-10-27 - Marco Cattaneo
+ - PatDownstream: avoid interrogating the MagneticFieldSvc at every track to get
+   the signedRelativeCurrent, once per event is enough!
+
+! 2014-10-17 - Manuel Tobias Schiller
+ - PatSeedingTool: modernise some of the code somewhat; no functional changes,
+   no changes in performance or timing
+
+!========================= PatAlgorithms v4r36 2014-10-14 =======================
+! 2014-10-08 - Manuel Tobias Schiller
+ - use the new SIMDChi2Fit framework for the seeding; efficiencies and ghost
+   rates are stable at the permille level, timing is unaffected within the
+   usual 5% fluctuations I see on my system
+
+! 2014-10-03 - Gerhard Raven
+ - PatFwdFitParabola: reduce the # of multiplications needed. This slightly 
+   changes the rounding, which affects the results at the 1e-5 level.
+ - PatFwdRegionCounter, PatForwardTool: replace some for loops with std::for_each,
+   more use of auto, improve formatting
+ - PatFwdTool: make updateHitsForTrack a standalone function, factor out the
+   fit in the Y projection, inline zMagnet, upgrade inRegion check from lambda
+   to functor
+ - PatFwdTool, PatForwardTool: replace (allmost) all double with auto, to make
+   it easier to see how a single precision version would work at a later time.
+
+! 2014-09-19 - Gerhard Raven
+ - PatForwardTool: use boost::iterator_range, reduce triple nesting in loop 
+   over station/layer/region to a single loop. Fix off-by-one bug
+ - PatFwdTool: factor out search for 'best region' and 'shortest range',
+   move towards providing a 'const' interface, use boost::iterator_range
+ - PatForward: make acceptTrack const
+
+! 2014-09-17 - Gerhard Raven
+ - PatForwardTool: use specialized update{OT,NonOT}HitForTrack to avoid branches 
+   in innermost loop
+
+! 2014-09-09 - Gerhard Raven
+ - PatFwdTool:setRLDefault: simplify enough so the compiler inlines
+   the RLAmbiguityResolver completely
+ - PatFwdTool: change max_projected_element to return the iterator pointing
+   at the max element instead of the max element itself.
+
+!========================= PatAlgorithms v4r35 2014-09-09 =======================
+! 2014-09-09 - Gerhard Raven
+ - fix failure in PatForward when running without B field
+
+! 2014-09-05 - Gerhard Raven
+ - make PatForwardTool so that it only exposes 'comst' methods.
+ - PatFwdTool: tweak RL ambiguity resolution code so that it can
+   be const
+
+! 2014-08-29 - Manuel Tobias Schiller
+ - PatSeedingTool, PatSeedTrack: use a Bloom filter to quickly detect tracks
+   which have no overlap in hits after xz search; this allows for a slight
+   speedup (up to 5% at high nu) and an O(1%) increase in efficiency (while
+   the ghost rate remains stable within +/- 0.2%); the worst case timing of
+   the algorithm is reduced by typically 40% (over the 1000 events tested)
+   [technical note: the false positive probability for the Bloom Filter is
+   chosen such that for 12 hits (maximum in the OT after xz search), the bit
+   set in the Bloom Filter fits into 64 bits, this gives around 8% false
+   positive probability, and seems to be the best compromise]
+ - PatSeedingTool: properties CloneMaxXDistIT and CloneMaxXDistOT are obsolete
+   now (BloomFilter is more reliable and faster)
+
+! 2014-08-28 - Gerhard Raven
+ - unify scalar and vector version of PatFwdTool::xAtReferencePlane_ by using
+   variadic templates to gather/scatter the vectors to generate both scalar and
+   vector versions from the same source, based on the number of arguments. 
+   This produces optimal code for both cases (i.e. fully inlined, no extra 
+   function calls) without having to write a lot of overloads and/or specializations 
+   of the gather/scatter operations. 
+ - generalize the vectorization types 
+ - unify the with/without B-field versions of PatFwdTool::xAtReferencePlane
+
+! 2014-08-22 - Gerhard Raven
+ - Move the skipping of used hits from PatForwardTool to PatForward.
+   This avoids having to look up all hits for all seeds, and instead
+   does it once per event.
+ - tweak some inline methods a bit...
+
+! 2014-08-21 - Gerhard Raven
+ - further optimize PatForwardTool:fillXList
+
+!========================= PatAlgorithms v4r34 2014-08-18 =========================
+
+! 2014-08-15 - Gerhard Raven
+ - insure that when using PatForwardTool directly, i.e. not from PatForward,
+   that PatTStationHitManager::prepareHits() is invoked. 
+   Without this call, the 'hasNext' and 'hasPrevious' information on PatForwardHits
+   is missing -- which has an effect on OT hits when computing xAtReferencePlane, 
+   and not all IT hits are sorted (those in the overlap regions are affected).
+   With this call, the the decoding on demand is disabled, but then again, two
+   tracks (one with y<0 and one with y>0) in the OT acceptance would eg. force the
+   decoding of all OT modules anyway... and if one ends up decoding most modules
+   anyway, might as well do it upfront, as that is actually faster...
+   
+
+! 2014-08-14 - Gerhard Raven
+ - make PatFwdCandidate 'vector friendly' i.e. don't enforce types on a few
+   member functions that perform arithmetic.
+ - update PatFwdTool to use the above, and make it more 'type neutral' as well.
+
+! 2014-08-09 - Gerhard Raven
+ - ICC and clang both define __GNUC__ so that's not the right way to differentiate
+   between compilers, so use __INTEL_COMPILER and __clang__ instead to recognize
+   them.
+
+! 2014-08-06 - Sebastian Neubert
+ - added a few useful counters to PatForwardTool 
+ - added TrackUsedLHCbID tool to PatForwardTool: allows to exclude hits that have already been used elsewhere
+
+! 2014-08-06 - Gerhard Raven
+ - enable vectorization only when using gcc...  icc and clang don't (yet) support all of the
+    extensions used for this.
+
+! 2014-08-06 - Sebastian Neubert
+ - make the skipping of used seed tracks optional in PatForwardTool
+   default: do not skip (false)
+    can be switched on through property skipUsedSeeds
+    note that a similar mechanism is also present in PatForward (the algorithm)
+
+! 2014-08-05 - Gerhard Raven
+ - provide, and use vector, interface version of PatFwdTool::xAtReference, PatFwdTool::setXAtReference
+ - update PatForwardTool to use above vector interface (changes results at the permille
+    level as x boundaries are now treated left-right symmetrically)
+ - implement an explicitly vectorized (using gcc vector extension, see
+    https://gcc.gnu.org/onlinedocs/gcc/Vector-Extensions.html; note that clang
+    supports these as well: http://clang.llvm.org/docs/LanguageExtensions.html#vectors-and-extended-vectors), 
+    branch-free version of PatFwdTool::xAtReference, and use it in PatFwdTool::setXAtReference
+
+! 2014-08-02 - Gerhard Raven
+ - specialize PatFwdTool::xAtReference 
+
+! 2014-08-01 - Gerhard Raven
+ - fix clang brace warnings
+
+!========================= PatAlgorithms v4r33 2014-06-10 ======================
+! 2014-05-28 - Gerhard Raven
+ - PatFwdPlaneCounter: generalize checkingPolicy to allow generic, statefull predicates;
+                       employ 'empty base class' optimization to insure that object size 
+                       is unaffected when a stateless predicate is provided.
+ - PatFwdTool: use a predicated PatFwdPlaneCounter to count planes for selected hits in 
+               specified region; reduce code duplication
+ 
+! 2014-05-27 - Gerhard Raven
+ - PatFwdPlaneCounter: add 'checkingPolicy' so that, if wanted,  the 'isSelected' check 
+   can be disabled (at compile time) in case it is a-priori known to always return
+   true. Default policy (for backwards compatibility) is to perform the check for isSelected.
+ - PatFwdRegionCounter: remove virtual destructor, add 'final' qualification.
+ 
+! 2014-05-26 - Gerhard Raven
+ - PatFwdTool: 
+      o optimize rl-ambiguity resolution, 
+      o unify with{,out} B-field computation of X @ reference plane
+      o use PatFwdPlaneCounter::addUntilEnough 
+ - PatForwardTool: improve x search window computation
+
+
+! 2014-05-25 - Gerhard Raven
+ - PatFwdTrackCandidate,PatFwdTool : improve const-correctness 
+ - PatFwdTrackCandidate,PatFwdFit{Line,Parabola} : consolidate data members in std::array
+ - PatFwdPlaneCounter: add addHitsUntilEnough, always invoke addHits internally
+
+! 2014-05-17 - Gerhard Raven
+ - PatForwardTool: 
+    o use lambdas to hoist invariants out of loops
+    o consolidate x searchwindow determination in single function
+
+! 2014-05-15 - Gerhard Raven
+ - PatForwardTool: 
+    o combine find_range and make_single_zone into a single call to a mem_fn 
+      of a 'sentinel' object which controls the peak finding loop.
+    o better utilization of above 'sentinel' in loop control
+
+!========================= PatAlgorithms v4r32 2014-05-13 ======================
+! 2014-05-10 - Gerhard Raven
+ - PatForwardTool: 
+     o consolidate make_single_zone 
+     o replace some loops by std::for_each
+     o make sortQuality a constexpr literal
+     o use override
+     o use Gaudi::extends2
+ 
+
+! 2014-04-29 - Sebastian Neubert
+ - Added option to flag track seeds and their ancestors as used
+ - Added counter for number of tracks produced by the forward tracking
+
+! 2014-04-11 - Espen Eie Bowen
+ - Fixed bug on how preselection on pT is applied.
+
+! 2014-04-03 - Sebastian Neubert
+ - Fixed handling of the kickRange
+
+! 2014-04-03 - Sebastian Neubert
+ - PatForwardTool added options for use of charge and momentum estimate from VeloTT
+ - Wrong sign search window
+
+! 2014-04-01 - Gerhard Raven
+ - PatFwdFitLine, PatFwdFitParabola: declare final, remove virtual destructor
+ - PatFwdTrackCandidate: use perfect forwarding in c'tor
+ - PatForward: clarify overlap logic
+
+! 2014-03-27 - Gerhard Raven
+ - PatFwdTool: factor out and lift max finding, range extension
+ - PatFwdTrackCandidate: use default copy ctor, dtor, assignement, move ctor/assignment, 
+ - PatSeedingTool: replace loop by std::copy_if
+ - PatFwdTool: be more pedantic about some properties
+ - PatForwardTool: trivial optimizations in control flow
+
+! 2014-03-26 - Gerhard Raven
+ - PatForward: tweak overlap bookkeeping
+ - PatFwdTrackCandidate: compactify, add noexcept move assignment and copy c'tor
+ - PatForwardTool: 
+      o use in-situ remove_if/erase instead of swapping between vectors when removing candidates
+      o factor out some simple computations
+      o lift the range finding
+
+! 2014-03-26 - Manuel Tobias Schiller
+ - PatSeedTool: various little fixes which do not hurt, but improve timing by
+   12% for PatSeeding and 5% for TrackBestTrackCreator, with marginal
+   improvements to efficiencies and ghost rate of the Seeding
+   - some code refactoring to increase code reuse
+   - have a clear bail-out strategy for fits which do not converge, propagate
+     that error to callers
+   - fit in xz projection now uses cubic term from the start (used to be
+     neglected initially because the full fit in both projections will take it
+     into account later)
+   - adjust both quadratic and cubic terms of underlying track in fit
+     (slightly faster convergence, better tracks)
+
+! 2014-03-25 - Gerhard Raven
+ - PatForward: factor out and optimize overlap count
+
+! 2014-03-25 - Manuel Tobias Schiller
+ - Fix fix from Chris Jones introduced in r168699 to work around an FPE in
+   PatSeedingTool (not documented in the release notes); the new version of
+   the code helps to marginally reduce the ghost rate while still avoiding the
+   FPE
+
+!========================= PatAlgorithms v4r31 2014-03-18 ======================
+! 2014-02-25 - Gerhard Raven
+ - PatForwardTool: factor out common code in buildXCandidatesList
+   and fillStereoList into make_single_region
+ - PatFwdTool: move check on B-field out of loop
+
+! 2014-02-22 - Gerhard Raven
+ - various C++11 changes resulting in O(5%) speedup of PatForward in Hlt2.
+ - replace boost::array with C++11 std::array, BOOST_FOREACH with C++11 
+   range-based for, and boost::assign::list_of with C++11 list initializers
+
+!========================= PatAlgorithms v4r30 2014-02-19 ======================
+! 2014-02-07 - Michel De Cian
+ - Fix floating point exception in PatAddTTCoord (negative values in sqrt).
+
+!========================= PatAlgorithms v4r29 2013-11-20 ======================
+! 2013-11-15 - Sascha Stahl
+ - Fixed inconsistency PatFwdTool.cpp in fitStereoCandidate where an x layer 
+   was marked as a stereo layer.
+
+!========================= PatAlgorithms v4r28 2013-10-01 ======================
+! 2013-09-24 - Sascha Stahl
+ - Fixed bug in PatSeedingTool which disabled protection against hot events 
+   in the OT when disabling protection against hot events in IT.
+
+!========================= PatAlgorithms v4r27 2013-07-18 ======================
+! 2013-06-18 - Marco Cattaneo
+ - Add missing dependency on TrackInterfaces
+
+! 2013-06-15 - Manuel Tobias Schiller
+ - fix segfault in gcc 4.8 optimised build
+
+!========================= PatAlgorithms v4r26p2 2013-06-03 =====================
+! 2013-05-27 - Marco Cattaneo
+ - Fix clang32 warnings
+
+!========================= PatAlgorithms v4r26p1 2013-04-30 =====================
+! 2013-04-09 - Marco Cattaneo
+ - Add __init__.py to please CMake
+
+!========================= PatAlgorithms v4r26 2013-02-14 ======================
+! 2013-02-05 - Sascha Stahl
+ - Moved all UT related code to Pr/PrAlgorithms
+
+! 2013-01-31 - Jianchun Wang
+ - Fix a typo.
+
+! 2013-01-30 - Jianchun Wang
+ - Add UT in pattern recognition.
+
+! 2013-01-09 - Paul Seyfert
+ - tiny code cosmetic in PatSeedingTool: reorder properties and replace hard
+   coded track location by existing property.
+
+!========================= PatAlgorithms v4r25 2012-11-28 ======================
+! 2012-11-26 - Marco Clemencic
+ - Fixed build with C++11.
+
+! 2012-11-22 - Marco Clemencic
+ - Added CMake configuration file.
+ - Modified requirements to simplify auto conversion to CMake.
+
+! 2012-10-19 - Olivier Callot
+ - fix an unitialized variable it PatMakeV0, unused code.
+ - fix an out-of-bound access in an array in PatSeedingTool
+
+! 2012-10-18 - Marco Cattaneo
+ - Fix an untested debug()
+ - Fix UNINIT_CTOR defects
+
+!========================= PatAlgorithms v4r24 2012-06-28 ======================
+! 2012-06-27 - Manuel Tobias Schiller
+ - add a flag to activate a workaround for certain problematic properties in
+   PatSeedingTool which get their values set wrong when being extracted from
+   a TCK because the precision to which the numerical values of these
+   properties is saved in the TCK is insufficient
+   
+   the workaround is to overwrite these properties with default values if
+   PatSeedingTool is run in an HLT context
+
+   there is a property (ActivateHltPropertyHack) which can disable this hack
+   in the future once it's no longer needed; for now, the default is to
+   activate the hack in HLT contexts, other applications like Brunel and
+   DaVinci should remain unaffected, since they're not running with HLT
+   context (and they set the default values anyway, unless the pattern reco
+   expert running the job has explicitly decreed otherwise in his/her job
+   options)
+
+!========================= PatAlgorithms v4r23 2012-04-24 ======================
+! 2012-04-24 - Sascha Stahl
+ - PatMatchTool : Momentum estimate now protected against failure.
+
+!========================= PatAlgorithms v4r22 2012-04-24 ======================
+! 2012-04-23 - Sascha Stahl
+ - PatMatchTool : Added option MinMomentum and MinPt to reject tracks with a certain momentum.
+ - PatDownstream : Added option MinMomentum and MinPt to reject tracks with a certain momentum.
+
+! 2012-04-19 - Michel De Cian
+ - PatMatchTool: Make the name of the tool that adds the TT hits a property (helpful for testing modified TT hit adding 
+tools)
+ - PatAddTTCoord: Adapting parameters to optimal values found in MC11a and fixing the slope at zMSPoint instead of 
+zTTField in the chi2 fit.
+
+! 2012-04-18 - Sascha Stahl
+ - PatDownstream: Added options to set the output location of the matching and forward
+   tracking in PatDownstream. Now used seeds and tt hits can be removed
+   also in the HLT.
+
+!========================= PatAlgorithms v4r21 2012-04-09 ======================
+! 2012-04-05 - Sascha Stahl
+ - PatForwardTool: Bug fix in PatForward, flag for left right ambiguity is now reset when
+                   collecting hits.Before independence of different iterations 
+                   of the Forward tracking was broken.
+
+!========================= PatAlgorithms v4r20 2012-03-16 ======================
+!========================= PatAlgorithms v4r19 2012-03-07 ======================
+! 2012-02-23 - Sascha Stahl
+ - PatForwardTool: Bug fix in PatForward in part which uses momentum estimate.
+                    Variable was shadowed, resulting in wrong behaviour of 
+                    the algorithm.
+
+!========================= PatAlgorithms v4r18 2012-02-28 ======================
+! 2012-02-23 - Sascha Stahl
+ - PatForwardTool: Bug fix in PatForward in part which uses momentum estimate.   
+
+! 2012-02-14 - Sascha Stahl
+ - PatDownstream: make sure we copy all three states in T to help the fast fit
+   in HLT
+ - PatForwardTool: Changed parametrisation of first search window in x. Required 
+    to add property "MagnetKickParams" to PatForwardTool. 
+ - PatForwardTool, PatFwdTool: Fixed part which uses momentum estimate. 
+   This part of the code was not used anywhere or if it was used it could not 
+   work.
+   Removed property "RangeErrorFraction" and changed default value of "MinRange".
+    To make sure that the user knows that a momentum estimate is used, 
+   added property "UseMomentumEstimate" which is false by default.
+   
+! 2012-02-09 - Manuel Tobias Schiller
+ - change calls to std::sort where hits were sorted by a potentially unstable
+   sorting criterium to use std::stable_sort; the reason is that there is a
+   possibility that we end up with more than one hit at the same z (e.g. two
+   hits in same layer), so the result of the sort will depend on the
+   implementation of std::sort - using std::stable_sort instead avoids that
+   (these changes have to be applied in addition to those in Tf/TfKernel to
+   fix differences observed between gcc 4.3 and gcc 4.6)
+ - PatFwdTrackCandidate: avoid some memory allocations in handling the vector
+   of PatFwdHits
+ - FastForwardTool, PatAddTTCoord: replace std::vector by boost::array to avoid
+   memory allocations
+ - PatDownTrack: avoid needless copying of parameter vectors, preallocate
+   space for hit container
+ - work on const correctness (where possible)
+
+!========================= PatAlgorithms v4r17 2012-01-31 ======================
+! 2012-01-31 - Manuel Tobias Schiller
+ - PatMatchTool: make sure we copy all three states in T to help the fast fit
+   in HLT
+ - PatMatchTool: clean up and streamline the code somewhat while we're at it;
+   one minor change in behaviour: if momentum estimate tool fails (as far as I
+   can see, the current implementation cannot fail), we don't touch the
+   momentum estimates of states on a newly created track, we rely on the
+   algorithms which supply these tracks to do something reasonable in that
+   case
+
+! 2012-01-04 - Manuel Tobias Schiller
+ - include somewhat more fine-grained timing measurements in PatSeedingTool for
+   the initial x search (not active by default)
+ - for trigger use, add the NDblOTHitsInXSearch property which cuts on the
+   number of double hits in the OT (i.e. hits in two monolayers of the same
+   layer) for the three layers which are used to form the initial search parabola
+   if that number is lower then NDblOTHitsInXSearch, the candidate is abandoned
+   early
+   the default value for the new property is 0, so the default behaviour does
+   not change, however, putting 2 there in the trigger saved O(20%) execution
+   time while only 0.5-1% of efficiency is lost (all momenta, for p > 5GeV, the
+   efficiency loss is on the order of 0.1-0.3%)
+
+!========================= PatAlgorithms v4r16 2011-11-25 ======================
+! 2011-11-24 - Michel De Cian
+ - Fix in PatAddTTCoord: If chi2 was still much too high with only 3 hits left (in method
+   calculateChi2), it went into an infinite loop.
+
+! 2011-11-23 - Marco Cattaneo
+ - Fix gcc46 warnings and some icc remarks
+
+!========================= PatAlgorithms v4r15 2011-11-08 ======================
+! 2011-09-21 - Manuel Tobias Schiller
+ - fix insane TES usage in PatSeedFit reported by Markus Frank today on the
+   lhcb-reconstruction mailing list: instead of getting the container of
+   STLiteClusters for every track, we cache the pointer for the duration of
+   the event (no changes in performance, though)
+ - properly initialise a few pointers in the constructor of PatSeedFit while
+   I am at it
+
+!========================= PatAlgorithms v4r14 2011-07-27 ======================
+! 2011-07-26 - Marco Cattaneo
+ - In PatAlgConf.py, apply global global event cuts taken from
+   TrackSys().GlobalCuts to PatSeeding and PatForward. If GEC on Velo hits is
+   set, cut on Velo tracks in PatForward is removed
+ - In PatSeedingTool, skip event processing if the VELO ProcStatus abort is set.
+   Switched on by new option "AbortOnVeloAbort", true by default
+
+! 2011-07-25 - Jeroen Van Tilburg
+ - Added NCandCommonHits to TrackInfo field for calculation of ghost prob.
+
+! 2011-07-22 - Marco Cattaneo
+ - Create debug() and verbose() messages only when output level requires it,
+   also using UNLIKELY macro
+ - Replace all endreq by endmsg
+
+!========================= PatAlgorithms v4r13 2011-06-15 ====================
+! 2011-06-11 - Manuel Tobias Schiller
+ - PatSeedingTool: revert back to old (pre-early data) tuning, and make
+   current tuning available as early data tuning again - the old tuning turned
+   out to be better when the detector is not roughly misaligned
+ - PatSeedingTool: tighten CurveTol from 5 mm to 3mm; during the x candidate
+   search, this parameter influences how close the hit in T2 must be to the
+   prediction based on hits in T1 and T3 - this has been shown to help
+   efficiency and improve the behaviour of the algorithm in very busy events
+   by killing a certain amount of combinatorics
+ - PatSeedingTool: during x candidate search, consider only the best and
+   next-to-best candidates (best here means hit in T2 is closest to
+   prediction) to further reduce combinatoric buildup in busy events; if the
+   best candidate satisfies quality cuts, use it greedily, i.e. discarding a
+   potentially existing next-to-best candidate
+
+! 2011-05-02 - Victor Coco
+ - Fix coverity defect 17680: UNINIT_CTOR in PatDownstream, m_clusterFilter,
+   m_maxDist removed from header (unused)
+ - Fix coverity defect 17681: UNINIT_CTOR in PatForward
+ - Fix coverity defect 17684: UNINIT_CTOR in PatSeeding
+
+! 2011-04-29 - Marco Cattaneo
+ - Fix coverity defect 17679: UNINIT_CTOR in PatDownTrack, was causing FPE in
+   QMTests on i686-slc5-gcc43-dbg platform
+
+!========================= PatAlgorithms v4r12 2011-02-28 =========================
+! 2011-02-19 - Chris Jones
+ - Fix coverity performance warning in PatForwardTool
+
+! 2011-02-07 - Manuel Tobias Schiller
+ - PatSeedTool/PatSeedTrack: protect against removal of essential layers (at
+   least 2 X and 2 stereo layers have to remain)
+ - PatSeedFit: protect against numerical difficulties when processing very
+   low quality tracks (these exist due to earlyData tuning is now default)
+ - PatSeedingTool: m_momentumScale is set too big, needs multiplication with a
+   factor 0.8 to give the right estimate; since momentum estimates usually
+   come from the FastMomentumEstimate tool, this change is mostly cosmetic and
+   should not influence performance
+
+! 2011-02-04 - Stephanie Hansmann-Menzemer
+ - add check for untested status code
+
+!========================= PatAlgorithms v4r11 2011-02-02 =========================
+! 2011-02-01 - Olivier Callot
+ - Add a new cut in PatForwardTool to exclude dirty area, MaxXCandidateSize = 50
+   This gains 15% of the time for almost no change in efficiency/ghost rate
+
+! 2011-01-27 - Stephanie Hansmann-Menzemer
+ - set early data tunings as default
+
+! 2011-01-24 - Olivier Callot
+ - Fix the search window in FastForwardTool when a minimal momentum/Pt is given.
+
+!========================= PatAlgorithms v4r10 2011-01-17 =========================
+! 2011-01-17 - Rob Lambert
+ - Fix slc4 warning, FastForwardTool.cpp line 951, 
+   where a double was used to + an iterator, now an int is used.
+
+! 2011-01-11 - Olivier Callot
+ - Minor changes to improve efficiency: USe proper scaling for drift distance in X projection
+
+! 2010-12-17 - Olivier Callot
+ - Add an option to define the Forward tool name in PatForward
+ - New implementation of the forward tracking, called FastForwardTool.
+   To use it, set the option PatForward().ForwardToolName = "FastForwardTool"
+   This gives efficiency increase with lower ghost rate, and is faster.
+   This is a first version...
+
+!========================= PatAlgorithms v4r8 2010-12-08 =========================
+! 2010-12-01 - Marco Cattaneo
+ - PatSeedFit.cpp: Add missing include following OTDet patch 104306
+ - Fix a few remarks from icc compiler
+ - Remove oboslete file PatForward_dll.cpp
+
+! 2010-11-01 - Stephanie Hansmann-Menzemer
+ - add option for second loop in PatForward (interessting for HLT application)
+
+!========================= PatAlgorithms v4r7 2010-09-27 =========================
+
+! 2010-09-24 - Manuel Tobias Schiller
+ - add an earlyData tuning for PatSeeding
+
+! 2010-09-23 - Manuel Tobias Schiller
+ - PatSeedingTool: make cuts on stereo hit content during per region search
+   explicit as job options (applies to OT only)
+ - PatSeedingTool: modify these cuts to prevent them from killing a large
+   fraction of the tracks going through a dead module
+ - PatSeedingTool: introduce a job option for the tolerance used to check
+   if a hit is inside the sensitive area (along y) of a straw or strip
+   (the default is 4 cm which should be plenty)
+ - PatSeedingTool: move one check for y compatibility (see previous item)
+   from collectPerRegion() to collectStereoHits() to kill bad hits earlier
+
+! 2010-09-21 - Manuel Tobias Schiller
+ - make the fit in PatSeedFit more similar to what is done in PatSeeding
+   also clean up code somewhat (remove unused/superfluous members)
+   (this piece of code is used in TrackStateInitTool)
+ - PatSeedTool: minor change in refitStub() to make the method safer for
+   usage in PatSeedFit
+
+! 2010-09-06 - Manuel Tobias Schiller
+ - fix compiler (gcc-4.3 on SLC5) warning in PatSeedTrack.h
+
+! 2010-09-02 - Manuel Tobias Schiller
+ - PatSeedTool: resolve OT ambiguities from pitch residuals by default, old
+   default is available as job option (new method is faster and produces fewer
+   ghosts while keeping practically same efficiency; the RMS of the OT pull is
+   slightly narrower)
+ - PatSeedTool: account for track slopes correctly when calculating hit-track
+   distances in OT
+ - PatSeedTool: simultaneous fit to X, U, V projections instead of separate
+   fits to X and Y projections (helps a little with real data in presence of
+   residual misalignments since there are about twice as many layers entering
+   the fit) - slightly slower than old method, but we gain enough with the new
+   ambiguity resolver above to have a net speed gain
+ - fixed bug in PatSeedingTool/PatSeedTool (code checking if a hit is in OT or
+   IT)
+ - fixed bug in PatSeedingTool: in collectITOT, a final track fit was omitted
+   under certain circumstances, causing a drop in efficiency
+ - PatSeedingTool: allow for 2 station IT tracks
+ - PatSeedingTool: in collectITOT, refit the one-station IT stubs before
+   continuing, killing combinatorics where possible
+ - PatSeedingTool: account for rotations of entire layers around x and y axes
+   when calculating search windows (beam tilt was accounted for before, so no
+   changes there)
+ - PatSeedingTool: change maximum occupancy cuts to cuts on maximum number of
+   IT and OT hits (3000 and 10000, respectively)
+ - PatSeedingTool: make sure that we stay roughly inside sensitive region in
+   y as we pick up stereo hits
+ - PatSeedingTool: slight tuning of cuts
+
+======================== PatAlgorithms v4r6 2010-08-25 =======================
+! 2010-08-19 - Gerhard Raven
+ - kill Warning printout during event loop of 'Too Many XYZ'
+
+! 2010-08-05 - Stephanie Hansmann-Menzemer
+ - New tuning of PatForward
+
+! 2010-07-30 - Olivier Callot
+ - New tuning of PatMatchTool to get similar performance as the TrackMatching
+   code.
+
+======================== PatAlgorithms v4r5 2010-07-20 =======================
+! 2010-07-17 - Chris Jones
+ - Update PatSeedingTool to use detailed ProcStatus interface
+
+! 2010-07-15 - Stephanie Hansmann-Menzemer
+ - use new more detailed procStatus interface
+
+======================== PatAlgorithms v4r4 2010-07-19 ====================
+! 2010-07-13 - Stephanie Hansmann-Menzemer
+ - add procStatus abort for events with many OT and IT hits
+
+! 2010-06-25 - Stephanie Hansmann-Menzemer
+ - add procStatus aborted for events with many velo tracks
+
+======================== PatAlgorithms v4r3 2010-06-21 ====================
+! 2010-06-22 - Rob Lambert
+ - Fix nightly warnings and some debug output
+
+! 2010-06-21 - Stephanie Hansmann-Menzemer
+ - Add timing measurements to algorithms
+
+! 2010-06-10 - V. Gligorov
+ - Remove obsolete default HLT track locations. 
+
+!========================= PatAlgorithms v4r2 2010-04-26 ====================
+! 2010-05-13 - Rob Lambert
+ - Review warnings
+
+! 2010-05-12 - Rob Lambert
+ - Remove obsolete options files:
+   . PatForward.py
+   . PatDownstream.py
+   . PatSeeding.py
+   . PatSeedingTool-Cosmics.opts
+
+! 2010-05-10 - Rob Lambert
+ - corrected OTHitCreator to Tf__OTHitCreator
+ - Add dependency on Tr/TrackTools
+
+! 2010-05-07 - Rob Lambert
+ - forgot to import OTHitCreator in PatAlgConf.py
+
+! 2010-05-05 - Rob Lambert
+ - fixed bug in capitalization of PatAlgConf.py
+
+! 2010-05-03 - Rob Lambert
+ - Copy configuration options files into a set of python classes PatAlgConf.py
+
+!========================= PatAlgorithms v4r1 2010-04-26 ====================
+! 2010-04-22 - Stephanie Hansmann-Menzemer
+ - addapt to changes in interface to magnetic field service
+
+! 2010-04-15 - Michel De Cian
+ - Change in parametrisation in PatAddTTCoord (increased purity), 
+   minor changes in member functions in PatAddTTCoord.
+
+!========================= PatAlgorithms v3r30 2010-04-14 ====================
+! 2010-04-18 - Gerhard Raven
+ - retag v4r0 as v3r30 to allow it to be used as patch on top of a REC which
+   uses v3rxxx -- cmt does not accept it if a 'higher level' project overrules
+   a package in a 'lower level' project with different major version.
+
+!========================= PatAlgorithms v4r0 2010-04-14 ====================
+
+! 2010-04-14 - Stephanie Hansmann-Menzemer
+ - one more place to check for the polarity
+
+! 2010-04-07 - Stephanie Hansmann-Menzemer
+ - take care of polarity in qOverP computation in pattern reco
+
+! 2010-04-07 - Sascha Stahl
+ - modified early data tuning for PatDownstream algorithm
+
+!========================= PatAlgorithms v3r29 2010-02-15 ====================
+! 2010-02-13 - Stephanie Hansmann-Menzemer
+ - modify early data tuning for PatForward and PatDownstream algorithms
+
+! 2010-02-08 - Michel De Cian
+ - Added a new method as interface IAddTTClusterTool had to be changed.
+
+! 2010-02-04 - Michel De Cian
+ - Modified PatAddTTCoord. Restructured algorithm, added new parametrisations,
+   changed default parameters. New method which returns the hits instead of 
+   adding them to the long track.
+
+
+!========================= PatAlgorithms v3r28 2010-01-21 ====================
+! 2010-01-18 - Stephanie Hansmann-Menzemer
+ - make algorithms use ignore flag of HitBase class 
+
+!========================= PatAlgorithms v3r27 2009-12-11 ====================
+! 2009-12-10 - Stephanie Hansmann-Menzemer
+ - make PatDownstream.py use RecSys SpecialData switch "earlyData"
+
+! 2009-12-09 - Sascha Stahl
+ - Added options file PatDownstream.py. 
+ - PatDownstream: fixes division by zero
+
+
+!========================= PatAlgorithms v3r26 2009-12-07 ====================
+! 2009-12-07 - Manuel Tobias Schiller
+ - fix PatSeedFit to supply valid arguments to PatSeedTrack constructor in all
+   cases
+
+! 2009-12-04 Sascha Stahl
+ - PatDownstream: Added checks for magnet off, fixes division by zero
+
+!========================= PatAlgorithms v3r25 2009-11-27 ====================
+! 2009-11-26 Manuel Schiller
+ - use ROOT::Math::CholeskyDecomp provided by ROOT since version 5.24 instead
+   of reimplementing code to solve a system of linear equations in which the
+   matrix is symmetric and has positive eigenvalues (we have been using a
+   variant of this in the Kalman Filter for some time; by checking this, we
+   catch crappy tracks and numerical problems which make the chi^2 function
+   either have a saddle point in parameter space at its stationary point (at
+   least one eigenvalue is negative) or make chi^2 constant along some
+   direction in parameter space (at least on eigenvector is zero))
+   consequently use any indication of a singular matrix (or one with negative
+   eigenvalues) provided by ROOT::Math::CholeskyDecomp to stop processing that
+   track before we can divide by zero, obtain NaNs or get into any other kind
+   of trouble
+   Affected classes: PatAddTTCoord, PatDownstream, PatFwdFitLine,
+   PatFwdFitParabola, PatFwdTool, PatSeedTool, PatSeedingTool
+ - removed header files included unneccessarily in PatSeed, PatSeedTrack
+
+! 2009-11-26 - Manuel Tobias Schiller
+ - PatSeedTool: reimplement Stephanie's fix from 2009-06-11 by looking for
+   diverging track parameters instead as it's slightly faster that way
+
+! 2009-11-26 - Manuel Tobias Schiller
+ - PatSeedingTool: put chi^2 and ndf from our own fit on the tracks we put on
+   the TES since they might be useful for the trigger (before a track is
+   fitted with the Kalman filter)
+
+!========================= PatAlgorithms v3r24 2009-11-13 ====================
+! 2009-11-13 - Rob Lambert
+ - Tag v3r24
+
+! 2009-11-11 Kostyantyn Holubyev
+ - PatSeedingTool: In the case of running over unused hits, added option
+   to reuse hits from PatForward tracks. If OnlyGood, the hits from "bad"
+    PatForward tracks with chi2 > DiscardChi2 (default 1.5) are reused.
+
+! 2009-11-10 Wouter Hulsbergen
+ - Replace OTRawBankDecoder with OTHitCreator in PadSeedFit
+
+! 2009-11-06 Stephanie Hansmann-Menzemer
+ - Fix for unitialized member variable in PatForwardTool
+   
+!========================= PatAlgorithms v3r23 2009-10-20 ====================
+! 2009-10-13 Sascha Stahl
+ - PatDownstream: Options to remove used hits and T-tracks changed.
+    Use RemoveUsed to switch it on. If RemoveAll all hits and T-tracks
+    that have already been used are removed. If not RemoveAll, only hits
+    and T-tracks from longtracks with a chi2 smaller than LongChi2 are used
+    to remove hits and T-tracks.                
+! 2009-10-08 Sascha Stahl
+ - PatDownstream: retuned Parameters for MC09
+ - PatDownstream: made search windows momentum dependent
+ - PatDownstream: changed way of fitting the x projection
+               
+! 2009-09-25 - Stephanie Hansmann-Menzemer
+ - redo changes from yesterday
+
+! 2009-09-24 - Stephanie Hansmann-Menzemer
+ - isX() not anylonger method of LineHit, adapt pattern reco algorithm accordingly 
+
+!========================= PatAlgorithms v3r22 2009-06-11 ====================
+! 2009-06-11 - Marco Cattaneo
+ - Fix a doxygen warning
+
+! 2009-06-11 - Stephanie Hansmann-Menzemer
+ - abort parabola fit in case the distances of hit to reference line
+   gets unreasonably large
+
+========================= PatAlgorithms v3r21 2009-05-20 =====================
+! 2009-05-19 - Stephanie Hansmann-Menzemer
+  - make sure that no hits are rejected in the internal fit in the fit 
+    initialization tool
+
+!========================== PatAlgorithms v3r20 2009-05-12 ===================
+! 2009-05-12 - Stephanie Hansmann-Menzemer
+  - Use scale factor from magnetic field service in PatAddTTCoord
+
+!========================== PatAlgorithms v3r19 2009-05-06 ===================
+! 2009-05-06 - Stephanie Hansmann-Menzemer
+ - bug fix for PatForward (prevent from overwritting selected hits flags)
+
+!========================== PatAlgorithms v3r18 2009-04-22 ===================
+! 2009-04-22 - Stephanie Hansmann-Menzemer
+  - make PatSeedFit safe against unreasonable track input
+
+!========================== PatAlgorithms v3r17 2009-04-20 ===================
+! 2009-04-20 - Marco Cattaneo
+ - Fix an untested StatusCode
+ - Replace endreq by endmsg everywhere
+
+! 2009-04-18 - Stephanie Hansmann-Menzemer
+ - add correction for tilt of straws to fitter initialization code
+
+!========================== PatAlgorithms v3r16 2009-04-07 ===================
+! 2009-04-07 - Olivier Callot
+ - Fix for FPE in PatDownstream and PatFwdFitLine
+ - Use scale factor from magnetic field service in PatDownTrack
+
+! 2009-03-02 - Pavel Krokovny
+ - add new seed fitting class
+
+!========================== PatAlgorithms v3r15 2009-02-20 ===================
+! 2009-02-09 - Johannes Albrecht
+ - add possibility to add TT clusters in matchSingle (for use in HLT1)
+    option to steer it, true as default
+
+! 2009-01-21 - Marco Cattaneo
+ - Fix uninitialised variables in constructor of PatFwdTrackCandidate. Fixes
+   slc4_ia32_gcc34_dbg FPE in Brunel
+
+! 2009-01-20 - Marco Cattaneo
+ - Migrate to LHCb::ParticlePropertySvc
+ - Protect PatMakeV0.cpp to create debug() msg only if msgLevel(MSG::DEBUG)
+
+! 2009-01-16 - Marco Cattaneo
+ - Fix two ggc 4.3 warnings
+
+!========================== PatAlgorithms v3r14 2009-01-12 ===================
+! 2008-12-04 - Marco Cattaneo
+ - Adapt to new location of IPatDebugTTTool.h in PatKernel
+
+! 2008-12-02 - Wouter Hulsbergen
+ - adapted to change in Track::stateAt
+
+!========================== PatAlgorithms v3r13 2008-11-21 ===================
+! 2008-11-06 - Marco Cattaneo
+ - Fixes for gcc 4.3 compilation
+
+! 2008-10-23 - Stephanie Hansmann-Menzemer
+ - modify PatFwdTool::qOverP for zero magnetic field scale factor to be
+   consistent with FastMomentumTool
+
+! 2008-10-22 - Chris Jones
+ - Adapt to changes in TrackSys python configurable
+
+! 2008-10-22 - Manuel Tobias Schiller
+ - fix PatSeedingTool: track history is now set to PatSeeding instead of
+   PatForward
+
+!========================== PatAlgorithms v3r12 2008-10-15 ===================
+! 2008-10-15 - Wouter Hulsbergen
+ - fix PatFwdTool::qOverP for zero magnetic field scale factor
+
+! 2008-10-07 - Manuel Tobias Schiller
+ - PatSeedingTool: set a flag in ProcStatus when skipping events due to high
+   occupancy
+
+! 2008-10-06 - Manuel Tobias Schiller
+ - PatSeedingTool: add option to skip events above a certain maximum
+   occupancy (currently maximum is set to 20 percent)
+
+!========================== PatAlgorithms v3r11 2008-10-02 ===================
+! 2008-09-25 - Stephanie Hansmann-Menzemer
+- PatForward.py configure PatForwardTool as private tool
+
+!========================== PatAlgorithms v3r10 2008-09-04 ===================
+! 2008-08-30 - Manuel Tobias Schiller
+ - PatSeedingTool: fix bug introduced in change to improve IT cosmics
+   reconstruction (bug effectively turned off OT reconstruction in non-cosmic
+   mode)
+
+! 2008-08-26 - Manuel Tobias Schiller
+ - PatSeedingTool: fix for L0 confirmation: account properly for tilt in
+   search windows derived from state given by caller
+ - PatSeedingTool: use newly introduced PatRange object to represent search
+   windows (PatRange consists of upper and lower edge of an interval and
+   was mainly introduced to help debugging the previous issue)
+ - PatSeedingTool: fix for cosmics: in X search, try all combinations of
+   regions to find initial three x hits (allowing hits in IT to be found)
+ - PatSeedingTool: fix for fallback momentum estimate: if FastMomentumTool
+   returns failure for some reason and we run without magnetic field, return
+   momentum 1 GeV with uncertainty on q/p = 1 / 1MeV
+ - PatSeedingTool: when specifying track model parameters as options, make
+   sure that initialize() does not overwrite them
+ - PatSeedTool, PatSeedTrack, PatSeedingTool: use unsigned instead of int
+   if we know that a number is positive
+
+! 2008-08-20 - Stepanie Hansmann-Menzemer
+- move public tools private, to allow for seperate configuration in HLT and
+  offline in same job
+ 
+!========================== PatAlgorithms v3r9 2008-07-29 ====================
+! 2008-07-29 - Marco Cattaneo
+ - Use TrackSys instead of Brunel configurable in python options
+
+! 2008-07-25 - Manuel Tobias Schiller
+ - PatSeedingTool: fixed a bug introduced when migrating to BOOST_FOREACH
+   which caused jobs with isolation cuts to crash
+
+! 2008-07-18 - Marco Cattaneo
+ - Adapt tools to use new ILHCbMagnetSvc interface where needed
+ - Adapt PatMatchTool to use new ITrackMomentumEstimate interface
+
+! 2008-07-17 - Stephanie Hansmann-Menzemer
+ - adapt pattern reco algorithms to new B field map and to changes in
+   momentum interfaces
+
+!========================== PatAlgorithms v3r8 2008-07-17 ====================
+! 2008-07-15 - Stephanie Hansmann-Menzemer
+ - move PatForward.py and PatSeeding.py to option directory, remove python
+   directory
+
+! 2008-07-14 - Manuel Tobias Schiller
+ - PatDownstream:
+   - use a proper check for x layers instead of comparing sine of stereo angle
+     to zero
+   - use boost::assign::list_of where applicable when declaring properties
+ - PatSeedTool:
+   - more effective protection against singular matrix in fit
+   - use of BOOST_FOREACH to clean up code
+   - more straightforward bit-shifting when trying to fix ambiguities
+ - PatSeedingTool:
+   - when reconstructing cosmics, make sure we do not pick up hits from the
+     upper half of the OT when we know that the track is in the lower half and
+     vice-versa
+   - use of BOOST_FOREACH to clean up code
+   - more straightforward bit-shifting when trying to fix ambiguities
+ - PatSeedTrack:
+   - use of BOOST_FOREACH to clean up code
+   - add method coords() to have a BOOST_FOREACH-compatible interface for the
+     rest of the code
+   - use initializer lists in constructors more extensively
+   - remove unused members
+   - changed order of members to improve memory layout
+   - better documentation of methods
+
+! 2008-07-11 - Stephanie Hansmann-Menzemer
+- add python directory with PatForward.py and PatSeeding.py scripts
+
+!========================== PatAlgorithms v3r7 2008-07-02 ====================
+! 2008-07-02 - Manuel Tobias Schiller
+ - PatSeedingTool: added code to deal better with cosmics, specifically:
+   - strategy is to seed cosmics with the OT, then pick up IT hits which
+     are close to the track (IT too small to have cosmic hits in more
+     than one station)
+   - when looking for cosmics in the OT, allow for tracks which migrate
+     between upper and lower OT half
+   - when recognizing the pattern in the stereo layers, use an alternate
+     version of the findBestRange routine which does not assume that the
+     track points back to the PV in yz projection (i.e. we use a simple
+     combinatorial approach - in general, don't use the cosmic tuning on data
+     obtained with beam on, it will most probably be too slow!)
+ - add option file to find cosmics
+   might need some tuning if e.g. layers v,x are missing in every station
+   should work fine as long as either A or C side of OT is closed
+   not well tuned yet (especially IT: nothing done/seen so far)
+ - removed superfluous include file (fenv.h)
+
+! 2008-06-29 - Manuel Tobias Schiller
+ - PatSeedingTool:
+   - tuning for new field map, now used per default
+   - added new tuning for old field map, see
+     options/PatSeedingTool-field047.opts
+   - fixed a bug in the code calculating cluster positions, we now really do
+     it the "Kisel" way (apart from the fact that we protect against division
+     by 0, see below)
+     we now use x_clus = (r_2 * x_1 + r_1 * x_2) / (r_1 + r_2), z_clus is done
+     in the same way; to avoid divisions by zero, we take
+       r_i = sqrt( (drift radius for hit i)^2 + measurement variance)
+     i.e. the model is almost linear in r_drift, and it degenerates into the
+     arithmetic mean of the wire positions if we run without using drift time
+     information
+   - made new option-controllable parameter OTNHitsLowThresh which gives the
+     threshold below which OT only tracks have to satisfy stricter criteria
+     (nicer than a literal 17 in the code)
+   - add options to extract T station part of Forward tracks and add resulting
+     tracks to output container (in addition to ignoring hits used by
+     PatForward which was possible already previously)
+ - PatSeedTrack: changes to follow new parametrisation in PatSeedingTool
+
+! 2008-06-09 - Olivier Callot
+ - Fix a possible divide-by-zero in PatDownstream, line 604.
+
+!========================== PatAlgorithms v3r6 2008-06-05 ====================
+! 2008-06-05 - Marco Cattaneo
+ - Remove unneccessary machine specific include (inexistent on Windows)
+
+! 2008-06-04 - Manuel Tobias Schiller
+ - PatSeedTool: various fixes to avoid dividing by zero (could and did happen
+   when there were too few hits to determine fit parameters for the track
+   model)
+ - PatSeedingTool:
+   - protect against a division by zero in initialize
+   - increase m_minMomentum to 500 MeV - very few tracks lost
+   - several adjustments triggered by the changes to PatSeedTool above
+   - several changes to improve efficiency:
+     - IT, per region: allow to form x candidates starting with all possible
+       combinations of x layers in the tree stations
+     - IT, per region: if few x hits are present in left/right boxes, we're
+       probably in the dead region between the two ladders, so restrict
+       stereo search as is already done for OT
+     - IT/OT: additional pass looking for tracks passing between different IT
+       regions and considering upper and lower OT halves for tracks near y=0,
+       also relax requirements on tracks slightly in this case
+     - OT, per region: additional pass for tracks at high fabs(y) where tracks
+       are almost straight - so we set m_initialArrow temporarily to zero
+   - some checks skipping unneccessary stages for trigger applications to keep
+     the high speed from previous versions
+
+! 2008-05-27 - Stephanie Hansmann-Menzemer
+ - removed all float variables, replaced them by doubles
+
+! 2008-05-23 - Johannes Albrecht
+   - PatMatchTool.cpp: set unused variable quality2 to 0 (needed for Hlt interface)
+
+! 2008-05-22 - Marco Cattaneo
+ - Get IMatchTool.h from TrackInterfaces
+
+! 2008-05-21 - Johannes Albrecht
+   - PatMatchTool.h / .cpp: Add interface for implementation in Hlt
+
+! 2008-05-21 - Manuel Tobias Schiller
+ - PatSeedingTool: fixed a bug in the y window calculation used in L0
+   confirmation (no tacks are found in the L0 case)
+
+!========================== PatAlgorithms v3r5 2008-05-16 ====================
+! 2008-05-15 - Manuel Tobias Schiller
+ - PatFwdPlaneCounter, PatFwdRegionCounter:
+   order of arguments to std::distance were given in reverse order, leading to
+   slightly decreased performance in PatForward - swapped aruments so that
+   order is correct now
+
+! 2008-05-14 - Manuel Tobias Schiller
+ - PatFwdPlaneCounter:
+   - now uses boost::array instead of std::vector for arrays with known size
+     at compile time -> see some small speed improvements for very hot events
+   - class itself no longer templated on hit type, instead, methods taking
+     hits (or iterators) are templated
+ - PatFwdRegionCounter:
+   - boost::array instead of std::vector, see above
+ - PatForwardTool, PatFwdTool:
+   - follow-up changes for the changes in PatFwdPlaneCounter above
+   - added some consts where possible to facilitate optimization by the
+     compiler
+ - PatSeedTool:
+   - boost::array instead of std::vector, see above
+   - added a missing minus sign in the initial iteration of the stereo fit
+   - added const to methods that do not change the object
+ - PatSeedTrack:
+   - boost::array instead of std::vector, see above
+   - added assignment operator
+   - removed unused members
+   - decreasingQuality() ordering class can now be used to sort containers
+     of objects as well (if desired) - used to be only pointers to objects
+ - PatSeedingTool:
+   - in collectStereoHits: restore coordinates only for the hits we actually
+     intend to consider further, not for the whole region
+     dramatic speed improvement, as collectStereoHits is executed once for
+     each candidate in xz
+   - save low quality tracks with high impact y during per region search, add
+     additional pass at the end of the algorithm to recover some of these
+     tracks (if not too many used hits)
+     this is fast (ca 0.7 ms/event), other improvements to algorithm actually
+     save more time than we spend here
+   - added code to account for OT tilt (dz/dy) before track in y is known
+     (need to slightly widen search windows, otherwise, upper and lower half
+     of OT show different efficiency at high fabs(y))
+     this involves code needed to get dz/dy and z at y=0 for a region
+   - boost::array instead of std::vector, see above
+   - regrouped property declarations so that related properties form groups
+   - improved debugging code: per stage timing has not survived move from
+     algorithm to tool, now resurrected
+   - cut on drift radii now available as job option
+   - when counting hits with some property to see if some cut is exceeded,
+     we now stop early when we hit the boundary
+   - improved memory management for temporary track candidates (read: faster)
+   - methods for each pass of the algorithm over the hits to make separation
+     clearer
+   - added convenience functions and typedefs to access the hit manager
+   - during xz search, cluster positions in the OT are now calculated the
+     "Kisel" way, weighting each hit with 1/(r^2+sigma^2); this gives
+     slightly better results because the parabola through these points is
+     closer to the true track then
+   - retuned some of the default properties for improved performance
+   - now uses FastMomentumEstimate tool to have all the parametrizations
+     available centrally in one place
+   - prepareHits() now returns the number of hits returned by the hit
+     manager - this might be useful for some applications and is easily
+     ignored in all others
+   - I'm sure I forgot something...
+ - PatSeeding:
+   - use private instance of PatSeedingTool to allow different configurations
+     for different instances of the algorithm
+
+! 2008-05-08 - Johannes Albrecht
+ - PatMatchTool: - New implementation of PatMatch as tool
+                         - public function: matchSingle for Hlt
+                         - quality of match is now job option: maxMatchChi2
+                         - momentum of matched tracks is calculated with tool
+ - PatMatch: algorithm which only calls the tool
+
+!========================== PatAlgorithms v3r4p1 2008-03-25 ==================
+! 2008-03-25 - Jan Amoraal
+ - Removed white space from property impactCurrentNorm in PatMakeV0. 
+   Python doesn't like it.
+ - Fixed option in PatFwdTool.opts
+  +  zMagnetParams -> ZMagnetParams
+ 
+!========================== PatAlgorithms v3r4 2008-02-18 ====================
+! 2008-02-18 - Manuel Schiller
+ - PatSeedingTool can now take an optional state giving a hint where a track
+   is to be found; this is useful for the HLT when confirming L0 candidates
+   a track is searched for in a +/- one sigma window which is derived from the
+   covariance matrix of the state which is extrapolated with a straight line
+   model into the T stations
+ - added job option which makes it possible to ignore hits used in a previous
+   run of PatSeedingTool; application is again in HLT when trying to confirm
+   several hypotheses in a combined window
+ - added some missing comments to PatSeedingTool.cpp and the corresponding
+   header file to better document member variables
+
+!========================== PatAlgorithms v3r3 2008-01-28 ====================
+! 2008-01-28 - Manuel Schiller
+ - added code to PatSeedingTool to perform better without magnetic field
+   does not affect performance at all when running with default settings
+ - added code to PatSeedingTool to allow better tuning when running with
+   a misaligned detector
+   does not affect performance at all when running with default settings
+ - added code to PatSeedTool to fix a corner case which could produce NaNs
+   as track parameters:
+   In a few cases, the line fit in y projection could start to oscillate
+   wildly. The x coordinates of hits are modified according to the track's
+   y, which causes an even more violent shift in y parameters on the next
+   iteration - eventually, you'll find NaNs all over the place. The bad thing
+   about this is that these hits with NaNs as coordinates may cause the fit
+   of other tracks in that event to fail as well.
+   To put a stop to this, the fit will now discard tracks which change their
+   slope in yz projection by more than 1.0. This improves efficiency and
+   decreases ghost rate slightly.
+
+! 2008-01-17 - Olivier Callot
+ - Modify again PatMatch to use std::map<int,bool>, which is correct in that order.
+
+! 2008-01-16 - Olivier Callot
+ - Modify PatMatch: The std::map<bool,int> was no longer working properly.
+   It is replaced by a simple vector of size = max key value.
+
+! 2008-01-10 - Olivier Callot
+ - New algorithm PatMakeV0 from Maurince enayoun to build V0 candidates
+   Requites PV to be foudn first.
+   Resulting V0s in RecVErtexLocation::V) and track pairs in Rec/Tracl/FromKs.
+
+! 2007-12-19 - Olivier Callot
+ - Modify PatDownstream to tag TT used hits with the option SeedFilter.
+ - Use new enum values to tag TT hits with meaningful names.
+
+!========================== PatAlgorithms v3r2 2007-12-11 ====================
+! 2007-12-11 - Stephanie Hansmann-Menzemer
+ - switch off use of TT in PatForwardTool per default, to simplify usage in HLT
+
+! 2007-12-05 - Stephanie Hansmann-Menzemer
+ - bug fix (screwed up region numbering for IT and OT)
+
+! 2007-12-04 - Stephanie Hansmann-Menzemer
+ - write out states in T at 3 z positions 
+
+! 2007-11-29 - Stephanie Hansmann-Menzemer
+ - change ZAtT -> ZEndT
+
+! 2007-11-16 - Jose A. Hernando
+ - getOrCreate at PatForward
+
+!========================== PatAlgorithms v3r1 2007-11-14 ====================
+! 2007-11-19 - Adrian Perieanu
+ - add the loops to extract the neural net variables for Tr/NNTools
+
+! 2007-11-14 - Stephanie Hansmann-Menzemer
+ - add double -> float conversion in PatForwardTool to remove compiler warning 
+
+! 2007-11-08 - Stephanie Hansmann-Menzemer
+ - set default values for parameter arrays in PatFwdTool and PatSeedingTool
+
+! 2007-11-02 - Marco Cattaneo
+ - Adapt PatForwardTool to interface change of PatFwdTool, was not compiling...
+
+! 2007-10-30 - Stephanie Hansmann-Menzemer
+ - bug fix in PatMatch
+ - add switch for z position of output state for PatSeeding and PatForward 
+   algorithm
+
+! 2007-10-22 - Olivier Callot
+ - Import PatDownstream, an adaptation of PatKShort.
+ - Update the history flag with the proper value in PatSeeding and PatMatch
+
+!========================== PatAlgorithms v3r0 2007-10-12 ====================
+! 2007-10-09 - Stephanie Hansmann-Menzemer
+  - import PatForward to PatAlgorithms  
+-----------------------------------------------------------------------
+All previous release notes can be found in Tf/PatForward package, package was
+ported by the A team

@@ -129,37 +129,49 @@ class chi2PerDoFScaler(BaseEstimator, TransformerMixin):
 
 class nbITScale(BaseEstimator, TransformerMixin):
     def __init__(self):
-        pass
+        self.scaler = StandardScaler()
 
     def fit(self, X, y=None):
+        self.scaler.fit(X['seed_nbIT'].values.reshape(-1, 1))
         return self
 
     def transform(self, X, y=None):
         data = X.copy()
+        nbIT = data['seed_nbIT']
+        nbIT = nbIT.values.reshape(-1, 1)
+        data['seed_nbIT'] = self.scaler.transform(nbIT)
         return data
 
 
 class nLayersScale(BaseEstimator, TransformerMixin):
     def __init__(self):
-        pass
+        self.scaler = StandardScaler()
 
     def fit(self, X, y=None):
+        self.scaler.fit(X['seed_nLayers'].values.reshape(-1, 1))
         return self
 
     def transform(self, X, y=None):
         data = X.copy()
+        nLayers = data['seed_nLayers']
+        nLayers = nLayers.values.reshape(-1, 1)
+        data['seed_nLayers'] = self.scaler.transform(nLayers)
         return data
 
 
 class nLHCbIDsScale(BaseEstimator, TransformerMixin):
     def __init__(self):
-        pass
+        self.scaler = StandardScaler()
 
     def fit(self, X, y=None):
+        self.scaler.fit(X['seed_nLHCbIDs'].values.reshape(-1, 1))
         return self
 
     def transform(self, X, y=None):
         data = X.copy()
+        nLHCbIDs = data['seed_nLHCbIDs']
+        nLHCbIDs = nLHCbIDs.values.reshape(-1, 1)
+        data['seed_nLHCbIDs'] = self.scaler.transform(nLHCbIDs)
         return data
 
 
@@ -270,8 +282,8 @@ def data_pipeline():
         ('x',xScale()),
         ('ty',tyScale()),
         ('tx',txScale()),
-        # ('nbIT',nbITScale()),
-        # ('nLayers',nLayersScale()),
+        ('nbIT',nbITScale()),
+        ('nLayers',nLayersScale()),
         ('nLHCbIDs', nLHCbIDsScale()),
         ('pt', ptScale()),
         ('p', pScale()),
@@ -408,61 +420,56 @@ def data_pipeline_basic():
     ])
     return num_pipeline
 
+def data_pipeline_basic_3():
+    num_pipeline = Pipeline([
+        ('pseudo rapidity', addPR()),
+        ('radius', addR()),
+        ('ptlog', ptlog()),
+        ('plog', plog()),
+        ('angle', addAngle()),
+        ('chi2sqrt', chi2sqrt()),
+    ])
+    return num_pipeline
+
 def data_pipeline_basic_2():
         num_pipeline = Pipeline([
-            ('dropFalseMCParticles', dropFalseMCParticles()),
-            # ('dropUnnecessaryFeatures', dropUnnecessaryFeatures()),
-            ('angle', addAngle()),
-            ('radius', addR()),
-            ('pseudo rapidity', addPR()),
-            ('z magnet', addZ()),
             ('pt', ptScale()),
             ('p', pScale()),
-            # ('x_abs', xScale_abs()),
-            # ('y_abs', yScale_abs()),
-            # ('tx_abs', txScale_abs()),
-            # ('ty_abs', tyScale_abs()),
+            ('y', yScale()),
+            ('x', xScale()),
+            ('ty', tyScale()),
+            ('tx', txScale()),
             ('chi2PerDoF', chi2PerDoFScaler()),
         ])
         return num_pipeline
 
 def data_pipeline_3():
         num_pipeline = Pipeline([
-            # ('dropFalseMCParticles', dropFalseMCParticles()),
-            # ('dropUnnecessaryFeatures',dropUnnecessaryFeatures()),
-            # ('angle', addAngle()),
+            ('angle', addAngle()),
             ('pseudo rapidity', addPR()),
-            # ('z magnet', addZ()),
             ('radius', addR()),
             ('y', yScale()),
             ('x', xScale()),
             ('ty', tyScale()),
             ('tx', txScale()),
-            # ('nbIT', nbITScale()),
-            # ('nLayers', nLayersScale()),
-            # ('nLHCbIDs', nLHCbIDsScale()),
             ('pt', ptScale()),
             ('p', pScale()),
             ('chi2PerDoF', chi2PerDoFScaler()),
         ])
         return num_pipeline
 
-# def data_pipeline_all_labels():
-#     num_pipeline = Pipeline([
-#         ('dropFalseMCParticles',dropFalseMCParticles()),
-#         ('angle', addAngle()),
-#         ('pseudo rapidity', addPR()),
-#         ('z magnet',addZ()),
-#         ('radius', addR()),
-#         ('y',yScale()),
-#         ('x',xScale()),
-#         ('ty',tyScale()),
-#         ('tx',txScale()),
-#         ('nbIT',nbITScale()),
-#         ('nLayers',nLayersScale()),
-#         ('nLHCbIDs',nLHCbIDsScale()),
-#         ('pt', ptScale()),
-#         ('p', pScale()),
-#         ('chi2PerDoF', chi2PerDoFScaler()),
-#     ])
-#     return num_pipeline
+def data_pipeline_all_labels():
+    num_pipeline = Pipeline([
+        ('angle', addAngle()),
+        ('pseudo rapidity', addPR()),
+        # ('z magnet',addZ()),
+        ('radius', addR()),
+        ('y',yScale()),
+        ('x',xScale()),
+        ('ty',tyScale()),
+        ('tx',txScale()),
+        ('pt', ptScale()),
+        ('p', pScale()),
+        ('chi2PerDoF', chi2PerDoFScaler()),
+    ])
+    return num_pipeline

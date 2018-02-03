@@ -1,0 +1,9 @@
+/home/kuciu/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/172.4343.16/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier performance analysis"
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier performance analysis/build
+/home/kuciu/root/lib
+-O2 -Wall -pedantic -pipe -m64 -fsigned-char -fPIC -pthread -std=c++11  -pipe -m64 -fsigned-char -fPIC -pthread -std=c++11
+/home/kuciu/root/lib/libCore.so/home/kuciu/root/lib/libImt.so/home/kuciu/root/lib/libRIO.so/home/kuciu/root/lib/libNet.so/home/kuciu/root/lib/libHist.so/home/kuciu/root/lib/libGraf.so/home/kuciu/root/lib/libGraf3d.so/home/kuciu/root/lib/libGpad.so/home/kuciu/root/lib/libTree.so/home/kuciu/root/lib/libTreePlayer.so/home/kuciu/root/lib/libRint.so/home/kuciu/root/lib/libPostscript.so/home/kuciu/root/lib/libMatrix.so/home/kuciu/root/lib/libPhysics.so/home/kuciu/root/lib/libMathCore.so/home/kuciu/root/lib/libThread.so/home/kuciu/root/lib/libMultiProc.so/home/kuciu/root/lib/libGui.so/home/kuciu/root/lib/libRooFitCore.so/home/kuciu/root/lib/libRooFit.so/home/kuciu/root/lib/libRooStats.so
+/home/kuciu/root/include
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier performance analysis/build
