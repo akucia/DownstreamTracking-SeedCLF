@@ -13,9 +13,9 @@
 #include <string>
 #include <memory>
 
-class LWTNNClassifier2 {
+class LWTNNClassifier {
 public:
-    LWTNNClassifier2(std::string model_path, std::string default_output);
+    LWTNNClassifier(std::string model_path, std::string default_output);
     double predict(std::vector<double>& input);
 
 private:
