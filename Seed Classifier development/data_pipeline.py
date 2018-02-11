@@ -1,84 +1,88 @@
+""" Contains pre processing pipeline - feature transformations and creation"""
+from abc import ABC, abstractmethod
+from typing import List
 
-from sklearn.pipeline import Pipeline
-
-from sklearn.base import BaseEstimator, TransformerMixin
-
-from sklearn.preprocessing import StandardScaler
 import numpy as np
+import pandas as pd
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
 
-class addAngle(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
+class FeatureTransform(BaseEstimator, TransformerMixin, ABC):
+    _scaler = StandardScaler()
 
-    def fit(self, X, y=None):
-        seed_angle = np.arctan(X.seed_y / X.seed_x)
-        self.scaler.fit(seed_angle.values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        seed_angle = np.arctan(data.seed_y / data.seed_x)
-        data['seed_angle'] = self.scaler.transform(np.array(seed_angle).reshape(-1, 1))
-        return data
-
-
-class addPR(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
+    @staticmethod
+    @abstractmethod
+    def _transformation(X: pd.DataFrame) -> np.ndarray:
         pass
 
-    def fit(self, X, y=None):
-        pr = np.arctanh(X.seed_pt / X.seed_p)
-        self.scaler.fit(pr.values.reshape(-1,1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        pr = np.arctanh(data.seed_pt / data.seed_p)
-        data['seed_pr'] = self.scaler.transform(pr.values.reshape(-1,1))
-        return data
-
-
-class addR(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
+    @property
+    @abstractmethod
+    def _input_features(self) -> List[str]:
         pass
 
-    def fit(self, X, y=None):
-        r = np.sqrt(np.square(X['seed_x']) + np.square(X['seed_y']))
-        self.scaler.fit(np.array(r).reshape(-1,1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        x = data['seed_x']
-        y = data['seed_y']
-        r = np.array(np.sqrt(np.square(x) + np.square(y)))
-        data['seed_r'] = self.scaler.transform(r.reshape(-1,1))
-        return data
-
-
-class addZ(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
+    @property
+    @abstractmethod
+    def _output_feature(self) -> str:
         pass
 
+    def _apply_transformaton(self, X: pd.DataFrame) -> pd.DataFrame:
+        if self._transformation is not None:
+            data = self._transformation(X[self._input_features].copy())
+        else:
+            data = X[self._input_features].copy()
+        return data.values.reshape(-1, 1)
 
-    def fit(self, X, y=None):
-        data_unnormalized = (5376.8 - 3895.12 * np.square(
-                X['seed_ty']) + 309.877 * np.square(X['seed_tx']) + 89.901 / X[
-                                 'seed_p'] - 4732) / (5870 - 4732)
-        self.scaler.fit(np.array(data_unnormalized).reshape(-1,1))
+    def fit(self, X: pd.DataFrame) -> 'FeatureTransform':
+        data = self._apply_transformaton(X)
+        self._scaler.fit(data)
         return self
 
-    def transform(self, X, y=None):
-        data = X.copy()
-        data_unnormalized = (5376.8 - 3895.12 * np.square(
-                data['seed_ty']) + 309.877 * np.square(data['seed_tx']) + 89.901 / data[
-                                 'seed_p'] - 4732) / (5870 - 4732)
-        data['seed_z_magnet'] = self.scaler.transform(np.array(data_unnormalized).reshape(-1,1))
-        return data
+    def transform(self, X: pd.DataFrame) -> pd.DataFrame:
+        data = self._apply_transformaton(X)
+        X[self._output_feature] = self._scaler.transform(data)
+        return X
+
+
+class addAngle(FeatureTransform):
+    _input_features = ['seed_y', 'seed_x']
+    _output_feature = 'seed_angle'
+
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.arctan(X['seed_y'] / X['seed_x'])
+
+
+class addPR(FeatureTransform):
+    _input_features = ['seed_pt', 'seed_p']
+    _output_feature = 'seed_pr'
+
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.arctanh(X.seed_pt / X.seed_p)
+
+
+class addR(FeatureTransform):
+    _input_features = ['seed_x', 'seed_y']
+    _output_feature = 'seed_r'
+
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.sqrt(np.square(X['seed_x']) + np.square(X['seed_y']))
+
+
+class addZ(FeatureTransform):
+    _input_features = ['seed_tx', 'seed_ty', 'seed_p']
+    _output_feature = 'seed_z_magnet'
+
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return (
+                   5376.8 - 3895.12 * np.square(X['seed_ty'])
+                   + 309.877 * np.square(X['seed_tx'])
+                   + 89.901 / X['seed_p'] - 4732
+               ) / (5870 - 4732)
 
 
 class dropFalseMCParticles(BaseEstimator, TransformerMixin):
@@ -110,165 +114,74 @@ class dropUnnecessaryFeatures(BaseEstimator, TransformerMixin):
         return data
 
 
-class chi2PerDoFScaler(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
+class chi2PerDoFScaler(FeatureTransform):
+    _input_features = ['seed_chi2PerDoF']
+    _output_feature = 'seed_chi2PerDoF'
 
-    def fit(self, X, y=None):
-        self.scaler.fit(np.sqrt(X['seed_chi2PerDoF']).values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        chi2 = data['seed_chi2PerDoF']
-        chi2 = np.sqrt(chi2).values.reshape(-1, 1)
-        data['seed_chi2PerDoF'] = self.scaler.transform(chi2)
-        return data
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.sqrt(X['seed_chi2PerDoF'])
 
 
-class nbITScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_nbIT'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        nbIT = data['seed_nbIT']
-        nbIT = nbIT.values.reshape(-1, 1)
-        data['seed_nbIT'] = self.scaler.transform(nbIT)
-        return data
+class nbITScale(FeatureTransform):
+    transformation = None
+    _input_features = ['seed_nbIT']
+    _output_feature = 'seed_nbIT'
 
 
-class nLayersScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_nLayers'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        nLayers = data['seed_nLayers']
-        nLayers = nLayers.values.reshape(-1, 1)
-        data['seed_nLayers'] = self.scaler.transform(nLayers)
-        return data
+class nLayersScale(FeatureTransform):
+    transformation = None
+    _input_features = ['seed_nLayers']
+    _output_feature = 'seed_nLayers'
 
 
-class nLHCbIDsScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_nLHCbIDs'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        nLHCbIDs = data['seed_nLHCbIDs']
-        nLHCbIDs = nLHCbIDs.values.reshape(-1, 1)
-        data['seed_nLHCbIDs'] = self.scaler.transform(nLHCbIDs)
-        return data
+class nLHCbIDsScale(FeatureTransform):
+    transformation = None
+    _input_features = ['seed_nLHCbIDs']
+    _output_feature = 'seed_nLHCbIDs'
 
 
-class pScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
+class pScale(FeatureTransform):
+    _input_features = ['seed_p']
+    _output_feature = 'seed_p'
 
-    def fit(self, X, y=None):
-        self.scaler.fit(np.log10(X['seed_p']).values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        p = np.log10(data['seed_p']).values.reshape(-1, 1)
-        data['seed_p'] = self.scaler.transform(p)
-        return data
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.log10(X['seed_p'])
 
 
-class ptScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
+class ptScale(FeatureTransform):
+    _input_features = ['seed_pt']
+    _output_feature = 'seed_pt'
 
-    def fit(self, X, y=None):
-        self.scaler.fit(np.log10(X['seed_pt']).values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        pt = np.log10(data['seed_pt'].values.reshape(-1, 1))
-        data['seed_pt'] = self.scaler.transform(pt)
-        return data
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.log10(X['seed_pt'])
 
 
-class txScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_tx'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        tx = data['seed_tx'].values.reshape(-1, 1)
-        data['seed_tx'] = self.scaler.transform(tx)
-        return data
+class txScale(FeatureTransform):
+    _transformation = None
+    _input_features = ['seed_tx']
+    _output_feature = 'seed_tx'
 
 
-class tyScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_ty'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        ty = data['seed_ty'].values.reshape(-1, 1)
-        data['seed_ty'] = self.scaler.transform(ty)
-        return data
+class tyScale(FeatureTransform):
+    _transformation = None
+    _input_features = ['seed_ty']
+    _output_feature = 'seed_ty'
 
 
-class xScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_x'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        x = data['seed_x'].values.reshape(-1, 1)
-        data['seed_x'] = self.scaler.transform(x)
-        return data
+class xScale(FeatureTransform):
+    _transformation = None
+    _input_features = ['seed_x']
+    _output_feature = 'seed_x'
 
 
-class yScale(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
+class yScale(FeatureTransform):
+    _transformation = None
+    _input_features = ['seed_y']
+    _output_feature = 'seed_y'
 
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_y'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        y = data['seed_y'].values.reshape(-1, 1)
-        data['seed_y'] = self.scaler.transform(y)
-        return data
 
 def data_pipeline():
     num_pipeline = Pipeline([
@@ -276,20 +189,21 @@ def data_pipeline():
         # ('dropUnnecessaryFeatures',dropUnnecessaryFeatures()),
         ('angle', addAngle()),
         ('pseudo rapidity', addPR()),
-        ('z magnet',addZ()),
+        ('z magnet', addZ()),
         ('radius', addR()),
-        ('y',yScale()),
-        ('x',xScale()),
-        ('ty',tyScale()),
-        ('tx',txScale()),
-        ('nbIT',nbITScale()),
-        ('nLayers',nLayersScale()),
+        ('y', yScale()),
+        ('x', xScale()),
+        ('ty', tyScale()),
+        ('tx', txScale()),
+        ('nbIT', nbITScale()),
+        ('nLayers', nLayersScale()),
         ('nLHCbIDs', nLHCbIDsScale()),
         ('pt', ptScale()),
         ('p', pScale()),
         ('chi2PerDoF', chi2PerDoFScaler()),
     ])
     return num_pipeline
+
 
 def data_pipeline_limited():
     num_pipeline = Pipeline([
@@ -298,70 +212,30 @@ def data_pipeline_limited():
     ])
     return num_pipeline
 
-from sklearn.preprocessing import QuantileTransformer
 
-class txScale_abs(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_tx'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        tx = data['seed_tx'].values.reshape(-1, 1)
-        data['seed_tx'] = np.abs(self.scaler.transform(tx))
-        return data
+class txScale_abs(txScale):
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.abs(X)
 
 
-class tyScale_abs(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_ty'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        ty = data['seed_ty'].values.reshape(-1, 1)
-        data['seed_ty'] = np.abs(self.scaler.transform(ty))
-        return data
+class tyScale_abs(txScale):
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.abs(X)
 
 
-class xScale_abs(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
-
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_x'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        x = data['seed_x'].values.reshape(-1, 1)
-        data['seed_x'] = np.abs(self.scaler.transform(x))
-        return data
+class xScale_abs(txScale):
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.abs(X)
 
 
-class yScale_abs(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.scaler = StandardScaler()
-        pass
+class yScale_abs(txScale):
+    @staticmethod
+    def _transformation(X: pd.DataFrame):
+        return np.abs(X)
 
-    def fit(self, X, y=None):
-        self.scaler.fit(X['seed_y'].values.reshape(-1, 1))
-        return self
-
-    def transform(self, X, y=None):
-        data = X.copy()
-        y = data['seed_y'].values.reshape(-1, 1)
-        data['seed_y'] = np.abs(self.scaler.transform(y))
-        return data
 
 class plog(BaseEstimator, TransformerMixin):
     def __init__(self):
@@ -376,6 +250,7 @@ class plog(BaseEstimator, TransformerMixin):
         data['seed_p'] = p
         return data
 
+
 class ptlog(BaseEstimator, TransformerMixin):
     def __init__(self):
         pass
@@ -388,6 +263,7 @@ class ptlog(BaseEstimator, TransformerMixin):
         p = np.log10(data['seed_pt']).values.reshape(-1, 1)
         data['seed_pt'] = p
         return data
+
 
 class chi2sqrt(BaseEstimator, TransformerMixin):
     def __init__(self):
@@ -403,6 +279,7 @@ class chi2sqrt(BaseEstimator, TransformerMixin):
         chi2 = np.sqrt(chi2).values.reshape(-1, 1)
         data['seed_chi2PerDoF'] = chi2
         return data
+
 
 def data_pipeline_basic():
     num_pipeline = Pipeline([
@@ -420,6 +297,7 @@ def data_pipeline_basic():
     ])
     return num_pipeline
 
+
 def data_pipeline_basic_3():
     num_pipeline = Pipeline([
         ('pseudo rapidity', addPR()),
@@ -431,32 +309,35 @@ def data_pipeline_basic_3():
     ])
     return num_pipeline
 
+
 def data_pipeline_basic_2():
-        num_pipeline = Pipeline([
-            ('pt', ptScale()),
-            ('p', pScale()),
-            ('y', yScale()),
-            ('x', xScale()),
-            ('ty', tyScale()),
-            ('tx', txScale()),
-            ('chi2PerDoF', chi2PerDoFScaler()),
-        ])
-        return num_pipeline
+    num_pipeline = Pipeline([
+        ('pt', ptScale()),
+        ('p', pScale()),
+        ('y', yScale()),
+        ('x', xScale()),
+        ('ty', tyScale()),
+        ('tx', txScale()),
+        ('chi2PerDoF', chi2PerDoFScaler()),
+    ])
+    return num_pipeline
+
 
 def data_pipeline_3():
-        num_pipeline = Pipeline([
-            ('angle', addAngle()),
-            ('pseudo rapidity', addPR()),
-            ('radius', addR()),
-            ('y', yScale()),
-            ('x', xScale()),
-            ('ty', tyScale()),
-            ('tx', txScale()),
-            ('pt', ptScale()),
-            ('p', pScale()),
-            ('chi2PerDoF', chi2PerDoFScaler()),
-        ])
-        return num_pipeline
+    num_pipeline = Pipeline([
+        ('angle', addAngle()),
+        ('pseudo rapidity', addPR()),
+        ('radius', addR()),
+        ('y', yScale()),
+        ('x', xScale()),
+        ('ty', tyScale()),
+        ('tx', txScale()),
+        ('pt', ptScale()),
+        ('p', pScale()),
+        ('chi2PerDoF', chi2PerDoFScaler()),
+    ])
+    return num_pipeline
+
 
 def data_pipeline_all_labels():
     num_pipeline = Pipeline([
@@ -464,10 +345,10 @@ def data_pipeline_all_labels():
         ('pseudo rapidity', addPR()),
         # ('z magnet',addZ()),
         ('radius', addR()),
-        ('y',yScale()),
-        ('x',xScale()),
-        ('ty',tyScale()),
-        ('tx',txScale()),
+        ('y', yScale()),
+        ('x', xScale()),
+        ('ty', tyScale()),
+        ('tx', txScale()),
         ('pt', ptScale()),
         ('p', pScale()),
         ('chi2PerDoF', chi2PerDoFScaler()),

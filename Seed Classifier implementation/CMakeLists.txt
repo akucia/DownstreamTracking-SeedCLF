@@ -9,6 +9,7 @@ find_package(lwtnn)
 set(SOURCE_FILES
         src/LWTNNClassifier.cpp src/LWTNNClassifier.h
         src/LWTNNClassifier.cpp src/LWTNNClassifier.h
+        main.cpp
         )
 
 
