@@ -1,21 +1,18 @@
+import itertools
 import os
 
-import tensorflow as tf
-import keras.backend as K
-
-from sklearn.metrics import roc_curve
-from sklearn.metrics import roc_auc_score
-
-import numpy as np
 import cufflinks as cf
+import keras.backend as K
+import matplotlib.pyplot as plt
+import numpy as np
+import plotly.graph_objs as go
 import plotly.offline as py
+import tensorflow as tf
+from sklearn.metrics import confusion_matrix
+
 py.init_notebook_mode()
 cf.go_offline()
-import plotly.graph_objs as go
 
-import matplotlib.pyplot as plt
-
-from sklearn.metrics import confusion_matrix
 
 def export_binary_clf_as_SavedModel(keras_model, export_dir):
     K.set_learning_phase(0)
@@ -26,15 +23,14 @@ def export_binary_clf_as_SavedModel(keras_model, export_dir):
     classes = tf.argmax(predictions, axis=1)
 
     classify_signature = tf.saved_model.signature_def_utils.predict_signature_def(
-            {'inputs': inputs}, {'classes': classes}
+        {'inputs': inputs}, {'classes': classes}
     )
 
     score_signature = tf.saved_model.signature_def_utils.predict_signature_def(
-            {'inputs': inputs}, {'scores': scores}
+        {'inputs': inputs}, {'scores': scores}
     )
-    if tf.saved_model.signature_def_utils.is_valid_signature(
-            classify_signature) and tf.saved_model.signature_def_utils.is_valid_signature(
-            score_signature):
+    if tf.saved_model.signature_def_utils.is_valid_signature(classify_signature) \
+        and tf.saved_model.signature_def_utils.is_valid_signature(score_signature):
         signature_def_map = {
             "classify"           :
                 classify_signature,
@@ -48,14 +44,13 @@ def export_binary_clf_as_SavedModel(keras_model, export_dir):
     tag_constants = [tf.saved_model.tag_constants.SERVING]
 
     builder.add_meta_graph_and_variables(
-            K.get_session(),
-            tag_constants,
-            signature_def_map=signature_def_map,
-            assets_collection=tf.get_collection(tf.GraphKeys.ASSET_FILEPATHS),
+        K.get_session(),
+        tag_constants,
+        signature_def_map=signature_def_map,
+        assets_collection=tf.get_collection(tf.GraphKeys.ASSET_FILEPATHS),
     )
     builder.save()
 
-import itertools
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
@@ -83,12 +78,11 @@ def plot_confusion_matrix(cm, classes,
 
 
 def plot_true_positives_and_negatives(
-        y_true,
-        probabilities,
-        normalize=False,
-        step=0.1,
-        title='True positives and true negatives vs threshold', ):
-
+    y_true,
+    probabilities,
+    normalize=False,
+    step=0.1,
+    title='True positives and true negatives vs threshold', ):
     thresholds = np.arange(0.0, 1.0, step)
     true_positives_rate = np.empty(thresholds.shape)
     true_negatives_rate = np.empty(thresholds.shape)
@@ -113,13 +107,13 @@ def plot_true_positives_and_negatives(
 
     py.iplot(fig)
 
-def plot_true_positives_and_negatives2(
-        y_true,
-        probabilities,
-        normalize=False,
-        step=0.1,
-        title='True positives and true negatives vs threshold', ):
 
+def plot_true_positives_and_negatives2(
+    y_true,
+    probabilities,
+    normalize=False,
+    step=0.1,
+    title='True positives and true negatives vs threshold', ):
     thresholds = np.arange(0.0, 1.0, step)
     true_positives_rate = np.empty(thresholds.shape)
     true_negatives_rate = np.empty(thresholds.shape)
