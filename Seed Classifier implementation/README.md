@@ -5,7 +5,7 @@ Contents:
     ```
     cd build
     cmake ..
-    cd ./bin/Classifier_in_cpp
+    ./bin/Classifier_in_cpp
     ```
     
 2. BrunelDev_v52r6 - implementation of Neural Network in PatLongLivedTracking algorithm
