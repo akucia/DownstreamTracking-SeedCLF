@@ -1,0 +1,58 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier implementation/Seed Classifier - local/main.cpp
+src/LWTNNClassifier.h
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier implementation/Seed Classifier - local/src/LWTNNClassifier.h
+iostream
+-
+chrono
+-
+
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier implementation/Seed Classifier - local/src/LWTNNClassifier.cpp
+LWTNNClassifier.h
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier implementation/Seed Classifier - local/src/LWTNNClassifier.h
+cmath
+-
+
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier implementation/Seed Classifier - local/src/LWTNNClassifier.h
+lwtnn/LightweightGraph.hh
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier implementation/Seed Classifier - local/src/lwtnn/LightweightGraph.hh
+lwtnn/parse_json.hh
+/home/kuciu/uczelnia/DownstreamTracking-SeedCLF/Seed Classifier implementation/Seed Classifier - local/src/lwtnn/parse_json.hh
+iostream
+-
+fstream
+-
+string
+-
+memory
+-
+
+/usr/local/include/lwtnn/LightweightGraph.hh
+lightweight_network_config.hh
+/usr/local/include/lwtnn/lightweight_network_config.hh
+
+/usr/local/include/lwtnn/NNLayerConfig.hh
+vector
+-
+map
+-
+
+/usr/local/include/lwtnn/lightweight_network_config.hh
+NNLayerConfig.hh
+/usr/local/include/lwtnn/NNLayerConfig.hh
+map
+-
+string
+-
+
+/usr/local/include/lwtnn/parse_json.hh
+lightweight_network_config.hh
+/usr/local/include/lwtnn/lightweight_network_config.hh
+

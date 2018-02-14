@@ -242,7 +242,7 @@ private:
   Gaudi::Property<unsigned int> m_nMinHighThresHits {     this, "NMinHighThresHits", 2 };
   // -- Parameter to reject seed track which are likely ghosts
   Gaudi::Property<std::string> m_mvaPreselectionToolName {this, "MVAPreselectionTool", "PatLWTNNSeedClassifier"};
-  Gaudi::Property<double> m_seedCut {                     this, "SeedCut", 0.145 };
+  Gaudi::Property<double> m_seedCut {                     this, "SeedCut", 0.245 };
   Gaudi::Property<double> m_finalMvaCut {                 this, "FinalMvaCut", 0.1 };
   Gaudi::Property<double> m_finalMvaSpread {              this, "FinalMvaSpread", 0.1 };
   Gaudi::Property<unsigned int> m_maxOutputCands {        this, "MaxOutputCands", 1 };

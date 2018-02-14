@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/Classifier_in_cpp.dir/src/LWTNNClassifier.cpp.o CMakeFiles/Classifier_in_cpp.dir/main.cpp.o  -o ../bin/Classifier_in_cpp /usr/local/lib/liblwtnn.so -Wl,-rpath,/usr/local/lib 
