@@ -17,3 +17,20 @@ Contents:
     **Running classifier with Gaudi requires environmental variable `"LOCALPARAMFILESROOT"` to be set to the data dir**
     
     Installation:  
+    1. Set up Brunel
+    ```
+    lb-dev Brunel v52r6
+    cd BrunelDev_v52r6/
+    git lb-use Rec
+    git lb-checkout Rec/master Tf/PatAlgorithms 
+    git lb-checkout Rec/master Tf/PatKernel 
+    git lb-checkout Rec/master Tr/TrackMCTools 
+    ```
+    2. Merge the contents of `BrunelDev_v52r6` from this repository, with the `lb-dev` version.
+    3. Clone LWTNN
+    `git clone https://github.com/lwtnn/lwtnn.git`
+    4. Replace `CMakeLists.txt` from LWTNN with the file `Gaudi_LWTNN/CMakeLists.txt` and move all LWTNN source files to `lwtnn/src/` directory (see `CMakeLists.txt` for the full list of files).
+    
+    5. `cd ../` and `make -j`
+    
+    You can now use the Brunel framework with new Downstream Tracking algorithm
