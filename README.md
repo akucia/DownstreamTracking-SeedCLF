@@ -12,7 +12,7 @@ Contents:
 4. data - input training files and ROOT -> Python converter
 5. models - final model json files
 
-More:
+Read more:
 
 1.[PatLongLivedTracking](http://cds.cern.ch/record/2240723?ln=en)
 
