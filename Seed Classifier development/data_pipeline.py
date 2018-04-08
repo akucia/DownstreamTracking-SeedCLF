@@ -10,7 +10,9 @@ from sklearn.preprocessing import StandardScaler
 
 
 class FeatureTransform(BaseEstimator, TransformerMixin, ABC):
-    _scaler = StandardScaler()
+
+    def __init__(self):
+        self._scaler = StandardScaler()
 
     @staticmethod
     @abstractmethod
@@ -28,6 +30,7 @@ class FeatureTransform(BaseEstimator, TransformerMixin, ABC):
         pass
 
     def _apply_transformaton(self, X: pd.DataFrame) -> pd.DataFrame:
+        X = X.copy()
         if self._transformation is not None:
             data = self._transformation(X[self._input_features].copy())
         else:
@@ -35,11 +38,13 @@ class FeatureTransform(BaseEstimator, TransformerMixin, ABC):
         return data.values.reshape(-1, 1)
 
     def fit(self, X: pd.DataFrame) -> 'FeatureTransform':
+        X = X.copy()
         data = self._apply_transformaton(X)
         self._scaler.fit(data)
         return self
 
     def transform(self, X: pd.DataFrame) -> pd.DataFrame:
+        X = X.copy()
         data = self._apply_transformaton(X)
         X[self._output_feature] = self._scaler.transform(data)
         return X

@@ -71,7 +71,15 @@ class TestPipeline(unittest.TestCase):
             }
             }
         )
-        df_transformed = data_pipeline_all_labels().fit_transform(self.df)
+        pipeline = data_pipeline_all_labels()
+        df_transformed = pipeline.fit_transform(self.df)
+        for column in df_transformed.columns:
+            for value_a, value_b in zip(df_transformed[column], df_expected[column]):
+                self.assertAlmostEqual(
+                    value_a, value_b,
+                    msg="Error in feature: {}".format(column)
+                )
+        df_transformed = pipeline.transform(self.df)
         for column in df_transformed.columns:
             for value_a, value_b in zip(df_transformed[column], df_expected[column]):
                 self.assertAlmostEqual(
